@@ -3,3 +3,16 @@
     Author     : Carlos Mario
 */
 
+.fondoLogin{
+    background-image: url(../img/fondoSin.png);//HotalPraderaArenal1.png
+    //background: rgba(255, 0, 0, 0.4);
+    position: absolute;
+    top:0; right:0;
+    bottom:0; left:0;
+    
+    //width: 1366px;//
+}
+.fondoTrasparente{
+    background-color: transparent;
+    color: black
+}

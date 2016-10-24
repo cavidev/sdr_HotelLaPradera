@@ -7,9 +7,11 @@
 angular.module('HotelLaPredera')
 .controller("loginCtrl", function($scope,$http,$location,loginFactory)
 {
+    $scope.Name = "Andres es guineo";
     console.log("Prueba de carga de loginCtrl");
-    loginFactory.getData("Sergio",function(res){
+    loginFactory.getData("Sergio",function(res)
+    {
+        var algo = res;
         console.log(res);
     });
-
 });

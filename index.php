@@ -7,11 +7,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Hotel la Predera</title>
+        <title>Hotel la Pradera</title>
         <!--Carga el css de bootstrap..-->
-        <link rel="stylesheet" href="lib/Bootstrap/css/bootstrap.min.css">
-        <!--CSS personalizado..-->
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="lib/Bootstrap/css/bootstrap.min.css"><!--Boostrap..-->
+        <link rel="stylesheet" href="style/style.css"><!--CSS personalizado..-->
+        <link rel="stylesheet" href="lib/Icons/css/font-awesome.min.css"><!--Iconos..-->
     </head>
     <body ng-app="HotelLaPredera"> <!-- -->
         <!--Carga los templates -->
