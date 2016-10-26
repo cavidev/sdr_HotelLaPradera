@@ -5,10 +5,10 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 angular.module('HotelLaPredera')
-.factory('loginFactory', function($http){
+.factory('superUsuarioFactory', function($http){
     //Arma la funcion y la inserta de una ves en el json.
     var getData = function getData(datosV,callback){
-        //console.log("Mae estoy en el factory");
+        console.log("Mae estoy en el factory");
         //La direccion del archivo PHP.
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=GetData";
         //Datos que vienen por parametros.
@@ -32,3 +32,6 @@ angular.module('HotelLaPredera')
         credencialesUsuario: credencialesUsuario
     };
 });
+
+
+

@@ -1,20 +1,20 @@
 <div class="fondoLogin">
-    <div class="container"><!--  -->
+    <div class="container colorBlanco"><!--  -->
         <div style="margin-top: 130px;">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
                     <!-- <img src="../../img/logo.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> -->
-                    <h1 style="text-align: center">Reservas Hotel la Pradera</h1>
+                    <h1 style="text-align: center;">Reservas Hotel la Pradera</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
+                <div class="col-sm-6 col-sm-offset-3 form-box" style="border: 20px" >
                     <section class="col-lg-6 col-sm-offset-3"><!--class="col-xs-8 col-sm-6"  -->
                         <div >
                         <div class="row">
                             <div class="form-top">
                                 <div style="float:left" >
-                                        <h3>Inicio de sesión</h3>
+                                    <h3>Inicio de sesión</h3>
                                 </div>
                                 <div style="float:right">
                                     <i class="fa fa-lock fa-5x"></i>
@@ -29,7 +29,7 @@
                                         <div class="input-group margin-bottom-sm">
                                             <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                             <input type="text" placeholder="Nombre Usuario" class="form-control" 
-                                                   style="background-color: transparent;color: gainsboro">
+                                                   style="background-color: transparent;color: gainsboro" ng-model="usuario">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -37,12 +37,12 @@
                                         <div class="input-group margin-bottom-sm">
                                             <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
                                             <input type="password" placeholder="Contraseña" class="form-control" 
-                                                   style="background-color: transparent;color: gainsboro">
+                                                   style="background-color: transparent;color: gainsboro" ng-model="contrasenna">
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn">Entrar</button>
-                                        <a style="color: black; float: right">Olvide mi contraseña</a>
+                                        <button class="btn" style="color: black" ng-click="VerificarUsuario(usuario,contrasenna)">Entrar</button>
+                                        <a style="float: right;color: gainsboro">Olvide mi contraseña</a>
                                     </div>
                                 </form>
                             </div>

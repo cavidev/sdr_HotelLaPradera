@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="lib/Bootstrap/css/bootstrap.min.css"><!--Boostrap..-->
         <link rel="stylesheet" href="style/style.css"><!--CSS personalizado..-->
         <link rel="stylesheet" href="lib/Icons/css/font-awesome.min.css"><!--Iconos..-->
+        <link rel="stylesheet" href="style/AdminLTE.css">
     </head>
     <body ng-app="HotelLaPredera"> <!-- -->
         <!--Carga los templates -->
@@ -35,9 +36,11 @@
         
         <!--Carga de service-->
         <script type="text/javascript" src="appWEB/login/service/login.js"></script>
+        <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
         
         <!-- Carga de controladores.-->
         <script type="text/javascript" src="appWEB/login/controlador/login.js"></script>
+        <script type="text/javascript" src="appWEB/profile/controlador/superUsuario.js"></script>
                   
     </body>
 </html>
