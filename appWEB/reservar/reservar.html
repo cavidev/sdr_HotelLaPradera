@@ -1,0 +1,218 @@
+<div>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Registro de Reservaciones</h1>
+        </div>
+        <div class="row col-md-12"> <!--  well well-sm-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Nueva Reservación</h4>
+                </div>
+                <div class="panel-body"> <!-- col-md-11 -->
+                    <div style="margin-left: 30px;">
+                        <form>
+                            <div class="row">
+                                <h4>Dias a reservar</h4>
+                                <section class="row">   
+                                    <div class="col-md-3 form-group">
+                                        <label>Fecha de Entrada</label>
+                                        <input type="date" class="form-control " ng-model="fechaInicial">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label>Hora de Entrada</label>
+                                        <input type="time" class="form-control " style="background-color: transparent" ng-model="horaInicial">
+                                    </div>
+                                </section>
+                                <section class="row">
+                                    <div class="col-md-3 form-group">
+                                        <label>Fecha de Salida</label>
+                                        <input type="date" class="form-control" ng-model="fechaFinal">
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label>Hora de Salida</label>
+                                        <input type="time" class="form-control " ng-model="horaSalida">
+                                    </div>
+                                </section>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <h4>Información de la Reserva</h4>
+                                <section class="row">
+                                    <div class="col-md-2 form-group">
+                                        <label>Habitación</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Disponible" ng-model="numeroHabitacion">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default"
+                                                        data-toggle="modal" data-target="#habitacionesDisponibles"
+                                                        ><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label>Cedula Cliente</label>
+                                        <input type="text" class="form-control " placeholder="X0XXX0XXX" ng-model="cedulaCliente">
+                                    </div>
+                                    <div class="col-md-5 form-group">
+                                        <label>Nombre del cliente</label>
+                                        <input type="text" class="form-control " placeholder="Digite el nombre" ng-model="cedulaCliente">
+                                    </div>
+                                </section>
+                                <section class="row">
+                                    <div class="col-md-2 form-group">
+                                        <label>Acompañantes</label>
+                                        <input type="number" class="form-control " ng-model="acompanantes">
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label>Tipo de pago</label>
+                                        <select class="form-control" ng-model="tipoPago" ng-change="tipoInfoTipoPago(tipoPago)">
+                                            <option value="Tarjeta">Tarjeta</option>
+                                            <option value="Agencia">Agencia</option>
+                                            <option selected value="Efectivo">Efectivo</option>
+                                            <option value="Deposito Bancario">Deposito Bancario</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5 form-group">
+                                        <label>Datos del tipo de pago</label>
+                                        <div ng-show="infoTipoTarjeta">
+                                            <input type="text" class="form-control" placeholder="Numero Tarjeta" ng-model="numeroTargeta">
+                                        </div>
+                                        <div ng-show="infoTipoAgencia">
+                                            <input type="text" class="form-control" placeholder="Cedula Juridica" ng-model="cedulaJuridica">
+                                        </div>
+                                        <div ng-show="infoTipoEfectivo">
+                                            <input type="text" class="form-control" placeholder="Cantidad que respaldo" ng-model="cantidadRespaldo" >
+                                        </div>
+                                        <div ng-show="infoTipoDepositoBancario">
+                                            <input type="text" class="form-control" placeholder="Nombre Banco" ng-model="nombreBanco">
+                                            <hr class="lineaHorizontal">
+                                            <input type="text" class="form-control" placeholder="Numero Cuenta" ng-model="numeroCuenta">
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <div style="float: right;margin-right: 10px">
+                                    <button class="btn btn-success" >Confirmar</button>
+                                    <button class="btn btn-default" >Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<!-- Modal -Habitaciones -->
+<div class="modal fade" id="habitacionesDisponibles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Habitaciones disponibles</h4>
+            </div>
+            <div class="modal-body">
+            <!--Cuerpo -->
+            <div>
+                <section style="float: right" class="form-group">
+                    <label>Filtrar: </label>
+                    <input class="cajaTexto" type="text" class="form-control" ng-model="busqueda">
+                </section>	
+            </div>
+            <div style="height: 315px;overflow-y: auto;width: 583px;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo</th>
+                            <th>Costo</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="habitacionD in habitacionesDisponibles | filter: busqueda">
+                            <td>{{habitacionD.id}}</td>
+                            <td>{{habitacionD.tipo}}</td>
+                            <td>{{habitacionD.costo}}</td>
+                            <td>{{habitacionD.descripcion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--
+<div>
+    <div class="container-fluid wrapper">
+        <div class="row">
+            <h1>Reservaciones</h1>
+            <h3 style="text-align: right">{{fechaActual}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Nueva Reservación</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="float: left;width: 400px;">
+                            <form>
+                                <div class="row">
+                                    <h4>Dias a reservar</h4>
+                                    <div class="col-md-6 form-group">
+                                        <label>Fecha inicio</label>
+                                        <input type="date" class="form-control ">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Fecha final</label>
+                                        <input type="date" class="form-control ">
+                                    </div>
+                                </div>  
+                                <div class="row">
+                                    <h4>Información</h4>
+                                    <div class="col-md-6 form-group">
+                                        <label>Numero habitación</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Disponibles">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default"
+                                                        data-toggle="modal" data-target="#habitacionesDisponibles"
+                                                        ><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group margin-bottom-sm">
+                                        <label>Cedula Cliente</label>
+                                        <input type="text" class="form-control " placeholder="0x-0xxx-0xxx">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="float: right;width: 140px;">
+                            <div class="row">
+                                <button class="btn btn-success">Reservar</button>
+                            </div>
+                            <div class="row">
+                                <button class="btn btn-info">Verificar Cliente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+-->
