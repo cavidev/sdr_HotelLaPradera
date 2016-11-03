@@ -28,8 +28,12 @@ angular.module('HotelLaPradera', ['ngRoute'])
             controller 	: 'recepcionistaCtrl'          
         })
         .when('/reservar', {
-            templateUrl	: 'appWEB/reservaciones/reservar.html',
+            templateUrl	: 'appWEB/reservaciones/reservar/reservar.html',
             controller 	: 'reservacionesCtrl'
+        })
+        .when('/agendaReservas', {
+            templateUrl	: 'appWEB/reservaciones/agendaReservas/agendaReservas.html',
+            controller 	: 'agendaReservasCtrl'
         })
         .otherwise({
             redirectTo: '/'

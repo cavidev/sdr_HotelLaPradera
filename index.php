@@ -89,11 +89,10 @@
         <!--Carga de service-->
         <script type="text/javascript" src="appWEB/login/service/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
-        <script type="text/javascript" src="appWEB/reservaciones/servicio/reservaciones.js"></script>
-        
+        <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservas.js"></script>
         <!-- Carga de controladores.-->
         <script type="text/javascript" src="appWEB/login/controlador/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/controlador/superUsuario.js"></script>
-        <script type="text/javascript" src="appWEB/reservaciones/controlador/reservaciones.js"></script>
+        <script type="text/javascript" src="appWEB/reservaciones/reservar/controlador/reservar.js"></script>
     </body>
 </html>
