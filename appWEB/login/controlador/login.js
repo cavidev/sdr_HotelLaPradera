@@ -5,11 +5,13 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 /* global angular */
-angular.module('HotelLaPredera')
-.controller("loginCtrl", function($scope,$location,loginFactory)
+angular.module('HotelLaPradera')
+.controller("loginCtrl", function($scope, $location, loginFactory)
 {
+    $scope.visibleNav = false;
     $scope.VerificarUsuario = function VerificarUsuario(usuario,contrasenna){
         var credenciales = {Usuario: usuario, Contrasenna: contrasenna};
+        console.log(loginFactory.credencialesUsuario);
         loginFactory.credencialesUsuario(credenciales,function(res){
             if(res.sucess === true){
                 switch(res.tipoUsuario) {

@@ -20,42 +20,97 @@
 .colorBlanco{
     color: gainsboro;
 }
-
-@media (min-width: 768px) {
-  .navbar-collapse {
-    height: auto;
-    border-top: 0;
-    box-shadow: none;
-    max-height: none;
-    padding-left:0;
-    padding-right:0;
-  }
-  .navbar-collapse.collapse {
-    display: block !important;
-    width: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
-  }
-  .navbar-collapse.in {
-    overflow-x: visible;
-  }
-
-.navbar
-{
-	max-width:300px;
-	margin-right: 0;
-	margin-left: 0;
-}	
-
-.navbar-nav,
-.navbar-nav > li,
-.navbar-left,
-.navbar-right,
-.navbar-header
-{float:none !important;}
-
-.navbar-right .dropdown-menu {left:0;right:auto;}
-.navbar-collapse .navbar-nav.navbar-right:last-child {
-    margin-right: 0;
+/*
+La posicion del nav izquierdo.
+*/
+header{
+    height: 100%;
+    position: fixed;
 }
+@media (min-width: 768px) {
+    .navbar-collapse {
+      height: auto;
+      border-top: 0;
+      box-shadow: none;
+      max-height: 100%;
+      padding-left:10px;
+      padding-right:0;
+    }
+    .navbar-collapse.collapse {
+      display: block !important;
+      //width: auto !important;
+      padding-bottom: 0;
+      overflow: visible !important;
+    }
+    .navbar-collapse.in {overflow-x: visible;}
+
+    .navbar{max-width:300px; height: 100%; width: 260px; margin-right: 0; margin-left: 0;}
+    .navbar-nav,
+    .navbar-nav > li,
+    .navbar-left,
+    .navbar-right,
+    .navbar-header
+    {float:none !important;}
+    .navbar-right .dropdown-menu {left:0;right:auto;}
+    .navbar-collapse .navbar-nav.navbar-right:last-child {margin-right: 0;}
+}
+
+.wrapper{
+    margin-left: 270px;
+    width: 1070px;
+    overflow-y: auto;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green > a {
+    color: #5cb85c;
+}
+
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red > a {
+    color: #d9534f;
+}
+
+.panel-red > a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+
+.panel-yellow > a:hover {
+    color: #df8a13;
 }

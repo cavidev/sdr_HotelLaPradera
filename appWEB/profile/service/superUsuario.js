@@ -4,7 +4,7 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
-angular.module('HotelLaPredera')
+angular.module('HotelLaPradera')
 .factory('superUsuarioFactory', function($http){
     //Arma la funcion y la inserta de una ves en el json.
     var getData = function getData(datosV,callback){

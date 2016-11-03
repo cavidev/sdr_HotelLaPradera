@@ -4,7 +4,7 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
-angular.module('HotelLaPredera', ['ngRoute'])
+angular.module('HotelLaPradera', ['ngRoute'])
 .config(function($routeProvider) 
 {
     $routeProvider
@@ -23,6 +23,11 @@ angular.module('HotelLaPredera', ['ngRoute'])
         .when('/recepcionista', {
             templateUrl	: 'appWEB/profile/recepcionista.html',
             controller 	: 'recepcionistaCtrl'          
+        })
+        .when('/superUsuario/reservaciones', {
+            templateUrl	: 'appWEB/reservaciones/reservaciones.html',
+            controller 	: 'reservacionesCtrl',
+            controllerAs: 'rvs'
         })
         .otherwise({
             redirectTo: '/'

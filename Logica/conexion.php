@@ -27,3 +27,16 @@ function getCredenciales(){
         echo json_encode($res);
     }
 }
+
+function getHabitacionesDisponible(){
+    $res = new stdClass();
+    $res->tipo="Normal";
+    
+    $res2 = new stdClass();
+    $res2->tipo="Bungalo";
+    
+    $lista = array();
+    $lista[] = $res;
+    $lista[] = $res2;
+    echo json_encode($lista);
+}
