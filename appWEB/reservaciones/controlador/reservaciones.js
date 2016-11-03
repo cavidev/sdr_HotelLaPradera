@@ -8,13 +8,43 @@
 angular.module('HotelLaPradera')
 .controller("reservacionesCtrl", function($scope, $location, reservacionesFactory)
 {
+    var fechaActual = new Date();
+    $scope.fechaActual = fechaActual.getDate();
     $scope.getTipoHabitaciones = (function getTipoHabitaciones(){
         reservacionesFactory.getTipoHabitaciones("",function(res){
             $scope.habitaciones = res;
         });
         
     })();
-    $scope.habitacionesDisponibles = [{id:"111",tipo:"Normal",costo:"2000",descripcion:"Algo AHÍ"},{id:"112",tipo:"Bungalo",costo:"3000",descripcion:"czdfsfs"},
-        {id:"114",tipo:"Familiar",costo:"2500",descripcion:"sdgsd"},{id:"114",tipo:"Familiar",costo:"2500",descripcion:"sdgsd"},{id:"114",tipo:"Familiar",costo:"2500",descripcion:"sdgsd"}
-    ,{id:"114",tipo:"Familiar",costo:"2500",descripcion:"sdgsd"},{id:"114",tipo:"Bungalo",costo:"2500",descripcion:"sdggdfgdsd"},{id:"114",tipo:"Familiar",costo:"2gdfgd500",descripcion:"sdgsd"}];
+    $scope.infoTipoTarjeta = false;
+    $scope.infoTipoAgencia = false;
+    $scope.infoTipoEfectivo = false;
+    $scope.infoTipoDepositoBancario = false;
+    $scope.tipoInfoTipoPago = function tipoInfoTipoPago(tipoPago){
+        console.log(tipoPago);
+        if(tipoPago === "Tarjeta"){
+            $scope.infoTipoTarjeta = true;
+            $scope.infoTipoAgencia = false;
+            $scope.infoTipoEfectivo = false;
+            $scope.infoTipoDepositoBancario = false;
+        }
+        else if(tipoPago === "Agencia"){
+            $scope.infoTipoTarjeta = false;
+            $scope.infoTipoAgencia = true;
+            $scope.infoTipoEfectivo = false;
+            $scope.infoTipoDepositoBancario = false;
+        }
+        else if(tipoPago === "Efectivo"){
+            $scope.infoTipoTarjeta = false;
+            $scope.infoTipoAgencia = false;
+            $scope.infoTipoEfectivo = true;
+            $scope.infoTipoDepositoBancario = false;
+        }
+        else if(tipoPago === "Deposito Bancario"){
+            $scope.infoTipoTarjeta = false;
+            $scope.infoTipoAgencia = false;
+            $scope.infoTipoEfectivo = false;
+            $scope.infoTipoDepositoBancario = true;
+        }
+    };
 });

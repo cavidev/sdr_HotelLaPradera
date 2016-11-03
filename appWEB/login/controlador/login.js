@@ -8,6 +8,7 @@
 angular.module('HotelLaPradera')
 .controller("loginCtrl", function($scope, $location, loginFactory)
 {
+    $scope.Hola="ALfi";
     $scope.visibleNav = false;
     $scope.VerificarUsuario = function VerificarUsuario(usuario,contrasenna){
         var credenciales = {Usuario: usuario, Contrasenna: contrasenna};

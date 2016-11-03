@@ -3,6 +3,16 @@
     Author     : Carlos Mario
 */
 
+.lineaHorizontal {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
 .fondoLogin{
     background-image: url(../img/fondoSin.png);//HotalPraderaArenal1.png
     //background: rgba(255, 0, 0, 0.4);
@@ -54,6 +64,8 @@ header{
     .navbar-right .dropdown-menu {left:0;right:auto;}
     .navbar-collapse .navbar-nav.navbar-right:last-child {margin-right: 0;}
 }
+
+
 
 .wrapper{
     margin-left: 270px;

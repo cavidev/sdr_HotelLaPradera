@@ -1,0 +1,58 @@
+<div>
+    <!-- Nav lateral, la imagen le cae encima, asi que no se ve..-->
+    <header>
+        <nav class="navbar navbar-inverse colorBlanco"  role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div>
+                <h3 style="text-align: center">Hotel La Pradera</h3>
+                <hr style="height: 20px; width: 70%; align: center;" size="3" >
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling --> 
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#superUsuario"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> Reservaciones</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Opciones de las reservas</li>
+                            <li><a href="#">Filtrar Reservas</a></li>
+                            <li><a href="#superUsuario/reservaciones">Reservar</a></li>
+                            <li><a href="#">Modificar</a></li>
+                            <li><a href="#">Eliminar</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bed"></i> Habitaciones</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ver Habitaciones</a></li>
+                            <li><a href="#superUsuario/reservaciones">Agregar</a></li>
+                            <li><a href="#">Modificar</a></li>
+                            <li><a href="#">Eliminar</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> Facturacion</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ver Habitaciones</a></li>
+                            <li><a href="#superUsuario/reservaciones">Agregar</a></li>
+                            <li><a href="#">Modificar</a></li>
+                            <li><a href="#">Eliminar</a></li>
+                        </ul>
+                    </li>
+                     <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ver Habitaciones</a></li>
+                            <li><a href="#superUsuario/reservaciones">Agregar</a></li>
+                            <li><a href="#">Modificar</a></li>
+                            <li><a href="#">Eliminar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div>
+        <div ng-view=""></div>
+    </div>
+</div>

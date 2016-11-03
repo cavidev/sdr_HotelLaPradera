@@ -8,6 +8,9 @@ angular.module('HotelLaPradera', ['ngRoute'])
 .config(function($routeProvider) 
 {
     $routeProvider
+        .when('/base', {
+            templateUrl	: 'base.html'          
+        })
         .when('/', {
             templateUrl	: 'appWEB/login/login.html',
             controller 	: 'loginCtrl'          
@@ -24,10 +27,9 @@ angular.module('HotelLaPradera', ['ngRoute'])
             templateUrl	: 'appWEB/profile/recepcionista.html',
             controller 	: 'recepcionistaCtrl'          
         })
-        .when('/superUsuario/reservaciones', {
-            templateUrl	: 'appWEB/reservaciones/reservaciones.html',
-            controller 	: 'reservacionesCtrl',
-            controllerAs: 'rvs'
+        .when('/reservar', {
+            templateUrl	: 'appWEB/reservaciones/reservar.html',
+            controller 	: 'reservacionesCtrl'
         })
         .otherwise({
             redirectTo: '/'
