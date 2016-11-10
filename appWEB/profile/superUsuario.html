@@ -1,6 +1,18 @@
 <div>
-    <div class="container-fluid wrapper">
-        <h1>Bienvenido</h1>
-
-    </div>    
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <section style="float: left" >
+                <h1>Bienvenido</h1>
+            </section>
+            <section style="float: right">
+                <h4>{{fechaActual}}</h4>
+                <h4>{{horaImprimible}}</h4>
+            </section>
+        </div>
+        <div class="row">
+            <button ng-click="Logout()">Salir</button>
+        </div>
+    </div>
+</div>
 </div>

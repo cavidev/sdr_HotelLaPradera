@@ -28,6 +28,30 @@ function getCredenciales(){
     }
 }
 
+function credenciales(){
+    $objDatos = json_decode(file_get_contents("php://input"));
+    
+    $res = new stdClass();
+    
+    if($objDatos->username == 'Carlos' && $objDatos->password == '1234'){    
+        $res->sucess = true;
+        $res->token = 'fake-jwt-token';
+        $res->typeUser = 1;
+        echo json_encode($res);
+    }
+    else if($objDatos->username == 'Lady' && $objDatos->password == '1234'){    
+        $res->sucess = true;
+        $res->token = 'fake-jwt-token';
+        $res->typeUser = 2;
+        echo json_encode($res);
+    }
+    else{
+        $res->sucess = false;
+        echo json_encode($res);
+    }
+}
+
+
 function getHabitacionesDisponible(){
     $res = new stdClass();
     $res->tipo="Normal";

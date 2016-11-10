@@ -1,3 +1,78 @@
 <div>
-    
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Agenda de Reservas</h1>
+        </div>
+        <hr style="height: 2px;background-color: #333">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Listado de Reservas
+                    <div style="float: right">
+                        <button ng-click="getReservasFechas(fechaInicial,fechaFinal)"><i class="fa fa-refresh" aria-hidden="true"></i>Actualizar</button>
+                        <button data-toggle="collapse" data-target="#fechaAgendaReservas">Cambiar Fecha</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div style="float: right;margin-right: 20px;padding: 10px;" id="fechaAgendaReservas" class="collapse">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label>Fecha Inicio</label>
+                                    <input type="date" class="form-control" ng-model="fechaInicial">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fecha Final</label>
+                                    <input type="date" class="form-control" ng-model="fechaFinal">
+                                </div>
+                            </form>
+                        </div>
+                     </div>
+                    <div class="row" >
+                        <div>
+                            <section style="float: left;margin-left: 20px" >
+                                <button><a href="#reservar">Crear nueva reserva</a></button>
+                            </section>
+                            <section style="float: right; margin-right: 20px;" class="form-inline form-group">
+                                <input type="text" class="form-control" placeholder="Buscar:" ng-model="busqueda">
+                            </section>	
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12" > <!-- style="height: 315px;overflow-y: auto;width: 583px;" -->
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Personas</th>
+                                        <th>Cedula</th>
+                                        <th>Nombre</th>
+                                        <th>Detalle</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a data-toggle="collapse" data-target="#demo"><i class="fa fa-cube" aria-hidden="true"></i></a></td>
+                                        <td>2</td>
+                                        <td>504080112</td>
+                                        <td>Carlos Villafuerte</td>
+                                        <td>Suit doble</td>
+                                        <td>Aqui van botones</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div style="margin-left: 20px">    
+                            <p><b><i>{{fechaInicialModificada}}</i></b> al <b><i>{{fechaFinalModificada}}</i></b>, total {{totalRegistro}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

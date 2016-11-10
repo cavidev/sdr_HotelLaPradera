@@ -6,7 +6,7 @@
 */
 /* global angular */
 angular.module('HotelLaPradera')
-.controller("loginCtrl", function($scope, $location, loginFactory)
+.controller("loginCtrl", function($scope, $location, loginFactory, AuthenticationService)
 {
     $scope.Hola="ALfi";
     $scope.visibleNav = false;
@@ -30,6 +30,40 @@ angular.module('HotelLaPradera')
             else{
                 alert("Verifique usuario o contraseña");
             } 
-        });  
+        }); 
+    };
+    
+    $scope.Login = function Login(usuario,contrasenna) {
+        $scope.loading = true;
+        AuthenticationService.Login(usuario, contrasenna, function (result) {
+            console.log(result);
+            if(result.sucess === true){
+                switch(result.typeUser) {
+                    case 1:
+                        $location.path("/superUsuario");
+                        break;
+                    case 2:
+                        $location.path("/recepcionista");
+                        break;
+                    case 2:
+                        $location.path("/profileView");
+                        break;
+                    }
+            }
+            else{
+                alert("Verifique usuario o contraseña");
+            }
+            /*
+            if (result === true) {
+                $location.path('/superUsuario');
+            } else {
+                $scope.error = 'Username or password is incorrect';
+                $scope.loading = false;
+            }*/
+        });
+    };
+    
+    $scope.Logout = function Logout(){
+        AuthenticationService.Logout();
     };
 });
