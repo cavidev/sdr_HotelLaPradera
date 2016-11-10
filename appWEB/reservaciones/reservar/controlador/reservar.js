@@ -8,6 +8,7 @@
 angular.module('HotelLaPradera')
 .controller("reservacionesCtrl", function($scope, $location, reservacionesFactory)
 {
+    var fEntrada, hEntrada, fSalida, hSalida; 
     var fechaActual = new Date();
     $scope.fechaActual = fechaActual.getDate();
     $scope.getTipoHabitaciones = (function getTipoHabitaciones(){
@@ -46,5 +47,32 @@ angular.module('HotelLaPradera')
             $scope.infoTipoEfectivo = false;
             $scope.infoTipoDepositoBancario = true;
         }
+    };
+    
+    $scope.insertarNuevaReserva = function insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,
+    nHabitacion,cCliente,nombreCliente,aconpanantes,tipoPago,nTarjeta,
+    cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta){
+        fEntrada = fechaEntrada.getFullYear()+'/'+(fechaEntrada.getMonth()+1)+'/'+fechaEntrada.getDate();
+        hEntrada = horaEntrada.getHours() + ':'+ horaEntrada.getMinutes(); 
+        fSalida = fechaSalida.getFullYear()+'/'+(fechaSalida.getMonth()+1)+'/'+fechaSalida.getDate();
+        hSalida = horaSalida.getHours() + ':'+ horaSalida.getMinutes();
+        
+            if($scope.infoTipoTarjeta === true){
+                var datosReserva = {fEntrada: fEntrada,hEntrada:hEntrada,fSalida:fSalida,hSalida:hSalida,
+                                    nHabitacion:nHabitacion,cedula:cCliente,acompanantes:aconpanantes,
+                                    nTarjeta:nTarjeta};
+                
+            }
+            else if($scope.infoTipoAgencia === true){
+                
+            }
+            else if($scope.infoTipoEfectivo === true){
+                
+            }
+            else if($scope.infoTipoDepositoBancario === true){
+                
+            };
+        
+        
     };
 });

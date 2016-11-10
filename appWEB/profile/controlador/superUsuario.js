@@ -5,10 +5,38 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 angular.module('HotelLaPradera')
-.controller("superUsuarioCtrl", function($scope,$location,loginFactory)
+.controller("superUsuarioCtrl", function($scope,$location,AuthenticationService)
 {
+    var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+    var fechaActual = new Date();
+    (function actualizarFecha(){
+        $scope.fechaActual = diasSemana[fechaActual.getDay()] + ", " + fechaActual.getDate() + " de " + 
+            meses[fechaActual.getMonth()] + " del " + fechaActual.getFullYear();
+            console.log(fechaActual);
+
+        
+    })();
+    
+    function mueveReloj(){ 
+        var momentoActual = new Date(); 
+        var hora = momentoActual.getHours(); 
+        var minuto = momentoActual.getMinutes(); 
+        var segundo = momentoActual.getSeconds(); 
+
+        $scope.horaImprimible = hora + " : " + minuto + " : " + segundo; 
+        
+    };
+    setTimeout('mueveReloj()',1000);
+    mueveReloj();
+    $scope.Logout = function Logout(){
+        AuthenticationService.Logout();
+         $location.path("/"); 
+    };
+    
     $scope.visibleNav = false;
     $scope.superUsuario = "Hola";
 });
 
+ 
 

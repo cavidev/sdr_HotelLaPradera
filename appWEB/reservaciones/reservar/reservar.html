@@ -4,30 +4,31 @@
         <div class="row">
             <h1>Registro de Reservaciones</h1>
         </div>
+        <hr style="height: 2px;background-color: #333">
         <div class="row col-md-12"> <!--  well well-sm-->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Nueva Reservación</h4>
+                    Nueva Reservación
                 </div>
                 <div class="panel-body"> <!-- col-md-11 -->
                     <div style="margin-left: 30px;">
-                        <form>
+                        <form for="Datos de la reserva">
                             <div class="row">
                                 <h4>Dias a reservar</h4>
                                 <section class="row">   
                                     <div class="col-md-3 form-group">
                                         <label>Fecha de Entrada</label>
-                                        <input type="date" class="form-control " ng-model="fechaInicial">
+                                        <input type="date" class="form-control " ng-model="fechaEntrada">
                                     </div>
                                     <div class="col-md-2 form-group">
                                         <label>Hora de Entrada</label>
-                                        <input type="time" class="form-control " style="background-color: transparent" ng-model="horaInicial">
+                                        <input type="time" class="form-control " style="background-color: transparent" ng-model="horaEntrada">
                                     </div>
                                 </section>
                                 <section class="row">
                                     <div class="col-md-3 form-group">
                                         <label>Fecha de Salida</label>
-                                        <input type="date" class="form-control" ng-model="fechaFinal">
+                                        <input type="date" class="form-control" ng-model="fechaSalida">
                                     </div>
                                     <div class="col-md-2 form-group">
                                         <label>Hora de Salida</label>
@@ -57,7 +58,7 @@
                                     </div>
                                     <div class="col-md-5 form-group">
                                         <label>Nombre del cliente</label>
-                                        <input type="text" class="form-control " placeholder="Digite el nombre" ng-model="cedulaCliente">
+                                        <input type="text" class="form-control " placeholder="Digite el nombre" ng-model="nombreCliente">
                                     </div>
                                 </section>
                                 <section class="row">
@@ -95,7 +96,11 @@
                             </div>
                             <div class="row">
                                 <div style="float: right;margin-right: 10px">
-                                    <button class="btn btn-success" >Confirmar</button>
+                                    <button class="btn btn-success" 
+                                        ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
+                                                    cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,
+                                                    cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta)">
+                                        Confirmar</button>
                                     <button class="btn btn-default" >Cancelar</button>
                                 </div>
                             </div>
@@ -154,65 +159,3 @@
     </div>
 </div>
 </div>
-<!--
-<div>
-    <div class="container-fluid wrapper">
-        <div class="row">
-            <h1>Reservaciones</h1>
-            <h3 style="text-align: right">{{fechaActual}}</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Nueva Reservación</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div style="float: left;width: 400px;">
-                            <form>
-                                <div class="row">
-                                    <h4>Dias a reservar</h4>
-                                    <div class="col-md-6 form-group">
-                                        <label>Fecha inicio</label>
-                                        <input type="date" class="form-control ">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Fecha final</label>
-                                        <input type="date" class="form-control ">
-                                    </div>
-                                </div>  
-                                <div class="row">
-                                    <h4>Información</h4>
-                                    <div class="col-md-6 form-group">
-                                        <label>Numero habitación</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Disponibles">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default"
-                                                        data-toggle="modal" data-target="#habitacionesDisponibles"
-                                                        ><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group margin-bottom-sm">
-                                        <label>Cedula Cliente</label>
-                                        <input type="text" class="form-control " placeholder="0x-0xxx-0xxx">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div style="float: right;width: 140px;">
-                            <div class="row">
-                                <button class="btn btn-success">Reservar</button>
-                            </div>
-                            <div class="row">
-                                <button class="btn btn-info">Verificar Cliente</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-</div>
--->

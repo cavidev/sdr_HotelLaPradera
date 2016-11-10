@@ -4,13 +4,10 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
-angular.module('HotelLaPradera', ['ngRoute'])
+angular.module('HotelLaPradera', ['ngRoute','ngStorage'])
 .config(function($routeProvider) 
 {
     $routeProvider
-        .when('/base', {
-            templateUrl	: 'base.html'          
-        })
         .when('/', {
             templateUrl	: 'appWEB/login/login.html',
             controller 	: 'loginCtrl'          
@@ -28,10 +25,33 @@ angular.module('HotelLaPradera', ['ngRoute'])
             controller 	: 'recepcionistaCtrl'          
         })
         .when('/reservar', {
-            templateUrl	: 'appWEB/reservar/reservar.html',
+            templateUrl	: 'appWEB/reservaciones/reservar/reservar.html',
             controller 	: 'reservacionesCtrl'
+        })
+        .when('/agendaReservas', {
+            templateUrl	: 'appWEB/reservaciones/agendaReservas/agendaReservas.html',
+            controller 	: 'agendaReservasCtrl'
         })
         .otherwise({
             redirectTo: '/'
         });
-});
+}).run(run);
+
+function run($rootScope, $http, $location, $localStorage, $sessionStorage) {
+    // Mantenga el usuario logueado después de actualización de la página
+    /*if ($localStorage.currentUser) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+    }*/
+    if ($sessionStorage.currentUser) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + $sessionStorage.currentUser.token;
+    }
+
+    //redirigir a la página de inicio de sesión si no ha iniciado sesión y tratar de acceder a una página restringida
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        var publicPages = ['/'];
+        var restrictedPage = publicPages.indexOf($location.path()) === -1;
+        if (restrictedPage && !$sessionStorage.currentUser) {
+            $location.path('/');
+        }
+    });
+}

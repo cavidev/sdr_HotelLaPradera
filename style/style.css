@@ -70,7 +70,9 @@ header{
 }
 
 
-
+body{
+    background-color: #ccc;
+}
 .wrapper{
     //background-image: url(../img/fondo.jpg);
     //background-color: cornflowerblue;
