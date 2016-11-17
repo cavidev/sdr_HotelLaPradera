@@ -5,7 +5,7 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 angular.module('HotelLaPradera')
-.controller("superUsuarioCtrl", function($scope,$location,AuthenticationService)
+.controller("superUsuarioCtrl", function($scope,$location,AuthenticationService,notificaciones)
 {
     var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
     var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
@@ -29,7 +29,10 @@ angular.module('HotelLaPradera')
     };
     setTimeout('mueveReloj()',1000);
     mueveReloj();
+    
+    
     $scope.Logout = function Logout(){
+        notificaciones.notifySuccess('Cerrando Sesión');
         AuthenticationService.Logout();
          $location.path("/"); 
     };

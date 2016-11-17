@@ -28,6 +28,7 @@ angular.module('HotelLaPradera')
             $scope.infoTipoAgencia = false;
             $scope.infoTipoEfectivo = false;
             $scope.infoTipoDepositoBancario = false;
+            alert(escape('Mañana me iré'));
         }
         else if(tipoPago === "Agencia"){
             $scope.infoTipoTarjeta = false;

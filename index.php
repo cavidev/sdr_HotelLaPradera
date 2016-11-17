@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="lib/Bootstrap/css/bootstrap.min.css"><!--Boostrap..-->
         <link rel="stylesheet" href="style/style.css"><!--CSS personalizado..-->
         <link rel="stylesheet" href="lib/Icons/css/font-awesome.min.css"><!--Iconos..-->
+        <link rel="stylesheet" href="lib/pnotify/pnotify.custom.min.css">
+        
     </head>
     <body ng-app="HotelLaPradera"> <!-- -->
         <!-- Nav lateral, la imagen le cae encima, asi que no se ve..-->
@@ -151,15 +153,18 @@
             <div ng-view=""></div>
         </div>
         
-        <!-- Carga libreria AngularJS.-->
-        <script type="text/javascript" src="lib/AngularJS/angular.min.js" ></script>
-        <script type="text/javascript" src="lib/AngularJS/angular-route.min.js"></script> 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
-        <!-- <script type="text/javascript" src="lib/AngularJS/angular-messages.min.js"></script> -->
         <!-- Carga libreria jQuery.--> 
         <script src="lib/jQuery/dist/jquery.min.js"></script>
         <!-- Carga libreria Bootstrap.-->
         <script src="lib/Bootstrap/js/bootstrap.min.js"></script>
+        
+        <!-- Carga libreria AngularJS.-->
+        <script type="text/javascript" src="lib/AngularJS/angular.min.js" ></script>
+        <script type="text/javascript" src="lib/AngularJS/angular-route.min.js"></script> 
+        <script type="text/javascript" src="lib/ngStorage/ngStorage.min.js"></script>
+        <script type="text/javascript" src="lib/pnotify/pnotify.custom.min.js"></script>
+        <script type="text/javascript" src="lib/pnotify/angular-pnotify.js"></script>
+        
         
         <!--Carga las rutas (templates)-->
         <script src="app.js"></script> 
@@ -172,8 +177,9 @@
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservar.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/servicio/agendaReservas.js"></script>
-        <!-- La autentificacion -->
+        <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>
+        <script type="text/javascript" src="appWEB/comun/notificaciones.js"></script>
         
         <!-- Carga de controladores.-->
         <script type="text/javascript" src="appWEB/login/controlador/login.js"></script>

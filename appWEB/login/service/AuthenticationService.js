@@ -11,7 +11,7 @@
         return service;
  
         function Login(username, password, callback) {
-            var url = "http://172.24.44.45/Hotel_La_Pradera/Logica/conexion.php?Funcion=credenciales";
+            var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=credenciales";
             $http.post(url,{ username: username, password: password })
                 .success(function (response) {
                     console.log(response);

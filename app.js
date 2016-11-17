@@ -4,7 +4,7 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
-angular.module('HotelLaPradera', ['ngRoute','ngStorage'])
+angular.module('HotelLaPradera', ['ngRoute','ngStorage','jlareau.pnotify'])
 .config(function($routeProvider) 
 {
     $routeProvider

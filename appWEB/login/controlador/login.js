@@ -6,33 +6,12 @@
 */
 /* global angular */
 angular.module('HotelLaPradera')
-.controller("loginCtrl", function($scope, $location, loginFactory, AuthenticationService)
-{
+.controller("loginCtrl", function($scope, $location, AuthenticationService, notificaciones)
+{	
+ 
     $scope.Hola="ALfi";
     $scope.visibleNav = false;
-    $scope.VerificarUsuario = function VerificarUsuario(usuario,contrasenna){
-        var credenciales = {Usuario: usuario, Contrasenna: contrasenna};
-        console.log(loginFactory.credencialesUsuario);
-        loginFactory.credencialesUsuario(credenciales,function(res){
-            if(res.sucess === true){
-                switch(res.tipoUsuario) {
-                    case 1:
-                        $location.path("/superUsuario");
-                        break;
-                    case 2:
-                        $location.path("/recepcionista");
-                        break;
-                    case 2:
-                        $location.path("/profileView");
-                        break;
-                    }
-            }
-            else{
-                alert("Verifique usuario o contraseña");
-            } 
-        }); 
-    };
-    
+
     $scope.Login = function Login(usuario,contrasenna) {
         $scope.loading = true;
         AuthenticationService.Login(usuario, contrasenna, function (result) {
@@ -40,6 +19,7 @@ angular.module('HotelLaPradera')
             if(result.sucess === true){
                 switch(result.typeUser) {
                     case 1:
+                        notificaciones.notificacion2('Bienvenido!','Sesion iniciada normalmente','sucess');
                         $location.path("/superUsuario");
                         break;
                     case 2:
@@ -51,15 +31,8 @@ angular.module('HotelLaPradera')
                     }
             }
             else{
-                alert("Verifique usuario o contraseña");
+                notificaciones.notificacion('Oh No!','No se encontraron coincidencias, intenta nuevamente','error');
             }
-            /*
-            if (result === true) {
-                $location.path('/superUsuario');
-            } else {
-                $scope.error = 'Username or password is incorrect';
-                $scope.loading = false;
-            }*/
         });
     };
     
@@ -67,3 +40,16 @@ angular.module('HotelLaPradera')
         AuthenticationService.Logout();
     };
 });
+
+angular.module('HotelLaPradera')
+    .config(['notificationServiceProvider', function(notificationServiceProvider) {
+
+        // Configure a stack named 'top_left' that append a call 'stack-topleft'
+        notificationServiceProvider.setStack('top_left', 'stack-topleft', {
+            dir1: 'down',
+            dir2: 'right',
+            push: 'top'
+        });
+
+    }])
+;
