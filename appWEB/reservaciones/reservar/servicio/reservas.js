@@ -21,6 +21,3 @@ angular.module('HotelLaPradera')
     };
 });
 
-
-
-
