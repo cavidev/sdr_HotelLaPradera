@@ -4,7 +4,7 @@
         <div class="row">
             <h1>Registro de Reservaciones</h1>
         </div>
-        <hr style="height: 2px;background-color: #333">
+        <hr style="height: 2px; background-color: #333">
         <div class="row col-md-12"> <!--  well well-sm-->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -14,83 +14,117 @@
                     <div style="margin-left: 30px;">
                         <form for="Datos de la reserva">
                             <div class="row">
-                                <h4>Dias a reservar</h4>
-                                <section class="row">   
-                                    <div class="col-md-3 form-group">
-                                        <label>Fecha de Entrada</label>
-                                        <input type="date" class="form-control " ng-model="fechaEntrada">
-                                    </div>
-                                    <div class="col-md-2 form-group">
-                                        <label>Hora de Entrada</label>
-                                        <input type="time" class="form-control " style="background-color: transparent" ng-model="horaEntrada">
-                                    </div>
+                                <section class="row">
+                                    <h4>Datos de la reservación</h4>
                                 </section>
                                 <section class="row">
-                                    <div class="col-md-3 form-group">
-                                        <label>Fecha de Salida</label>
-                                        <input type="date" class="form-control" ng-model="fechaSalida">
-                                    </div>
-                                    <div class="col-md-2 form-group">
-                                        <label>Hora de Salida</label>
-                                        <input type="time" class="form-control " ng-model="horaSalida">
+                                    <div style="margin-left: 20px" >
+                                        <section class="row">   
+                                            <div class="col-md-2 form-group">
+                                                <label>Fecha de Entrada</label>
+                                                <div style="width:160px">
+                                                    <input type="date" class="form-control " ng-model="fechaEntrada">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <label>Hora de Entrada</label>
+                                                <input type="time" class="form-control " ng-model="horaEntrada">
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <label>Habitación</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Disponible" ng-model="numeroHabitacion">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default"
+                                                                data-toggle="modal" data-target="#habitacionesDisponibles"
+                                                                ><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Tipo de pago</label>
+                                                <select class="form-control" ng-model="tipoPago" ng-change="tipoInfoTipoPago(tipoPago)">
+                                                    <option value="Tarjeta">Tarjeta</option>
+                                                    <option value="Agencia">Agencia</option>
+                                                    <option selected value="Efectivo">Efectivo</option>
+                                                    <option value="Deposito Bancario">Deposito Bancario</option>
+                                                </select>
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-2 form-group">
+                                                <label>Fecha de Salida</label>
+                                                <div style="width:160px">
+                                                    <input type="date" class="form-control" ng-model="fechaSalida">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <label>Hora de Salida</label>
+                                                <input type="time" class="form-control " ng-model="horaSalida">
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <label>Acompañantes</label>
+                                                <input type="number" class="form-control " ng-model="acompanantes">
+                                            </div>
+                                            <div class="col-md-5 form-group">
+                                                <label>Datos del tipo de pago</label>
+                                                <div ng-show="infoTipoTarjeta">
+                                                    <input type="text" class="form-control" placeholder="Numero Tarjeta" ng-model="numeroTargeta">
+                                                </div>
+                                                <div ng-show="infoTipoAgencia">
+                                                    <input type="text" class="form-control" placeholder="Cedula Juridica" ng-model="cedulaJuridica">
+                                                </div>
+                                                <div ng-show="infoTipoEfectivo">
+                                                    <input type="text" class="form-control" placeholder="Cantidad que respaldo" ng-model="cantidadRespaldo" >
+                                                </div>
+                                                <div ng-show="infoTipoDepositoBancario">
+                                                    <input type="text" class="form-control" placeholder="Nombre Banco" ng-model="nombreBanco">
+                                                    <hr class="lineaHorizontal">
+                                                    <input type="text" class="form-control" placeholder="Numero Cuenta" ng-model="numeroCuenta">
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
                                 </section>
                             </div>
                             <br>
-                            <br>
                             <div class="row">
-                                <h4>Información de la Reserva</h4>
                                 <section class="row">
-                                    <div class="col-md-2 form-group">
-                                        <label>Habitación</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Disponible" ng-model="numeroHabitacion">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default"
-                                                        data-toggle="modal" data-target="#habitacionesDisponibles"
-                                                        ><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        <label>Cedula Cliente</label>
-                                        <input type="text" class="form-control " placeholder="X0XXX0XXX" ng-model="cedulaCliente">
-                                    </div>
-                                    <div class="col-md-5 form-group">
-                                        <label>Nombre del cliente</label>
-                                        <input type="text" class="form-control " placeholder="Digite el nombre" ng-model="nombreCliente">
-                                    </div>
+                                    <h4>Información del cliente</h4>
                                 </section>
                                 <section class="row">
-                                    <div class="col-md-2 form-group">
-                                        <label>Acompañantes</label>
-                                        <input type="number" class="form-control " ng-model="acompanantes">
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        <label>Tipo de pago</label>
-                                        <select class="form-control" ng-model="tipoPago" ng-change="tipoInfoTipoPago(tipoPago)">
-                                            <option value="Tarjeta">Tarjeta</option>
-                                            <option value="Agencia">Agencia</option>
-                                            <option selected value="Efectivo">Efectivo</option>
-                                            <option value="Deposito Bancario">Deposito Bancario</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-5 form-group">
-                                        <label>Datos del tipo de pago</label>
-                                        <div ng-show="infoTipoTarjeta">
-                                            <input type="text" class="form-control" placeholder="Numero Tarjeta" ng-model="numeroTargeta">
-                                        </div>
-                                        <div ng-show="infoTipoAgencia">
-                                            <input type="text" class="form-control" placeholder="Cedula Juridica" ng-model="cedulaJuridica">
-                                        </div>
-                                        <div ng-show="infoTipoEfectivo">
-                                            <input type="text" class="form-control" placeholder="Cantidad que respaldo" ng-model="cantidadRespaldo" >
-                                        </div>
-                                        <div ng-show="infoTipoDepositoBancario">
-                                            <input type="text" class="form-control" placeholder="Nombre Banco" ng-model="nombreBanco">
-                                            <hr class="lineaHorizontal">
-                                            <input type="text" class="form-control" placeholder="Numero Cuenta" ng-model="numeroCuenta">
-                                        </div>
+                                    <div style="margin-left: 20px" >
+                                        <section class="row" >
+                                            <div class="col-md-2 form-group">
+                                                <label>Cedula Cliente</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control " placeholder="201230456" ng-model="cedulaCliente">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" ng-click="getDatosCliente(cedulaCliente)">
+                                                            <i class="fa fa-plus-circle"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Nombre Completo</label>
+                                                <input type="text" class="form-control" disabled ng-model="nombreCliente">
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Correo</label>
+                                                <input type="email" class="form-control" disabled ng-model="correoCliente">
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-2 form-group">
+                                                <label>Telefono</label>
+                                                <input type="text" class="form-control" disabled ng-model="telefonoCliente">
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Dirección</label>
+                                                <input type="text" class="form-control" disabled ng-model="direcionCliente">
+                                            </div>
+                                        </section>
                                     </div>
                                 </section>
                             </div>

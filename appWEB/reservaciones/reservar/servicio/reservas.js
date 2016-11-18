@@ -4,6 +4,8 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
+/* global angular */
+
 angular.module('HotelLaPradera')
 .factory('reservacionesFactory', function($http){
     
@@ -15,9 +17,17 @@ angular.module('HotelLaPradera')
         });
     };
     
+    var getDatosCliente = function getDatosCliente(data,callback){
+        var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=getDatosCliente";
+        $http.post(url,data).success(function(response){
+            console.log(response);
+            callback(response);
+        });
+    };
     //Retorna el json con todas las funciones necesarias.
     return {       
-        getTipoHabitaciones: getTipoHabitaciones
+        getTipoHabitaciones: getTipoHabitaciones,
+        getDatosCliente: getDatosCliente
     };
 });
 

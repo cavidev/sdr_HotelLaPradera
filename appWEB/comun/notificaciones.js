@@ -10,7 +10,7 @@ angular.module('HotelLaPradera')
         notificationService.notifyWithDefaults({
           title: titulo,
           text: mensaje,
-          delay: 2000,
+          delay: 4000,
           type: tipo
         });  
     },

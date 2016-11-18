@@ -17,8 +17,8 @@
     </head>
     <body ng-app="HotelLaPradera"> <!-- -->
         <!-- Nav lateral, la imagen le cae encima, asi que no se ve..-->
-        <header>
-            <nav class="navbar navbar-inverse colorBlanco"  role="navigation">
+        <header  >
+            <nav class="navbar navbar-inverse"  style="background-color:#083836;" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div style="margin-left: 2px;">
                     <img class="img-rounded" width="255" height="100" alt="logoLaPraderaWeb" src="data:image/png;base64,
@@ -175,7 +175,7 @@
         <!--Carga de service-->
         <script type="text/javascript" src="appWEB/login/service/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
-        <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservar.js"></script>
+        <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservas.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/servicio/agendaReservas.js"></script>
         <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>

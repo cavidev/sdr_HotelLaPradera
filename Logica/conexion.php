@@ -51,7 +51,6 @@ function credenciales(){
     }
 }
 
-
 function getHabitacionesDisponible(){
     $res = new stdClass();
     $res->tipo="Normal";
@@ -63,4 +62,18 @@ function getHabitacionesDisponible(){
     $lista[] = $res;
     $lista[] = $res2;
     echo json_encode($lista);
+}
+
+function getDatosCliente(){
+    $objDatos = json_decode(file_get_contents("php://input"));
+    $res = new stdClass();
+    if($objDatos->cedulaCliente == "504080112"){
+        $res->sucess = true;
+        $res->Nombre="Carlos Mario Villafuerte Díaz";
+        $res->Cedula="504080112";
+        $res->Correo="carlosmario.villafuerted66@gmail.com";
+        $res->Direccion="Los Chiles, Centro";
+        $res->Telefono="87200620";
+    }
+    echo json_encode($res);
 }
