@@ -1,14 +1,16 @@
 <div>
 <div class="wrapper">
     <div class="container-fluid">
-        <div class="row">
-            <h1>Registro de Reservaciones</h1>
+        <div class="row" style="font-family: 'Lucida Sans Unicode'">           
+            <h2>Registro de Reservaciones</h2>
         </div>
         <hr style="height: 2px; background-color: #333">
         <div class="row col-md-12"> <!--  well well-sm-->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Nueva Reservación
+                    <div style="font-size: 15px; font-family: 'Lucida Sans Unicode'" >
+                        Nueva Reservación
+                    </div>
                 </div>
                 <div class="panel-body"> <!-- col-md-11 -->
                     <div style="margin-left: 30px;">
@@ -124,18 +126,26 @@
                                                 <label>Dirección</label>
                                                 <input type="text" class="form-control" disabled ng-model="direcionCliente">
                                             </div>
+                                            <div class="col-md-4 form-group" style="font-family: cursive;">
+                                                <div style="margin-left: 20px;margin-top: 20px;">
+                                                    <section>
+                                                        <label><a style="color: #001a35" >Agregar nuevo cliente</a></label>
+                                                    </section>
+                                                    <section>
+                                                        (Presione para agregar nuevo cliente)
+                                                    </section>
+                                                </div>
+                                            </div>
                                         </section>
                                     </div>
                                 </section>
                             </div>
                             <div class="row">
                                 <div style="float: right;margin-right: 10px">
-                                    <button class="btn btn-success" 
-                                        ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
-                                                    cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,
-                                                    cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta)">
-                                        Confirmar</button>
-                                    <button class="btn btn-default" >Cancelar</button>
+                                    <button class="btn btn-success" data-toggle="modal" 
+                                            ng-click="confirmarDatos(fechaEntrada,horaEntrada,fechaSalida,horaSalida) 
+                                            "data-target="#confirmarReserva">Aceptar</button>
+                                    <button class="btn btn-default" ng-click="regresar()">Regresar</button>
                                 </div>
                             </div>
                         </form>
@@ -188,6 +198,71 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -Conformacion Reserva -->
+<div class="modal fade" id="confirmarReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="font-family: 'Lucida Sans Unicode'" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Confirmación de la reserva</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div style="margin-left: 20px;">
+                        <div>
+                            <label>Entrada:</label> {{entrada}}
+                        </div>
+                        <div>
+                            <label>Salida:</label> {{salida}}
+                        </div>
+                        <div>
+                            <label>Habitacion:</label> {{numeroHabitacion}}
+                        </div>
+                        <div>
+                            <label>Cliente:</label> {{nombreCliente}}
+                        </div>
+                        <div>
+                            <label>Cedula:</label> {{cedulaCliente}}
+                        </div>
+                        <div>
+                            <label>Acompañantes:</label> {{aconpanantes}}
+                        </div>
+                        <div>
+                            <label>Tipo de Pago:</label> {{tipoPago}}
+                        </div>
+                        <div>
+                            <div ng-show="infoTipoTarjeta">
+                                <label>Numero Tarjeta:</label> {{numeroTargeta}}
+                            </div>
+                            <div ng-show="infoTipoAgencia">
+                                <label>Cedula Juridica:</label> {{cedulaJuridica}}
+                            </div>
+                            <div ng-show="infoTipoEfectivo">
+                                <label>Cantidad:</label> {{cantidadRespaldo}}
+                            </div>
+                            <div ng-show="infoTipoDepositoBancario">
+                                <label>Nombre Banco:</label> {{nombreBanco}}
+                                <hr class="lineaHorizontal">
+                                <label>Cuenta:</label> {{numeroCuenta}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" 
+                      ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
+                                                          cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,
+                                                          cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta)"
+                                                                                  >Confirmar</button>
             </div>
         </div>
     </div>

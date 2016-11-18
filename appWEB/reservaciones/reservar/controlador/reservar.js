@@ -5,8 +5,10 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 /* global angular */
+var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 angular.module('HotelLaPradera')
-.controller("reservacionesCtrl", function($scope, $location, reservacionesFactory, notificaciones)
+.controller("reservacionesCtrl", function($scope, $location, reservacionesFactory, notificaciones, $sessionStorage)
 {
     var fEntrada, hEntrada, fSalida, hSalida; 
     $scope.getTipoHabitaciones = (function getTipoHabitaciones(){
@@ -48,11 +50,22 @@ angular.module('HotelLaPradera')
         }
     };
     
+    $scope.confirmarDatos = function confirmarDatos(fechaEntrada,horaEntrada,fechaSalida,horaSalida){
+        hEntrada = horaEntrada.getHours() + ':'+ horaEntrada.getMinutes();
+        hSalida = horaSalida.getHours() + ':'+ horaSalida.getMinutes();
+        $scope.entrada = diasSemana[fechaEntrada.getDay()] + ", " + fechaEntrada.getDate() + " de " + 
+            meses[fechaEntrada.getMonth()] + " del " + fechaEntrada.getFullYear()+" a las "+hEntrada;
+        
+        $scope.salida = diasSemana[fechaSalida.getDay()] + ", " + fechaSalida.getDate() + " de " + 
+            meses[fechaSalida.getMonth()] + " del " + fechaSalida.getFullYear() +" a las "+hSalida;
+            
+        
+    };
+    
     $scope.insertarNuevaReserva = function insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,
     nHabitacion,cCliente,nombreCliente,aconpanantes,tipoPago,nTarjeta,
     cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta){
-        console.log(fechaEntrada===fechaSalida);
-        if(fechaEntrada === fechaSalida || fechaEntrada === undefined || fechaSalida === undefined){
+        if(fechaEntrada === undefined || fechaSalida === undefined){
             notificaciones.notificacion2("REVISAR FECHAS", "Parece que las fechas estan mal, revisalas","info");return;
         }
         if(horaEntrada === undefined || horaSalida === undefined){
@@ -63,7 +76,7 @@ angular.module('HotelLaPradera')
         hEntrada = horaEntrada.getHours() + ':'+ horaEntrada.getMinutes(); 
         fSalida = fechaSalida.getFullYear()+'/'+(fechaSalida.getMonth()+1)+'/'+fechaSalida.getDate();
         hSalida = horaSalida.getHours() + ':'+ horaSalida.getMinutes();
-        
+        console.log(fEntrada);
         if($scope.infoTipoTarjeta === true){
             var datosReserva = {fEntrada: fEntrada,hEntrada:hEntrada,fSalida:fSalida,hSalida:hSalida,
                                 nHabitacion:nHabitacion,cedula:cCliente,acompanantes:aconpanantes,
@@ -79,6 +92,14 @@ angular.module('HotelLaPradera')
         else if($scope.infoTipoDepositoBancario === true){
 
         };
+    };
+    $scope.regresar = function regresar(){
+        if($sessionStorage.currentUser.typeUser === 1){
+            $location.path('/superUsuario')
+        }else{
+            notificaciones.notifySuccess("Algo salio mal, vuelve a entrar al sistema")
+        }
+        
     };
     
     $scope.getDatosCliente = function getDatosCliente(cedulaCliente){

@@ -31,7 +31,7 @@
     color: black
 }
 body{
-    background-color: #E4FFFE;
+    background-color: #CDCDCD;
 }
 .colorBlanco{
     color: gainsboro;
@@ -71,11 +71,6 @@ header{
     .navbar-collapse .navbar-nav.navbar-right:last-child {margin-right: 0;}
 }
 
-
-body{
-    //#ccc
-    background-color: #5cb75c;
-}
 .wrapper{
     //background-image: url(../img/fondo.jpg);
     //background-color: cornflowerblue;
