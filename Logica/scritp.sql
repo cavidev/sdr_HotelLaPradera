@@ -5,7 +5,7 @@
 --Fecha de inicio: 17/09/2016
 
 
-
+CREATE DATABASE DBHotelLaPradera
 CREATE DOMAIN t_Cedula    CHAR(11)     NOT NULL      CHECK(VALUE SIMILAR TO '[0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]');
 CREATE DOMAIN t_Fecha     DATE         NOT NULL
 

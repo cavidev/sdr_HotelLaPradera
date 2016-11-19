@@ -1,0 +1,72 @@
+<div>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row" style="font-family: 'Lucida Sans Unicode'">           
+            <h2>Listado de las habitaciones</h2>
+        </div>
+        <hr style="height: 2px; background-color: #333">
+        <div class="panel panel-default">
+            <div class="panel-body" >
+                <div class="row">
+                    <section style="margin-left: 8px;margin-right: 8px;">
+                        <div style="float: left">
+                            <p>Habitaciones correspondiente al: <br>
+                                &nbsp Disponible: <i class="fa fa-bed" style="color: {{estado}}" aria-hidden="true"></i><br>
+                                &nbsp Ocupada: &nbsp<i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
+                                &nbsp Reservada: <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
+                            </p>
+                        </div>
+                        <div style="float: right; font-family: cursive; color: #333;">
+                            <section><a>Agregar nueva habitación</a></section>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section style="padding: 20px;">
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Habitacion</th>
+                                <th>Capacidad</th>
+                                <th>Tipo</th>
+                                <th>Precio</th>
+                                <th>Estado Actual</th>
+                                <th>Opciones</th>
+                              </tr>
+                            </thead>
+                            <tbody style="font-family: 'Lucida Sans Unicode'">
+                                <tr>
+                                    <td>H-01</td>
+                                    <td>2</td>
+                                    <td>Normal</td>
+                                    <td>2000 c/u</td>
+                                    <td class="text-center">
+                                        <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: {{estado}}" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>H-02</td>
+                                    <td>2</td>
+                                    <td>Normal</td>
+                                    <td>2000 c/u</td>
+                                    <td class="text-center">
+                                        <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+</div>
