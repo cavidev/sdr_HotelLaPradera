@@ -103,40 +103,24 @@ CREATE TABLE EmailCliente(
 );
 
 
-
-
-
-CREATE TABLE Factura(
-	idFactura   Serial  NOT NULL,
-	descripcion VARCHAR  NOT NULL,
-	subtotal    INTEGER  NOT NULL,
-	impuesto    INTEGER  NOT NULL,
-	total       INTEGER  NOT NULL,
-	fecha       t_Fecha,
-
-       CONSTRAINT PK_idFactura    PRIMARY KEY (idFactura)    	
-);
-
-
-
 CREATE TABLE Habitacion(
       idHabitacion          INT          NOT NULL,
-      estado                VARCHAR         NOT NULL,
       tipo                  VARCHAR         NOT NULL,
       precio                INT             NOT NULL,
       capacidad             INT             NOT NULL,
 
-      CONSTRAINT PK_idHabitacion_Habitacion    PRIMARY KEY (idHabitacion),
-      CONSTRAINT CHK_estado_Habitacion          CHECK(estado in('ocupada','pendiente','disponible'))
+      CONSTRAINT PK_idHabitacion_Habitacion    PRIMARY KEY (idHabitacion)
       
 );
-insert into Habitacion(idHabitacion,estado,tipo,precio,capacidad)
-	     values('1','ocupada','normal',50000,3),
-	           ('2','pendiente','normal',50000,3),
-	           ('3','ocupada','normal',40000,3),
-	           ('4','disponible','normal',60000,5)
 
-                        
+--alter table Habitacion drop column estado
+insert into Habitacion(idHabitacion,tipo,precio,capacidad)
+	     values('1','normal',50000,3),
+	           ('2','normal',50000,3),
+	           ('3','normal',40000,3),
+	           ('4','normal',60000,5)
+
+  drop table Habitacion                      
 
 CREATE TABLE HabitacionReserva(
 
@@ -147,13 +131,15 @@ CREATE TABLE HabitacionReserva(
       fechaSalida           DATE          NOT NULL,
       horaEntrada           TIME          NOT NULL,
       horaSalida            TIME          NOT NULL,
+      estado                VARCHAR(20)   NOT NULL,
       CONSTRAINT PK_idHabitacion_idReserva PRIMARY KEY (idHabitacion,idReserva),
       CONSTRAINT FK_idReserva     FOREIGN KEY (idReserva)     REFERENCES Reserva(idReserva),
-      CONSTRAINT  FK_idHabitacion FOREIGN KEY (idHabitacion) REFERENCES Habitacion(idHabitacion)
+      CONSTRAINT  FK_idHabitacion FOREIGN KEY (idHabitacion) REFERENCES Habitacion(idHabitacion),
+      CONSTRAINT CHK_estado_Habitacion CHECK (estado in('ocupada','reservada','disponible'))
       
 );
 
-insert into HabitacionReserva values(6,1,2,'20/10/2016','25/10/2016','15:00','3:00')
+insert into HabitacionReserva values(4,1,2,'20/10/2016','25/10/2016','15:00','3:00','ocupada')
 
 CREATE TABLE TipoReserva(
 
@@ -167,23 +153,7 @@ CREATE TABLE TipoReserva(
 );
 
 
-CREATE TABLE FacturaReserva(
 
-	idReserva      INT  NOT NULL,
-	idFactura      INT  NOT NULL,
-
-	CONSTRAINT PK_idReserva_idFactura PRIMARY KEY (idReserva,idFactura),
-	CONSTRAINT FK_idReserva FOREIGN KEY(idReserva) REFERENCES Reserva(idReserva),
-	CONSTRAINT FK_idFactura   FOREIGN KEY(idFactura) REFERENCES Factura(idFactura)
-
-);
-
-
-
-
-
-
-select * from Habitacion
 
     
 --______________________________________________________FUNCIONES_______________________________________________________________________
