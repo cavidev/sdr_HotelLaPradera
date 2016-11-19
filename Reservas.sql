@@ -135,7 +135,7 @@ CREATE TABLE HabitacionReserva(
       CONSTRAINT PK_idHabitacion_idReserva PRIMARY KEY (idHabitacion,idReserva),
       CONSTRAINT FK_idReserva     FOREIGN KEY (idReserva)     REFERENCES Reserva(idReserva),
       CONSTRAINT  FK_idHabitacion FOREIGN KEY (idHabitacion) REFERENCES Habitacion(idHabitacion),
-      CONSTRAINT CHK_estado_Habitacion CHECK (estado in('ocupada','reservada','disponible'))
+      CONSTRAINT CHK_estado_Habitacion CHECK (estado in('greem','red','yellow'))
       
 );
 
