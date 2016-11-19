@@ -135,7 +135,7 @@ CREATE TABLE HabitacionReserva(
       CONSTRAINT PK_idHabitacion_idReserva PRIMARY KEY (idHabitacion,idReserva),
       CONSTRAINT FK_idReserva     FOREIGN KEY (idReserva)     REFERENCES Reserva(idReserva),
       CONSTRAINT  FK_idHabitacion FOREIGN KEY (idHabitacion) REFERENCES Habitacion(idHabitacion),
-      CONSTRAINT CHK_estado_Habitacion CHECK (estado in('greem','red','yellow'))
+      CONSTRAINT CHK_estado_Habitacion CHECK (estado in('Disponible','Reservada','Ocupada'))
       
 );
 
@@ -165,12 +165,14 @@ AS
 $FUNC$
 BEGIN 
    INSERT INTO Reserva(idReserva,cedulaCliente,cedulaUser,estado) VALUES (pidReserva,pcedulaCliente,pcedulaUser,pestado);
-   INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida);
-   UPDATE Habitacion SET estado='ocupada' where idHabitacion=pidHabitacion;
+   INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,pestado);
+   
    
 END;
 $FUNC$ LANGUAGE  plpgsql;
 
+
+UPDATE HabitacionReserva SET estado='red' where idHabitacion=pidHabitacion;
 
 select * from InsertarReserva('2','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:00','01:00','1');
 select * from InsertarReserva('37','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:0','01:0','1')
@@ -326,66 +328,64 @@ select * from consultaCliente(NULL,NULL,NULL,NULL,NULL,'lady96@gmail.com')
 
 --Habitacion
 
-CREATE OR REPLACE FUNCTION InsertarHabitacion(pidHabitacion INT,pestado VARCHAR,ptipo VARCHAR,pprecio INT,pcapacidad INT) 
+CREATE OR REPLACE FUNCTION InsertarHabitacion(pidHabitacion INT,ptipo VARCHAR,pprecio INT,pcapacidad INT) 
 RETURNS VOID
 AS 
 $FUNC$
 BEGIN 
-   INSERT INTO Habitacion(idHabitacion,estado,tipo,precio,capacidad) VALUES (pidHabitacion,pestado,ptipo,pprecio,pcapacidad);
+   INSERT INTO Habitacion(idHabitacion,tipo,precio,capacidad) VALUES (pidHabitacion,ptipo,pprecio,pcapacidad);
 END;
 $FUNC$ LANGUAGE  plpgsql;
 
 select * from Habitacion
-select * from InsertarHabitacion('6','disponible','cabaña','50000','5')
+select * from InsertarHabitacion('6','cabaña','50000','5')
 ----------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION ModificarHabitacion(pidHabitacion INT,pestado VARCHAR,ptipo VARCHAR,pprecio INT,pcapacidad INT)
+CREATE OR REPLACE FUNCTION ModificarHabitacion(pidHabitacion INT,ptipo VARCHAR,pprecio INT,pcapacidad INT)
     returns void
 as
 $func$
 begin
-    update Habitacion set estado=pestado,tipo=ptipo,precio=pprecio,capacidad=pcapacidad
+    update Habitacion set tipo=ptipo,precio=pprecio,capacidad=pcapacidad
     where idHabitacion=pidHabitacion; 
 end;
 $func$ language plpgsql;
 
-select * from ModificarHabitacion('2','disponible','cabaña','50000','3')
+select * from ModificarHabitacion('2','cabaña','50000','3')
 select * from Habitacion
 
 
 ----------------------------------------------------------------------
-CREATE  TYPE tHabitacion
+CREATE   TYPE tHabitacion
 AS
 (
       idHabitacion          INT,
-      estado                VARCHAR,
       tipo                  VARCHAR,
       precio                INT,
       capacidad             INT
 );           
   
-CREATE OR REPLACE FUNCTION consultaHabitacion(pidHabitacion INT,pestado VARCHAR,ptipo VARCHAR,pprecio INT,pcapacidad INT)
+CREATE OR REPLACE FUNCTION consultaHabitacion(pidHabitacion INT,ptipo VARCHAR,pprecio INT,pcapacidad INT)
     RETURNS SETOF tHabitacion
 as
 $FUNC$
 DECLARE reg RECORD;
 BEGIN
 
-    FOR reg IN (SELECT * FROM ( select h.idHabitacion,h.estado,h.tipo,h.precio,h.capacidad from Habitacion as h) as t1
+    FOR reg IN (SELECT * FROM ( select h.idHabitacion,h.tipo,h.precio,h.capacidad from Habitacion as h) as t1
 
             WHERE
             (($1 IS NULL) OR (idHabitacion=$1)) AND
-            (($2 IS NULL) OR (estado similar to '%'||$2||'%')) AND
-            (($3 IS NULL) OR (tipo similar to '%'||$3||'%')) AND
-            (($4 IS NULL) OR (precio =$4)) AND
-            (($5 IS NULL) OR (capacidad = $5)))LOOP         
+            (($2 IS NULL) OR (tipo similar to '%'||$2||'%')) AND
+            (($3 IS NULL) OR (precio =$3)) AND
+            (($4 IS NULL) OR (capacidad = $4)))LOOP         
             
     RETURN NEXT reg;
     END LOOP;
 END;
 $FUNC$ LANGUAGE plpgsql;
 
-select * from consultaHabitacion(NULL,NULL,NULL,NULL)
+select * from consultaHabitacion(NULL,NULL,NULL)
 
-
+--
 
 
