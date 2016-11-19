@@ -132,7 +132,10 @@
                                                         <label><a style="color: #001a35" >Agregar nuevo cliente</a></label>
                                                     </section>
                                                     <section>
-                                                        (Presione para agregar nuevo cliente)
+                                                        <label><a style="color: #001a35" >Modificar información del cliente</a></label>
+                                                    </section>
+                                                    <section>
+                                                        (Presione cualquier opción)
                                                     </section>
                                                 </div>
                                             </div>
@@ -257,8 +260,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" 
+                <button type="button" class="btn btn-danger" data-dismiss="modal"   ng-click="cencelarReserva()" >Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" 
                       ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
                                                           cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,
                                                           cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta)"

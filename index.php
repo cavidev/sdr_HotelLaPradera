@@ -145,6 +145,7 @@
                                 <li><a href="#">Eliminar</a></li>
                             </ul>
                         </li>
+                        <li><a><i class="fa fa-times"></i> Salir</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </nav>

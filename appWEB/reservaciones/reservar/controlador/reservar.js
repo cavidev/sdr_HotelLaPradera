@@ -98,8 +98,14 @@ angular.module('HotelLaPradera')
             $location.path('/superUsuario')
         }else{
             notificaciones.notifySuccess("Algo salio mal, vuelve a entrar al sistema")
-        }
-        
+        } 
+    };
+    $scope.cencelarReserva = function cencelarReserva(){
+        if($sessionStorage.currentUser.typeUser === 1){
+            $location.path('/superUsuario')
+        }else{
+            notificaciones.notifySuccess("Algo salio mal, vuelve a entrar al sistema")
+        } 
     };
     
     $scope.getDatosCliente = function getDatosCliente(cedulaCliente){

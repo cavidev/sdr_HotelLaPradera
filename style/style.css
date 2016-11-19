@@ -12,7 +12,9 @@
     border-style: inset;
     border-width: 1px;
 }
-
+.h1,.h2,.h3,.h4{
+    font-family: 'Lucida Sans Unicode'
+}
 .fondoLogin{
     background-image: url(../img/fondoSin.png);//HotalPraderaArenal1.png
     //background: rgba(255, 0, 0, 0.4);
@@ -21,10 +23,6 @@
     bottom:0; left:0;
     
     //width: 1366px;//
-}
-.fondoAzul{
-    background-image: url(../img/fondo.jpg);//HotalPraderaArenal1.png
-    height: 1000px;
 }
 .fondoTrasparente{
     background-color: transparent;
