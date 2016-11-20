@@ -112,22 +112,11 @@
                             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> Reservaciones</a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header" style="font-family: cursive">Menu Reservaciones</li>
-                                <li><a href="#agendaReservas">Filtrar Reservas</a></li>
-                                <li><a href="#reservar">Reservar</a></li>
-                                <li><a href="#">Modificar</a></li>
-                                <li><a href="#">Eliminar</a></li>
+                                <li><a href="#reservar">Crear</a></li>
+                                <li><a href="#reservas">Reservas</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bed"></i> Habitaciones</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header" style="font-family: cursive">Menu Habitaciones</li>
-                                <li><a href="#">Ver Habitaciones</a></li>
-                                <li><a href="#aHabitacion">Nueva Habitación</a></li>
-                                <li><a href="#">Modificar</a></li>
-                                <li><a href="#">Eliminar</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#aHabitacion"><i class="fa fa-user"></i> Habitaciones</a></li>              
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> Facturacion</a>
                             <ul class="dropdown-menu">
@@ -177,7 +166,7 @@
         <script type="text/javascript" src="appWEB/login/service/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservas.js"></script>
-        <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/servicio/agendaReservas.js"></script>
+        <script type="text/javascript" src="appWEB/reservaciones/reservas/servicio/reservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/servicio/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/servicio/usuario.js"></script>
         <!-- La autentificacion y demas -->
@@ -188,7 +177,7 @@
         <script type="text/javascript" src="appWEB/login/controlador/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/controlador/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/controlador/reservar.js"></script>
-        <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/controlador/agendaReservas.js"></script>
+        <script type="text/javascript" src="appWEB/reservaciones/reservas/controlador/reservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/controlador/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/controlador/usuario.js"></script>
     </body>
