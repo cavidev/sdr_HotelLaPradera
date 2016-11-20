@@ -13,8 +13,8 @@ angular.module('HotelLaPradera', ['ngRoute','ngStorage','jlareau.pnotify'])
             controller 	: 'loginCtrl'          
         })        
         .when('/superUsuario', {
-            templateUrl	: 'appWEB/profile/superUsuario.html',
-            controller 	: 'superUsuarioCtrl'          
+            templateUrl	: 'appWEB/User/usuario.html',
+            controller 	: 'usuarioCtrl'          
         })
         .when('/administrador', {
             templateUrl	: 'appWEB/profile/administrador.html',
@@ -37,8 +37,8 @@ angular.module('HotelLaPradera', ['ngRoute','ngStorage','jlareau.pnotify'])
             controller 	: 'aHabitacionCtrl'
         })
         .when('/usuario', {
-            templateUrl	: 'appWEB/User/usuario.html'
-            //controller 	: 'aHabitacionCtrl'
+            templateUrl	: 'appWEB/User/usuario.html',
+            controller 	: 'usuarioCtrl'
         })
         .otherwise({
             redirectTo: '/'
