@@ -129,8 +129,8 @@
                          <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Clientes</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Ver Clientes</a></li>
-                                <li><a href="#">Agregar</a></li>
+                                <li><a href="#verClientes">Ver Clientes</a></li>
+                                <li><a href="#agregarCliente">Agregar</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-times"></i> Salir</a></li>
@@ -169,6 +169,7 @@
         <script type="text/javascript" src="appWEB/reservaciones/reservas/servicio/reservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/servicio/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/servicio/usuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/service/clientes.js"></script>
         <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>
         <script type="text/javascript" src="appWEB/comun/notificaciones.js"></script>
@@ -180,5 +181,6 @@
         <script type="text/javascript" src="appWEB/reservaciones/reservas/controlador/reservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/controlador/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/controlador/usuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/controlador/clientes.js"></script>
     </body>
 </html>
