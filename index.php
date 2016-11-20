@@ -180,6 +180,7 @@
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/servicio/agendaReservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/servicio/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/servicio/usuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/service/clientes.js"></script>
         <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>
         <script type="text/javascript" src="appWEB/comun/notificaciones.js"></script>
@@ -191,5 +192,6 @@
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/controlador/agendaReservas.js"></script>
         <script type="text/javascript" src="appWEB/habitaciones/controlador/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/controlador/usuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/controlador/clientes.js"></script>
     </body>
 </html>
