@@ -66,7 +66,7 @@
                                             </div>
                                             <div class="col-md-2 form-group">
                                                 <label>Acompañantes</label>
-                                                <input type="number" class="form-control " ng-model="acompanantes">
+                                                <input type="text" class="form-control " ng-model="acompanantes">
                                             </div>
                                             <div class="col-md-5 form-group">
                                                 <label>Datos del tipo de pago</label>
@@ -167,7 +167,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Habitaciones disponibles</h4>
+                    <h4 class="modal-title" id="myModalLabel">Habitaciones disponibles para el periodo seleccionado</h4>
             </div>
             <div class="modal-body">
             <!--Cuerpo -->
@@ -218,49 +218,59 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div style="margin-left: 20px;">
-                        <div>
-                            <label>Entrada:</label> {{entrada}}
-                        </div>
-                        <div>
-                            <label>Salida:</label> {{salida}}
-                        </div>
-                        <div>
-                            <label>Habitacion:</label> {{numeroHabitacion}}
-                        </div>
-                        <div>
-                            <label>Cliente:</label> {{nombreCliente}}
-                        </div>
-                        <div>
-                            <label>Cedula:</label> {{cedulaCliente}}
-                        </div>
-                        <div>
-                            <label>Acompañantes:</label> {{aconpanantes}}
-                        </div>
-                        <div>
-                            <label>Tipo de Pago:</label> {{tipoPago}}
-                        </div>
-                        <div>
-                            <div ng-show="infoTipoTarjeta">
-                                <label>Numero Tarjeta:</label> {{numeroTargeta}}
+                    <div style="margin-left: 50px">
+                        <div style="margin-left: 20px;" class="col-md-10 well">
+                            <div>
+                                <label>Entrada:</label> {{entrada}}
                             </div>
-                            <div ng-show="infoTipoAgencia">
-                                <label>Cedula Juridica:</label> {{cedulaJuridica}}
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Salida:</label> {{salida}}
                             </div>
-                            <div ng-show="infoTipoEfectivo">
-                                <label>Cantidad:</label> {{cantidadRespaldo}}
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Habitacion:</label> {{numeroHabitacion}}
                             </div>
-                            <div ng-show="infoTipoDepositoBancario">
-                                <label>Nombre Banco:</label> {{nombreBanco}}
-                                <hr class="lineaHorizontal">
-                                <label>Cuenta:</label> {{numeroCuenta}}
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Cliente:</label> {{nombreCliente}}
                             </div>
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Cedula:</label> {{cedulaCliente}}
+                            </div>
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Acompañantes:</label> {{acompanantes}}
+                            </div>
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <label>Tipo de Pago:</label> {{tipoPago}}
+                            </div>
+                            <hr style="height: 1px; background-color: #333">
+                            <div>
+                                <div ng-show="infoTipoTarjeta">
+                                    <label>Numero Tarjeta:</label> {{numeroTargeta}}
+                                </div>
+                                <div ng-show="infoTipoAgencia">
+                                    <label>Cedula Juridica:</label> {{cedulaJuridica}}
+                                </div>
+                                <div ng-show="infoTipoEfectivo">
+                                    <label>Cantidad:</label> {{cantidadRespaldo}}
+                                </div>
+                                <div ng-show="infoTipoDepositoBancario">
+                                    <label>Nombre Banco:</label> {{nombreBanco}}
+                                    <hr class="lineaHorizontal">
+                                    <label>Cuenta:</label> {{numeroCuenta}}
+                                </div>
+                            </div>
+                            <hr style="height: 1px; background-color: #333">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"   ng-click="cencelarReserva()" >Cancelar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" 
                       ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
                                                           cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,

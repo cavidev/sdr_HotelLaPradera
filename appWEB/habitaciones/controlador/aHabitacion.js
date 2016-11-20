@@ -1,0 +1,32 @@
+/*Desarrollador: Desarrollador: Carlos Villafuerte, Esteban Blanco, Lady Chacon, Roberto Salazar.
+    Version: 1.0
+    Module AngularJS: HotelLaPredera
+    Año: 2016
+    Descripción: route, para la navegación de las paginas en AngularJS.
+*/
+/* global angular */
+var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+var fechaActual = new Date();
+angular.module('HotelLaPradera')
+.controller("aHabitacionCtrl", function($scope,$location,aHabitacionFactory,notificaciones)
+{
+    (function actualizarFecha(){
+    $scope.fechaHoy = diasSemana[fechaActual.getDay()] + ", " + fechaActual.getDate() + " de " + 
+        meses[fechaActual.getMonth()] + " del " + fechaActual.getFullYear();
+    })();
+    
+    $scope.habitaciones =[{id: '01',capacidad: 2,tipo:'Normal',precio: 2000, estado: "Disponible"},
+        {id: '02',capacidad: 2,tipo:'Normal', precio: 2000, estado: 'Reservada'},
+        {id: '03',capacidad: 2,tipo:'Normal', precio: 2000, estado: 'Ocupada'}];
+    
+    $scope.getHabitacionesDia = function getHabitacionesDia(diaEscogido){
+        $scope.fechaHoy = diasSemana[diaEscogido.getDay()] + ", " + diaEscogido.getDate() + " de " + 
+        meses[diaEscogido.getMonth()] + " del " + diaEscogido.getFullYear();
+
+        $scope.habitaciones =[{id: '01',capacidad: 2,tipo:'Normal',precio: 4000, estado: 'Reservada'},
+        {id: '02',capacidad: 2,tipo:'Normal', precio: 1500, estado: 'Disponible'},
+        {id: '03',capacidad: 2,tipo:'Normal', precio: 2780, estado: 'Ocupada'}];
+    };
+    
+});

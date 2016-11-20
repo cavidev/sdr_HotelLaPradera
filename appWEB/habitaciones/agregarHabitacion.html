@@ -1,0 +1,186 @@
+<div>
+<div class="wrapper">
+    <div class="container-fluid">
+        <article class="row" style="font-family: 'Lucida Sans Unicode'">           
+            <h2>Listado de las habitaciones</h2>
+        </article>
+        <hr style="height: 2px; background-color: #333">
+        <div class="panel panel-default">
+            <div class="panel-body" >
+                <div class="row">
+                    <section style="margin-left: 8px;margin-right: 8px;">
+                        <div style="float: left">
+                            <p><label>Habitaciones correspondiente al:</label><i>&nbsp{{fechaHoy}}</i><br>
+                                &nbsp &nbsp <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
+                                &nbsp &nbsp <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
+                                &nbsp &nbsp <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
+                            </p>
+                        </div>
+                        <div style="float: right; font-family: cursive; color: #333;margin-right: 30px;"> 
+                            <section>
+                                <button data-toggle="collapse" data-target="#escogerDia">Fecha</button>
+                                <div style="float: right; margin-right: 30px; padding: 10px;" id="escogerDia" class="collapse">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Dia:</label>
+                                            <section>
+                                                <div style="width: 160px; float: left;">
+                                                    <input type="date" class="form-control" ng-model="diaEscogido">
+                                                </div>
+                                                <div style="float: left">
+                                                    <button class="btn btn-default" ng-click="getHabitacionesDia(diaEscogido)">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section style="padding: 20px;">
+                        <section><a data-toggle="modal" data-target="#nuevaHabitacion" style="color: #00733e;">Agregar nueva habitación</a></section>
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Habitacion</th>
+                                <th>Capacidad</th>
+                                <th>Tipo</th>
+                                <th>Precio</th>
+                                <th>Estado Actual</th>
+                                <th>Opciones</th>
+                              </tr>
+                            </thead>
+                            <tbody style="font-family: 'Lucida Sans Unicode'">
+                                <tr ng-repeat="habitacion in habitaciones" >
+                                    <td>H-{{habitacion.id}}</td>
+                                    <td>{{habitacion.capacidad}}</td>
+                                    <td>{{habitacion.tipo}}</td>
+                                    <td>{{habitacion.precio}}c/u</td>
+                                    <td class="text-center">
+                                        <div ng-show="habitacion.estado === 'Disponible'" >
+                                            <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: green" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div ng-show="habitacion.estado === 'Reservada'" >
+                                            <a data-toggle="modal" data-target="#detalleReserva">
+                                                <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div ng-show="habitacion.estado === 'Ocupada'" >
+                                            <a><i class="fa fa-bed fa-2x" style="color: red" aria-hidden="true"></i></a>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+    
+    
+ <!-- Modal -Detalle de la reserva -->
+<div class="modal fade" id="detalleReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de la reservación</h4>
+            </div>
+            <div class="modal-body">
+            <div class="row" >
+                <div style="margin-left: 30px">
+                    <section class="row">
+                        <h4>Reserva</h4>
+                    </section>
+                    <div class="row">
+                        <div style="float: left" class="col-lg-6">
+                            <section>
+                                <label>#: </label>001
+                            </section>
+                            <section>
+                                <label>Entrada: </label>08/11/2016
+                            </section>
+                            <section>
+                                <label>Habitación: </label>H-02
+                            </section>
+                        </div>
+                        <div style="float: left">
+                            <section>
+                                <label>Hecha por: </label>Usuario
+                            </section>
+                            <section>
+                                <label>Salida: </label>10/11/2016
+                            </section>
+                            <section>
+                                <label>Acompañantes: </label>2
+                            </section>
+                        </div>
+                    </div>
+                    <section class="row" >
+                        <h4>Cliente</h4>
+                    </section>
+                    <div class="row">
+                        <div style="float: left" class="col-lg-6">
+                            <section>
+                                <label>Cedula: </label>504080112
+                            </section>
+                            <section>
+                                <label>Correo: </label>carlosmario.villafuerted66@gmail.com
+                            </section>
+                            <section>
+                                <label>Direción: </label>Los Chiles, centro; Alajuela, Costa Rica
+                            </section>
+                        </div>
+                        <div style="float: left" class="col-lg-6">
+                            <section>
+                                <label>Nombre: </label>Carlos Villafuerte
+                            </section>
+                            <section>
+                                <label>Telefono: </label>87200620
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ <!-- Modal -Agregar habitacion -->
+<div class="modal fade" id="nuevaHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de la reservación</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</div>
