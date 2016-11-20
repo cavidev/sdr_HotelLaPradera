@@ -8,8 +8,9 @@ and open the template in the editor.
 <div class="wrapper">
     <div class="container-fluid">       
         <div class=" row col-md-12 " style="margin-top: 20px" >
-
+            <button class="pull-right btn-primary col-md-1 col-md-offset-9 " style=" margin:1%" ng-click="Logout()">Salir</button>
       <div class="panel panel-info">
+
         <div class="panel-heading">
           <h3 class="panel-title">INFORMACION PERSONAL</h3>
         </div>
@@ -43,7 +44,7 @@ and open the template in the editor.
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="btn btn-primary">Actualizar Foto</a>
+              <a href="#" class="btn btn-primary" ng-click="ActualizaFoto()">Actualizar Foto</a>
             </div>
           </div>
         </div>
@@ -67,8 +68,6 @@ and open the template in the editor.
 
                 </tbody>
               </table>
-
-              <a href="#" class="btn btn-primary">Actualizar</a>
               </div>
           </div>
         </div>
@@ -96,13 +95,13 @@ and open the template in the editor.
                   <tr>
                     <td>Contraseña anterior:</td>
                     <td> 
-                        <input class="form-control" type="password" >
+                        <input class="form-control" type="password" ng-model="contrasenna">
                     </td>
                   </tr>
                   <tr>
                     <td>Nueva Contraseña:</td>
                     <td>
-                        <input class="form-control" type="password" >
+                        <input class="form-control" type="password" ng-model="nuevaContrasenna">
                     </td>
                   </tr>
                   <tr>
@@ -114,7 +113,7 @@ and open the template in the editor.
 
                 </tbody>
               </table>
-              <a href="#" class="btn btn-primary">Cambiar Contraseña</a>
+              <button class="btn btn-primary"  ng-click="ActualizaContrasenna(contrasenna,nuevaContrasenna)">Cambiar Contraseña</button>
               </div>
           </div>
         </div>
