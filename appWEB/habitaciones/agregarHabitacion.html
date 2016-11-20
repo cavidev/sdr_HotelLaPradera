@@ -10,19 +10,39 @@
                 <div class="row">
                     <section style="margin-left: 8px;margin-right: 8px;">
                         <div style="float: left">
-                            <p>Habitaciones correspondiente al: <br>
-                                &nbsp Disponible: <i class="fa fa-bed" style="color: {{estado}}" aria-hidden="true"></i><br>
-                                &nbsp Ocupada: &nbsp<i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
-                                &nbsp Reservada: <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
+                            <p><label>Habitaciones correspondiente al:</label><i>&nbsp{{fechaHoy}}</i><br>
+                                &nbsp &nbsp <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
+                                &nbsp &nbsp <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
+                                &nbsp &nbsp <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
                             </p>
                         </div>
-                        <div style="float: right; font-family: cursive; color: #333;">
-                            <section><a>Agregar nueva habitación</a></section>
+                        <div style="float: right; font-family: cursive; color: #333;margin-right: 30px;"> 
+                            <section>
+                                <button data-toggle="collapse" data-target="#escogerDia">Fecha</button>
+                                <div style="float: right; margin-right: 30px; padding: 10px;" id="escogerDia" class="collapse">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Dia:</label>
+                                            <section>
+                                                <div style="width: 160px; float: left;">
+                                                    <input type="date" class="form-control" ng-model="diaEscogido">
+                                                </div>
+                                                <div style="float: left">
+                                                    <button class="btn btn-default" ng-click="getHabitacionesDia(diaEscogido)">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
                         </div>
                     </section>
                 </div>
                 <div class="row">
                     <section style="padding: 20px;">
+                        <section><a data-toggle="modal" data-target="#nuevaHabitacion" style="color: #00733e;">Agregar nueva habitación</a></section>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -35,26 +55,22 @@
                               </tr>
                             </thead>
                             <tbody style="font-family: 'Lucida Sans Unicode'">
-                                <tr>
-                                    <td>H-01</td>
-                                    <td>2</td>
-                                    <td>Normal</td>
-                                    <td>2000 c/u</td>
+                                <tr ng-repeat="habitacion in habitaciones" >
+                                    <td>H-{{habitacion.id}}</td>
+                                    <td>{{habitacion.capacidad}}</td>
+                                    <td>{{habitacion.tipo}}</td>
+                                    <td>{{habitacion.precio}}c/u</td>
                                     <td class="text-center">
-                                        <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: {{estado}}" aria-hidden="true"></i></a>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                                        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>H-02</td>
-                                    <td>2</td>
-                                    <td>Normal</td>
-                                    <td>2000 c/u</td>
-                                    <td class="text-center">
-                                        <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i>
+                                        <div ng-show="habitacion.estado === 'Disponible'" >
+                                            <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: green" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div ng-show="habitacion.estado === 'Reservada'" >
+                                            <a data-toggle="modal" data-target="#detalleReserva">
+                                                <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div ng-show="habitacion.estado === 'Ocupada'" >
+                                            <a><i class="fa fa-bed fa-2x" style="color: red" aria-hidden="true"></i></a>
+                                        </div>
                                     </td>
                                     <td class="text-center">
                                         <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
@@ -69,4 +85,52 @@
         </div>
     </div>
 </div>
+    
+    
+ <!-- Modal -Detalle de la reserva -->
+<div class="modal fade" id="detalleReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de la reservación</h4>
+            </div>
+            <div class="modal-body">
+            <!--Cuerpo -->
+            
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ <!-- Modal -Agregar habitacion -->
+<div class="modal fade" id="nuevaHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalles de la reservación</h4>
+            </div>
+            <div class="modal-body">
+            <!--Cuerpo -->
+            
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
 </div>

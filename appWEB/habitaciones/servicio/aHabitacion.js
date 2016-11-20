@@ -4,6 +4,7 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
+/* global angular */
 angular.module('HotelLaPradera')
 .factory('aHabitacionFactory', function($http){
     //Arma la funcion y la inserta de una ves en el json.
