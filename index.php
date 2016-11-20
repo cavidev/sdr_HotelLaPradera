@@ -177,6 +177,7 @@
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservas.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/servicio/agendaReservas.js"></script>
+        <script type="text/javascript" src="appWEB/User/servicio/usuario.js"></script>
         <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>
         <script type="text/javascript" src="appWEB/comun/notificaciones.js"></script>
@@ -186,5 +187,7 @@
         <script type="text/javascript" src="appWEB/profile/controlador/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/controlador/reservar.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/agendaReservas/controlador/agendaReservas.js"></script>
+        <script type="text/javascript" src="appWEB/User/controlador/usuario.js"></script>
+       
     </body>
 </html>

@@ -386,6 +386,5 @@ $FUNC$ LANGUAGE plpgsql;
 
 select * from consultaHabitacion(NULL,NULL,NULL)
 
---
 
 
