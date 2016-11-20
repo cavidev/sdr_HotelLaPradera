@@ -139,8 +139,8 @@
                          <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Clientes</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Ver Clientes</a></li>
-                                <li><a href="#">Agregar</a></li>
+                                <li><a href="#verClientes">Ver Clientes</a></li>
+                                <li><a href="#agregarCliente">Agregar</a></li>
                             </ul>
                         </li>
                         <li><a><i class="fa fa-times"></i> Salir</a></li>

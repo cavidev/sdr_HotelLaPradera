@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row" style="font-family: 'Lucida Sans Unicode'">           
+            <h2>Ver Clientes</h2>
+        </div>
+        <hr style="height: 2px; background-color: #333">
+        <div class="row col-md-12"> <!--  well well-sm-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  >
+                        
+                    </div>
+                </div>
+                <div class="panel-body"> <!-- col-md-11 -->
+                    <div style="margin-left: 30px;">
+                        <table>
+                            <tr><th colspan="5" style="font-size: 15px; font-family: 'Lucida Sans Unicode'">Lista de Clientes</th></tr>
+                            <tr><th colspan="5">Buscar: <input type="text" ng-model="filtro" placeholder="Ingrese algo"></th></tr>
+                            <tr>
+                                    <th>Cedula</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Nacionalidad</th>
+                                    <th>Direccion</th>
+                                    <th>Acción</th>
+                            </tr>
+                            <tr ng-repeat="c in listaClientes | filter:filtro">
+                                    <td>{{ c.cedula }}</td>
+                                    <td>{{ c.nombre }}</td>
+                                    <td>{{ c.telefono}}</td>
+                                    <td>{{ c.correo }}</td>
+                                    <td>{{ c.nacionalidad }}</td>
+                                    <td>{{ c.direccion }}</td>
+                                    <td> 
+                                        
+                                    </td>
+                            </tr>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

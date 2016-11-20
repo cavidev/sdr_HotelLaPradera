@@ -29,10 +29,9 @@ CREATE TABLE Cliente(
       nombre       VARCHAR    NOT NULL,
       cedula       t_cedula,
       direccion    VARCHAR(500) NULL,
-      nacionalidad VARCHAR     NOT NULL,
+      nacionalidad VARCHAR      NOT NULL,
    
       CONSTRAINT PK_cedula_cliente    PRIMARY KEY (cedula)
-     
 );
 
 
