@@ -13,7 +13,7 @@ angular.module('HotelLaPradera')
         //La direccion del archivo PHP.
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=GetData";
         //Datos que vienen por parametros.
-        var datos = {Nombre:"Villlafuerte"};   
+        var datos = {Nombre:"Villafuerte"};   
         //Peticion por debajo.
         $http.post(url,datos).success(function(data){
             callback(data);

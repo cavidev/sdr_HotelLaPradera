@@ -6,6 +6,23 @@
 */
 angular.module('HotelLaPradera')
 .factory('usuarioFactory', function($http){
+ 
+    var ActualizaContrasenna = function ActualizaContrasenna(data,callback){
+        var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaContrasenna";
+        $http.post(url,data).success(function(response){
+            console.log(response);
+            callback(response);
+        });
+    };
+    
+    var ActualizaFoto = function ActualizaFoto(data,callback){
+        var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaFoto";
+        $http.post(url,data).success(function(response){
+            console.log(response);
+            callback(response);
+        });
+    };
+    
     //Arma la funcion y la inserta de una ves en el json.
     var getData = function getData(datosV,callback){
         console.log("Mae estoy en el factory");
@@ -27,8 +44,10 @@ angular.module('HotelLaPradera')
     };
     
     //Retorna el json con todas las funciones necesarias.
-    return {
+return {
         getData: getData,
-        credencialesUsuario: credencialesUsuario
+        credencialesUsuario: credencialesUsuario,
+        ActualizaFoto: ActualizaFoto,
+        ActualizaContrasenna: ActualizaContrasenna
     };
 });
