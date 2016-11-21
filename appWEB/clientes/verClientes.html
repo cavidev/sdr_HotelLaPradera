@@ -27,12 +27,12 @@
                                         <td>{{ c.cedula }}</td>
                                         <td>{{ c.nombre }}</td>
                                         <td>{{ c.telefono}}</td>
-                                        <td>{{ c.correo }}</td>
+                                        <td>{{ c.email }}</td>
                                         <td>{{ c.nacionalidad }}</td>
                                         <td>{{ c.direccion }}</td>
                                         <td class='text-center'> 
                                             <button class="btn btn-info" title='Modificar' data-toggle="modal" 
-                                                    ng-click="guardarDatos(c.cedula,c.nombre,c.telefono,c.correo,c.nacionalidad,c.direccion)"
+                                                    ng-click="guardarDatos(c.cedula,c.nombre,c.telefono,c.email,c.nacionalidad,c.direccion)"
                                                     data-target="#modificarCliente">
                                                 <i class="fa fa-refresh" aria-hidden="true"></i></button>
                                         <button class="btn btn-danger" title='Eliminar' data-toggle="modal" 
@@ -69,7 +69,7 @@
                                 <label>Cedula:</label>
                                 <input type="text" class="form-control" disabled ng-model="cedulaCliente">
                             </div>
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-7 form-group">
                                 <label>Nombre:</label>
                                 <input type="text" class="form-control" ng-model="nombreCliente">
                             </div>
@@ -79,7 +79,7 @@
                                 <label>Teléfono:</label>
                                 <input type="text" class="form-control" ng-model="telefonoCliente">
                             </div>
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-7 form-group">
                                 <label>Correo:</label>
                                 <input type="text" class="form-control" ng-model="correoCliente">
                             </div>

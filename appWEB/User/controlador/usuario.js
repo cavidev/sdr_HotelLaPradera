@@ -24,6 +24,23 @@ angular.module('HotelLaPradera')
          $location.path("/"); 
     };
     
+    $scope.ObtenerUsuario = function ObtenerUsuario(){
+        usuarioFactory.ObtenerUsuario(function(respuesta){
+            console.log(respuesta);
+            $scope.fotoU = respuesta.foto;
+            $scope.cedulaU = respuesta.cedula;
+            $scope.nombreU = respuesta.nombre;
+            $scope.tipoU = respuesta.tipo;
+            $scope.telefonoU = respuesta.telefono;
+            $scope.emailU = respuesta.email;
+            if(respuesta.sucess){
+                notificaciones.notificacion2("Exito!!","Contrasenna Cambiada","exito");
+            }else{
+                notificaciones.notificacion2("Error!!","No se ha actualizado","error");
+            }
+        }); 
+    };
+    
     $scope.ActualizaContrasenna = function ActualizaContrasenna(contrasenna,nuevaContrasenna){
       var datos = {nuevaContrasenna: nuevaContrasenna};
         usuarioFactory.ActualizaContrasenna(datos,function(respuesta){
@@ -53,7 +70,7 @@ angular.module('HotelLaPradera')
         });
     };
     
-    
+    $scope.ObtenerUsuario();
     $scope.visibleNav = false;
 
 
