@@ -10,7 +10,7 @@ var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
 var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 var fechaActual = new Date();
 angular.module('HotelLaPradera')
-.controller("usuarioCtrl", function($scope,$location,AuthenticationService,notificaciones)
+.controller("usuarioCtrl", function($scope,$location,AuthenticationService,usuarioFactory,notificaciones)
 {
     
     (function actualizarFecha(){
@@ -51,28 +51,28 @@ angular.module('HotelLaPradera')
         }); 
     };
     
-    $scope.ActualizaFoto = function ActualizaFoto(nuevaFoto){
+    $scope.ActualizaFoto = function ActualizaFoto(){
         var file = $scope.imagen;
-        var fd = new FormData();
-        fd.append('file', file);
-        
         console.log(file);
-        console.log(fd);
-        
+        $scope.imagen2;
         var algo = getBase64(file,function (imagen){
             $scope.imagen2 = imagen;
+            var datos = {foto:imagen}
+            
+            usuarioFactory.ActualizaFoto($scope.imagen2,function(respuesta){
+                if(respuesta.sucess){
+                    notificaciones.notificacion2("Exito!!","La foto fue cambiada","exito");
+                }else{
+                    notificaciones.notificacion2("Error!!","No se ha actualizado ","error");
+                }
+            });
         });
-        /*
-        var imageData=$base64.encode(nuevaFoto);
-        console.log(imageData);
-        
-        var datos = {cedula: cedula, nuevaFoto: nuevaFoto};
-        */
     };
     
     
     $scope.visibleNav = false;
-    $scope.superUsuario = "Hola";
+
+
 }).directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
@@ -93,7 +93,6 @@ function getBase64(file,callback) {
    var reader = new FileReader();
    reader.readAsDataURL(file);
    reader.onload = function () {
-        //console.log(reader.result);
         callback(reader.result);
    };
    reader.onerror = function (error) {
