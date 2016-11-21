@@ -37,13 +37,13 @@
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" placeholder="Disponible" ng-model="numeroHabitacion">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-default"
-                                                                data-toggle="modal" data-target="#habitacionesDisponibles"
+                                                        <button class="btn btn-default" data-toggle="modal" data-target="#habitacionesDisponibles"
+                                                                ng-click="obtenerReservasDisponiblesRango(fechaEntrada,fechaSalida)"
                                                                 ><i class="fa fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 form-group">
+                                            <div class="col-md-2 form-group">
                                                 <label>Tipo de pago</label>
                                                 <select class="form-control" ng-model="tipoPago" ng-change="tipoInfoTipoPago(tipoPago)">
                                                     <option value="Tarjeta">Tarjeta</option>
@@ -51,6 +51,19 @@
                                                     <option selected value="Efectivo">Efectivo</option>
                                                     <option value="Deposito Bancario">Deposito Bancario</option>
                                                 </select>
+                                            </div>
+                                            <div class="col-md-3 form-group" style="font-family: cursive;">
+                                                <div style="margin-left: 50px;margin-top: 20px;">
+                                                    <section>
+                                                        <label><a style="color: #001a35" >Agregar nuevo cliente</a></label>
+                                                    </section>
+                                                    <section>
+                                                        <label><a style="color: #001a35" >Modificar información del cliente</a></label>
+                                                    </section>
+                                                    <section>
+                                                        (Presione cualquier opción)
+                                                    </section>
+                                                </div>
                                             </div>
                                         </section>
                                         <section class="row">
@@ -68,10 +81,10 @@
                                                 <label>Acompañantes</label>
                                                 <input type="text" class="form-control " ng-model="acompanantes">
                                             </div>
-                                            <div class="col-md-5 form-group">
+                                            <div class="col-md-3 form-group">
                                                 <label>Datos del tipo de pago</label>
                                                 <div ng-show="infoTipoTarjeta">
-                                                    <input type="text" class="form-control" placeholder="Numero Tarjeta" ng-model="numeroTargeta">
+                                                    <input type="text" class="form-control" placeholder="Numero Tarjeta" ng-model="numeroTarjeta">
                                                 </div>
                                                 <div ng-show="infoTipoAgencia">
                                                     <input type="text" class="form-control" placeholder="Cedula Juridica" ng-model="cedulaJuridica">
@@ -100,9 +113,9 @@
                                             <div class="col-md-2 form-group">
                                                 <label>Cedula Cliente</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control " placeholder="201230456" ng-model="cedulaCliente">
+                                                    <input type="text" class="form-control " placeholder="2-0222-0222" ng-model="cedulaCliente">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-default" ng-click="getDatosCliente(cedulaCliente)">
+                                                        <button class="btn btn-default" ng-click="obtenerDatosCliente(cedulaCliente)">
                                                             <i class="fa fa-plus-circle"></i>
                                                         </button>
                                                     </div>
@@ -126,18 +139,9 @@
                                                 <label>Dirección</label>
                                                 <input type="text" class="form-control" disabled ng-model="direcionCliente">
                                             </div>
-                                            <div class="col-md-4 form-group" style="font-family: cursive;">
-                                                <div style="margin-left: 20px;margin-top: 20px;">
-                                                    <section>
-                                                        <label><a style="color: #001a35" >Agregar nuevo cliente</a></label>
-                                                    </section>
-                                                    <section>
-                                                        <label><a style="color: #001a35" >Modificar información del cliente</a></label>
-                                                    </section>
-                                                    <section>
-                                                        (Presione cualquier opción)
-                                                    </section>
-                                                </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Nacionalidad</label>
+                                                <input type="text" class="form-control" disabled ng-model="nacionalidadCliente">
                                             </div>
                                         </section>
                                     </div>
@@ -145,9 +149,10 @@
                             </div>
                             <div class="row">
                                 <div style="float: right;margin-right: 10px">
-                                    <button class="btn btn-success" data-toggle="modal" 
-                                            ng-click="confirmarDatos(fechaEntrada,horaEntrada,fechaSalida,horaSalida) 
-                                            "data-target="#confirmarReserva">Aceptar</button>
+                                    <button class="btn btn-success" 
+                                            ng-click="confirmarDatos(fechaEntrada,horaEntrada,fechaSalida,horaSalida)">
+                                                        Aceptar
+                                                        </button>
                                     <button class="btn btn-default" ng-click="regresar()">Regresar</button>
                                 </div>
                             </div>
@@ -206,6 +211,7 @@
     </div>
 </div>
 
+<a href="" data-toggle="modal" data-target="#confirmarReserva" id="linkDCR"></a>
 <!-- Modal -Conformacion Reserva -->
 <div class="modal fade" id="confirmarReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -217,58 +223,7 @@
               <h4 class="modal-title" id="myModalLabel">Confirmación de la reserva</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <!--
-                    <div style="margin-left: 50px">
-                        <div style="margin-left: 20px;" class="col-md-10 well">
-                            <div>
-                                <label>Entrada:</label> {{entrada}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Salida:</label> {{salida}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Habitacion:</label> {{numeroHabitacion}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Cliente:</label> {{nombreCliente}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Cedula:</label> {{cedulaCliente}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Acompañantes:</label> {{acompanantes}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <label>Tipo de Pago:</label> {{tipoPago}}
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                            <div>
-                                <div ng-show="infoTipoTarjeta">
-                                    <label>Numero Tarjeta:</label> {{numeroTargeta}}
-                                </div>
-                                <div ng-show="infoTipoAgencia">
-                                    <label>Cedula Juridica:</label> {{cedulaJuridica}}
-                                </div>
-                                <div ng-show="infoTipoEfectivo">
-                                    <label>Cantidad:</label> {{cantidadRespaldo}}
-                                </div>
-                                <div ng-show="infoTipoDepositoBancario">
-                                    <label>Nombre Banco:</label> {{nombreBanco}}
-                                    <hr class="lineaHorizontal">
-                                    <label>Cuenta:</label> {{numeroCuenta}}
-                                </div>
-                            </div>
-                            <hr style="height: 1px; background-color: #333">
-                        </div>
-                    </div> -->
-                    
+                <div class="row">                  
                     <div style="margin-left: 30px">
                         <section class="row">
                             <h4>Reserva</h4>
@@ -283,7 +238,7 @@
                                         <label>Entrada: </label>&nbsp; {{entrada}}
                                     </section>
                                     <section>
-                                        <label>Habitación: </label>&nbsp; {{numeroHabitacion}}
+                                        <label>Habitación: </label>&nbsp; H-{{numeroHabitacion}}
                                     </section>
                                 </div>
                                 <div style="float: left" class="col-lg-6">
@@ -313,6 +268,9 @@
                                 <section>
                                     <label>Direción: </label>&nbsp; {{direcionCliente}}
                                 </section>
+                                <section>
+                                    <label>Nacionalidad: </label>&nbsp; {{nacionalidadCliente}}
+                                </section>
                             </div>
                             <div style="float: left">
                                 <section>
@@ -323,14 +281,19 @@
                                 </section>
                             </div>
                         </div>
+                        <section class="row" >
+                            <div class="col-md-10">
+                                <hr class="lineaHorizontal">
+                             </div>
+                        </section>
                         <div class="row">
-                            <div style="float: left;" class="col-lg-6" >
+                            <div style="float: right;" class="col-lg-6" >
                                 <div>
                                     <label>Tipo de Pago:</label>&nbsp; {{tipoPago}}
                                 </div>
                                 <div>
                                     <div ng-show="infoTipoTarjeta">
-                                        <label>Numero Tarjeta:</label>&nbsp; {{numeroTargeta}}
+                                        <label>Numero Tarjeta:</label>&nbsp; {{numeroTarjeta}}
                                     </div>
                                     <div ng-show="infoTipoAgencia">
                                         <label>Cedula Juridica:</label>&nbsp; {{cedulaJuridica}}
@@ -353,7 +316,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" 
                       ng-click="insertarNuevaReserva(fechaEntrada,horaEntrada,fechaSalida,horaSalida,numeroHabitacion,
-                                                          cedulaCliente,nombreCliente,aconpanantes,tipoPago,numeroTarjeta,
+                                                          cedulaCliente,acompanantes,tipoPago,numeroTarjeta,
                                                           cedulaJuridica,cantidadRespaldo,nombreBanco,numeroCuenta)"
                                                                                   >Confirmar</button>
             </div>

@@ -5,29 +5,37 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 /* global angular */
+var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=";
 
 angular.module('HotelLaPradera')
 .factory('reservacionesFactory', function($http){
     
-    var getTipoHabitaciones = function getTipoHabitaciones(data,callback){
-        var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=getHabitacionesDisponible";
-        $http.post(url,data).success(function(response){
-            console.log(response);
-            callback([{tipo:'Nomal'},{tipo: "Bungalo"}]);
+    var obtenerReservasDisponiblesRango = function obtenerReservasDisponiblesRango(data,callback){
+        var urlF = url+"obtenerReservasDisponiblesRango";
+        $http.post(urlF,data).success(function(response){
+            callback(response);
         });
     };
     
-    var getDatosCliente = function getDatosCliente(data,callback){
-        var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=getDatosCliente";
-        $http.post(url,data).success(function(response){
+    var obtenerDatosCliente = function obtenerDatosCliente(data,callback){
+        var urlF = url+"obtenerDatosCliente";
+        $http.post(urlF,data).success(function(response){
             console.log(response);
             callback(response);
         });
     };
-    //Retorna el json con todas las funciones necesarias.
+    
+    var insertarNuevaReserva = function insertarNuevaReserva(data,callback){
+        var urlF = url+"insertarNuevaReserva";
+        $http.post(urlF,data).success(function(response){
+            callback(response);
+        });
+    };
+
     return {       
-        getTipoHabitaciones: getTipoHabitaciones,
-        getDatosCliente: getDatosCliente
+        obtenerReservasDisponiblesRango: obtenerReservasDisponiblesRango,
+        obtenerDatosCliente: obtenerDatosCliente,
+        insertarNuevaReserva: insertarNuevaReserva
     };
 });
 

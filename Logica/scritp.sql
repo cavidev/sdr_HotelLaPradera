@@ -130,6 +130,7 @@ CREATE TABLE Habitacion(
       CONSTRAINT CHK_estado_Habitacion          CHECK(estado in('ocupada','pendiente','disponible'))
       
 );
+
 insert into Habitacion(idHabitacion,estado,tipo,precio,capacidad)
 	     values('1','ocupada','normal',50000,3),
 	           ('2','pendiente','normal',50000,3),

@@ -12,28 +12,12 @@ var fechaActual = new Date();
 angular.module('HotelLaPradera')
 .controller("usuarioCtrl", function($scope,$location,AuthenticationService,notificaciones)
 {
-    
     (function actualizarFecha(){
         $scope.fechaActual = diasSemana[fechaActual.getDay()] + ", " + fechaActual.getDate() + " de " + 
             meses[fechaActual.getMonth()] + " del " + fechaActual.getFullYear();
-            console.log(fechaActual);
-
-        
+            console.log(fechaActual); 
     })(0);
-    
-    var reloj = function reloj(){ 
-        var momentoActual = new Date(); 
-        var hora = momentoActual.getHours(); 
-        var minuto = momentoActual.getMinutes(); 
-        var segundo = momentoActual.getSeconds(); 
-
-        $scope.horaImprimible = hora + " : " + minuto + " : " + segundo; 
-        
-    };
-    setTimeout('reloj()',1000);
-    reloj();
-    
-    
+     
     $scope.Logout = function Logout(){
         notificaciones.notifySuccess('Cerrando Sesión');
         AuthenticationService.Logout();
