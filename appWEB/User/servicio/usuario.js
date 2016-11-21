@@ -23,6 +23,7 @@ angular.module('HotelLaPradera')
         });
     };
     
+
     function ActualizaFoto(data,callback){
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaFoto";
         $http.post(url,data).success(function(response){
@@ -52,7 +53,7 @@ angular.module('HotelLaPradera')
     };
     
     //Retorna el json con todas las funciones necesarias.
-    return {
+return {
         getData: getData,
         credencialesUsuario: credencialesUsuario,
         ActualizaFoto: ActualizaFoto,

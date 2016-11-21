@@ -8,6 +8,10 @@ else
     echo '..¡No la encuentro!';
 }
 
+function InsertarClienteUsuario()
+{
+    include("./config.php");
+}
 function insertarNuevoCliente()
 {
     include("./config.php");
@@ -18,7 +22,7 @@ function insertarNuevoCliente()
                 
     $query = "SELECT InsertarCliente('$objDatos->nombre','$objDatos->cedula','$objDatos->direccion',"
             . "'$objDatos->nacionalidad','$objDatos->telefono','$objDatos->correo')";
-  
+
     $result = pg_query($conn,$query) or die ("'estado': 1");
     
     //$registros= pg_num_rows($result);
@@ -29,3 +33,8 @@ function insertarNuevoCliente()
     
     echo $contesto;   
 }
+
+    //insert into usuario (cedula,nombre,contraseña,tipo,foto) values ('2-0751-0487','Roberto Salazar','1212','administrador','4')
+       //     var datos={cedula:cedula,nombre:nombre,puesto:puesto,email:email,telefono:telefono,contrasenna:contrasenna,tipoUsuario:tipoUsuario,imagen:imagen}
+
+

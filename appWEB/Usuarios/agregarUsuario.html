@@ -1,0 +1,121 @@
+<div>
+<div class="wrapper">
+    <div class="container-fluid">       
+        <div class=" row col-md-12 " style="margin-top: 20px" >
+            <button class="pull-right btn-primary col-md-1 col-md-offset-9 " style=" margin:1%" ng-click="Logout()">Salir</button>
+      <div class="panel panel-info">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">INFORMACION PERSONAL</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{{imagen2}}" ng-model="imagen2" class="img-circle img-responsive"> 
+                <br>
+                <br>
+                <br>   
+                <h3>Seleccione la nueva imagen</h3>     
+            </div>
+
+              <form>
+                  Cambiar Foto <input name="imagen" type="file" file-model="imagen"/>
+                  <input class="btn btn-primary" type="submit" value="Cambiar" />
+                  <button ng-click="ActualizaFoto()" >verFoto</button>
+             </form>
+
+            <div class=" col-md-9 col-lg-9 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>CEDULA</td>
+                    <td><input type="text" ng-model="auCedula" name="iCed"></td>
+                  </tr>
+                  <tr>
+                    <td>NOMBRE:</td>
+                    <td><input type="text" ng-model="auName" name="iNombre"></td>
+                  </tr>
+                  <tr>
+                    <td>PUESTO:</td>
+                    <td><input type="text" ng-model="auPuesto" name="iPuesto"></td>
+                  </tr>
+                  <tr>
+                  <tr>
+                    <td>Email</td>
+                    <td><input type="text" ng-model="auEmail" name="iEmail"></td>
+                  </tr>
+                    <td>NUMERO TELEFONICO:</td>
+                    <td><input type="number" ng-model="auTel" name="iTel"  min="0">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+         <div class="panel-heading">
+          <h3 class="panel-title">Información de cuenta</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+
+            <div class=" col-md-9 col-lg-9 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Nueva contraseña:</td>
+                    <td> 
+                        <input class="form-control" type="password" ng-model="auContra">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Confirme la nueva contraseña:</td>
+                    <td>
+                        <input class="form-control" type="password" ng-model="nuevaContrasenna">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              </div>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <h3 class="panel-title">Tipo de usuario</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+
+            <div class=" col-md-9 col-lg-9 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    
+                    <td> 
+                        <select ng-model="auTipoDato">
+                            <option value="adm">Administrador</option>
+                            <option value="recep">Recepcionista</option>
+                        </select>
+           
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+             
+              </div>
+          </div>
+        </div>
+        <div class="panel-heading">  
+            <div >
+                <button class="btn btn-primary" text-align="center"  ng-click="insertarUsuario(auCedula,auName,auEmail,auTel,auContra,auTipoDato,imagen2)">Registrar usuario</button>                
+            </div>
+                
+        </div>
+               
+
+          </div>
+      </div>
+</div>
+</div>
+</div>

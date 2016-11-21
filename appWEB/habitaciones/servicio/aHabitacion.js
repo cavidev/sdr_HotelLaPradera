@@ -8,6 +8,7 @@
 var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=";
 angular.module('HotelLaPradera')
 .factory('aHabitacionFactory', function($http){
+    //Arma la funcion y la inserta de una ves en el json.
     
     var obtenerHabitacionesDia = function obtenerHabitacionesDia(data, callback){
         var urlF = url+"obtenerHabitacionesDia";
