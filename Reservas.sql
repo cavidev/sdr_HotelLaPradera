@@ -10,17 +10,17 @@ CREATE DOMAIN t_Cedula    CHAR(11)     NOT NULL      CHECK(VALUE SIMILAR TO '[0-
 CREATE DOMAIN t_Fecha     DATE         NOT NULL
 
 --___________________________________________________________TABLAS___________________________________________________________________________________________________
-
+--DROP TABLE Usuario
 CREATE TABLE Usuario(
 
       cedula         t_cedula,
       nombre         VARCHAR   NOT NULL,
       contraseña     VARCHAR   NOT NULL,
       tipo           VARCHAR   NOT NULL,
-      foto           INT   NOT NULL,
+      foto           BYTEA   NOT NULL,
       
       CONSTRAINT PK_cedula_usuario    PRIMARY KEY (cedula),
-      CONSTRAINT CHK_tipo_usuario CHECK(tipo in('administrador','recepcionista'))
+      CONSTRAINT CHK_tipo_usuario CHECK(tipo in('superusuario','recepcionista'))
 );
 
 
@@ -29,10 +29,9 @@ CREATE TABLE Cliente(
       nombre       VARCHAR    NOT NULL,
       cedula       t_cedula,
       direccion    VARCHAR(500) NULL,
-      nacionalidad VARCHAR     NOT NULL,
+      nacionalidad VARCHAR      NOT NULL,
    
       CONSTRAINT PK_cedula_cliente    PRIMARY KEY (cedula)
-     
 );
 
 
@@ -54,7 +53,7 @@ CREATE TABLE Tipo(
 	idTipo          INT       NOT NULL,
 	nombre          VARCHAR   NULL,
 	cedulaJuridica  VARCHAR   NULL,
-	numeroTargeta   VARCHAR   NULL,
+	numeroTarjeta   VARCHAR   NULL,
 	numeroCuenta    VARCHAR   NULL,
 	banco           VARCHAR   NULL,
 
@@ -158,21 +157,24 @@ CREATE TABLE TipoReserva(
     
 --______________________________________________________FUNCIONES_______________________________________________________________________
 
-CREATE OR REPLACE FUNCTION InsertarReserva(pidReserva INT,pcedulaCliente VARCHAR, pcedulaUser VARCHAR, pestado VARCHAR, 
+CREATE OR REPLACE FUNCTION InsertarReserva(pcedulaCliente VARCHAR, pcedulaUser VARCHAR, 
                                           pcantidad INT, pfechaInicio DATE, pfechaSalida DATE,phoraEntrada TIME, phoraSalida TIME,pidHabitacion INT
                                           ) RETURNS VOID
 AS 
 $FUNC$
+DECLARE idReserva int;
 BEGIN 
-   INSERT INTO Reserva(idReserva,cedulaCliente,cedulaUser,estado) VALUES (pidReserva,pcedulaCliente,pcedulaUser,pestado);
+   INSERT INTO Reserva(cedulaCliente,cedulaUser,estado) VALUES (pcedulaCliente,pcedulaUser,pestado);
+   idReserva := lastval();
    INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,pestado);
-   
-   
 END;
 $FUNC$ LANGUAGE  plpgsql;
 
+exec InsertarReserva()
+INSERT INTO Clientes VALUES ('Esteban Blanco','4-0232-0763','Rio Frio');
+INSERT INTO Usuarios VALUES ();
 
-UPDATE HabitacionReserva SET estado='red' where idHabitacion=pidHabitacion;
+UPDATE HabitacionReserva SET estado='Ocupado' where idHabitacion=pidHabitacion;
 
 select * from InsertarReserva('2','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:00','01:00','1');
 select * from InsertarReserva('37','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:0','01:0','1')
@@ -267,8 +269,8 @@ END;
 $FUNC$ LANGUAGE  plpgsql;
 
 
-select * from InsertarCliente('Carlos Villaferte','2-0114-5889','Los Chiles','Costarirrence','8758-9877','car@gmail.com')
-----------------------------------------------------------------------
+select * from InsertarCliente('Carlos Villaferte','2-0000-0000','Los Chiles','Costarricense','8758-9877','car@gmail.com')
+-----------------------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION ModificarCliente(pnombre VARCHAR,pcedula VARCHAR,pdireccion VARCHAR, pnacionalidad VARCHAR,ptelefono VARCHAR,ptelefonoNew VARCHAR, pemail VARCHAR, pemailNew VARCHAR)
     returns void
 as
@@ -286,7 +288,17 @@ select * from TelefonoCliente
 select * from EmailCliente
 select * from Cliente
 
-
+----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION eliminarCliente(pcedula VARCHAR)
+    returns void
+as
+$func$
+begin
+	delete from telefonoCliente where cedula = pcedula;
+	delete from emailCliente where cedula = pcedula;
+	delete from Cliente  where cedula = pcedula;
+end;
+$func$ language plpgsql;
 
 ----------------------------------------------------------------------
 CREATE  TYPE tCliente
@@ -385,6 +397,13 @@ END;
 $FUNC$ LANGUAGE plpgsql;
 
 select * from consultaHabitacion(NULL,NULL,NULL)
+
+select * from Cliente
+select * from telefonoCliente
+delete from telefonoCLiente where cedula = '4-0232-0763';
+delete from emailCLiente where cedula = '4-0232-0763';
+delete from Cliente  where cedula = '4-0232-0763';
+
 
 
 

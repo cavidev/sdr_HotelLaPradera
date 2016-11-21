@@ -7,8 +7,10 @@ and open the template in the editor.
 <div>
 <div class="wrapper">
     <div class="container-fluid">       
-        <div class=" row col-md-12 " style="margin-top: 20px" >
-            <button class="pull-right btn-primary col-md-1 col-md-offset-9 " style=" margin:1%" ng-click="Logout()">Salir</button>
+        <div class=" row col-md-12 " style="margin-top: 20px" > 
+            
+            
+            <button class="pull-right col-md-1 col-md-offset-1 btn btn-primary" style=" margin:1%" ng-click="Logout()">Salir</button>
       <div class="panel panel-info">
 
         <div class="panel-heading">
@@ -22,7 +24,7 @@ and open the template in the editor.
               <table class="table table-user-information">
                 <tbody>
                   <tr>
-                    <td>CEDULA</td>
+                    <td>CEDULA:</td>
                     <td>numero de cedula</td>
                   </tr>
                   <tr>
@@ -44,31 +46,11 @@ and open the template in the editor.
                   </tr>
                 </tbody>
               </table>
-              <a href="#" class="btn btn-primary" ng-click="ActualizaFoto()">Actualizar Foto</a>
+              <form>Cambiar Foto
+                  <input name="imagen" type="file" title="Actualizar Foto" file-model="imagen"/>                 
+                  <button class="btn btn-primary" ng-click="ActualizaFoto()" >Actualizar</button>
+             </form>
             </div>
-          </div>
-        </div>
-        <div class="panel-heading">
-          <h3 class="panel-title">DOCUMENTACION</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-
-            <div class=" col-md-9 col-lg-9 "> 
-              <table class="table table-user-information">
-                <tbody>
-                  <tr>
-                    <td>Último Login:</td>
-                    <td>06/23/2013</td>
-                  </tr>
-                  <tr>
-                    <td>Recibo Publico:</td>
-                    <td>Male</td>
-                  </tr>
-
-                </tbody>
-              </table>
-              </div>
           </div>
         </div>
          <div class="panel-heading">
@@ -76,19 +58,6 @@ and open the template in the editor.
         </div>
         <div class="panel-body">
           <div class="row">
-
-            <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-              <dl>
-                <dt>DEPARTMENT:</dt>
-                <dd>Administrator</dd>
-                <dt>HIRE DATE</dt>
-                <dd>11/12/2013</dd>
-                <dt>DATE OF BIRTH</dt>
-                   <dd>11/12/2013</dd>
-                <dt>GENDER</dt>
-                <dd>Male</dd>
-              </dl>
-            </div>-->
             <div class=" col-md-9 col-lg-9 "> 
               <table class="table table-user-information">
                 <tbody>
@@ -113,7 +82,7 @@ and open the template in the editor.
 
                 </tbody>
               </table>
-              <button class="btn btn-primary"  ng-click="ActualizaContrasenna(contrasenna,nuevaContrasenna)">Cambiar Contraseña</button>
+              <button class="btn btn-primary" type="sumit" ng-click="ActualizaContrasenna(contrasenna,nuevaContrasenna)">Cambiar Contraseña</button>
               </div>
           </div>
         </div>
@@ -123,6 +92,5 @@ and open the template in the editor.
 </div>
 </div>
 </div>
-        
-
-        
+    
+       

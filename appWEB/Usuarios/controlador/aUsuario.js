@@ -30,7 +30,7 @@ angular.module('HotelLaPradera')
         
     };
     $scope.insertarUsuario=function insertarUsuario(cedula,nombre,puesto,email,telefono,contrasenna,tipoUsuario,imagen){
-        var datos={cedula:cedula,nombre:nombre,puesto:puesto,email:email,telefono:telefono,contrasenna:contrasenna,tipoUsuario:tipoUsuario,imagen:imagen}
+        var datos={cedula:cedula,nombre:nombre,email:email,telefono:telefono,contrasenna:contrasenna,tipoUsuario:tipoUsuario,imagen:imagen}
         aUsuarioFactory.insertarUsuario(datos,function(respuesta){
             if(!respuesta.sucess){
                 notificaciones.notificacion2("Error"," "," ");

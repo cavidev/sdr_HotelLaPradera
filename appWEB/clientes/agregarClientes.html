@@ -1,16 +1,122 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row" style="font-family: 'Lucida Sans Unicode'">           
+            <h2>Registro de Clientes</h2>
+        </div>
+        <hr style="height: 2px; background-color: #333">
+        <div class="row col-md-12"> <!--  well well-sm-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="font-size: 15px; font-family: 'Lucida Sans Unicode'" >
+                        Nuevo Cliente
+                    </div>
+                </div>
+                <div class="panel-body"> <!-- col-md-11 -->
+                    <div style="margin-left: 30px;">
+                        <form>
+                            <div class="row">
+                                <section class="row">
+                                    <h4>Datos del cliente</h4>
+                                </section>
+                                <section class="row">
+                                    <div style="margin-left: 20px" >
+                                        <section class="row" >
+                                            <div class="col-md-2 form-group">
+                                                <label>Cedula Cliente</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control " placeholder="2-0123-0456" ng-model="cedulaCliente">
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section class="row" >
+                                            <div class="col-md-4 form-group">
+                                                <label>Nombre Completo</label>
+                                                <input type="text" class="form-control" ng-model="nombreCliente">
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-2 form-group">
+                                                <label>Telefono</label>
+                                                <input type="text" class="form-control" placeholder="8888-8888" ng-model="telefonoCliente">
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-4 form-group">
+                                                <label>Correo</label>
+                                                <input type="email" class="form-control" ng-model="correoCliente">
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-3 form-group">
+                                                <label>Nacionalidad</label>
+                                                <input type="text" class="form-control" ng-model="nacionalidadCliente">
+                                            </div>
+                                        </section>
+                                        <section class="row">
+                                            <div class="col-md-4 form-group">
+                                                <label>Dirección</label>
+                                                <input type="text" class="form-control" ng-model="direccionCliente">
+                                            </div>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <div style="float: right;margin-right: 10px">
+                                    <button class="btn btn-success" data-toggle="modal" ng-click=""data-target="#confirmarCliente">Aceptar</button>
+                                    <button class="btn btn-default" ng-click="regresar()">Regresar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<!-- Modal -Conformacion Reserva -->
+<div class="modal fade" id="confirmarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="font-family: 'Lucida Sans Unicode'" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Confirmación del cliente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div style="margin-left: 20px;">
+                        <div>
+                            <label>Cedula:</label> {{cedulaCliente}}
+                        </div>
+                        <div>
+                            <label>Nombre:</label> {{nombreCliente}}
+                        </div>
+                        <div>
+                            <label>Teléfono:</label> {{telefonoCliente}}
+                        </div>
+                        <div>
+                            <label>Correo:</label> {{correoCliente}}
+                        </div>
+                        <div>
+                            <label>Nacionalidad:</label> {{nacionalidadCliente}}
+                        </div>
+                        <div>
+                            <label>Dirección:</label> {{direccionCliente}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  >Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                      ng-click="insertarNuevoCliente(cedulaCliente,nombreCliente,telefonoCliente,
+                                  correoCliente,nacionalidadCliente,direccionCliente)">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

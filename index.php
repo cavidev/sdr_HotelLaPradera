@@ -129,8 +129,8 @@
                          <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Clientes</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Ver Clientes</a></li>
-                                <li><a href="#">Agregar</a></li>
+                                <li><a href="#verClientes">Ver Clientes</a></li>
+                                <li><a href="#agregarCliente">Agregar</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -146,6 +146,7 @@
             </nav>
         </header>
         <!--Carga los templates -->
+        <script src="lib/jQuery/dist/jquery.min.js"></script>
     	<div>
             <div ng-view=""></div>
         </div>
@@ -155,12 +156,14 @@
         <!-- Carga libreria Bootstrap.-->
         <script src="lib/Bootstrap/js/bootstrap.min.js"></script>
         
+        
         <!-- Carga libreria AngularJS.-->
         <script type="text/javascript" src="lib/AngularJS/angular.min.js" ></script>
         <script type="text/javascript" src="lib/AngularJS/angular-route.min.js"></script> 
         <script type="text/javascript" src="lib/ngStorage/ngStorage.min.js"></script>
         <script type="text/javascript" src="lib/pnotify/pnotify.custom.min.js"></script>
         <script type="text/javascript" src="lib/pnotify/angular-pnotify.js"></script>
+        <script type="text/javascript" src="lib/AngularJS/angular-base64.min.js"></script>
         
         
         <!--Carga las rutas (templates)-->
@@ -177,8 +180,8 @@
         <script type="text/javascript" src="appWEB/habitaciones/servicio/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/servicio/usuario.js"></script>
         <script type="text/javascript" src="appWEB/Usuarios/servicio/aUsuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/service/clientes.js"></script>
         
-
         <!-- La autentificacion y demas -->
         <script type="text/javascript" src="appWEB/login/service/AuthenticationService.js"></script>
         <script type="text/javascript" src="appWEB/comun/notificaciones.js"></script>
@@ -191,5 +194,7 @@
         <script type="text/javascript" src="appWEB/habitaciones/controlador/aHabitacion.js"></script>
         <script type="text/javascript" src="appWEB/User/controlador/usuario.js"></script>
         <script type="text/javascript" src="appWEB/Usuarios/controlador/aUsuario.js"></script>
+        <script type="text/javascript" src="appWEB/clientes/controlador/clientes.js"></script>
+        
     </body>
 </html>

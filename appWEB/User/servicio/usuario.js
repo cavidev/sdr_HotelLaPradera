@@ -7,7 +7,8 @@
 angular.module('HotelLaPradera')
 .factory('usuarioFactory', function($http){
  
-    var ActualizaContrasenna = function ActualizaContrasenna(data,callback){
+
+    function ActualizaContrasenna(data,callback){
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaContrasenna";
         $http.post(url,data).success(function(response){
             console.log(response);
@@ -15,7 +16,8 @@ angular.module('HotelLaPradera')
         });
     };
     
-    var ActualizaFoto = function ActualizaFoto(data,callback){
+
+    function ActualizaFoto(data,callback){
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaFoto";
         $http.post(url,data).success(function(response){
             console.log(response);
