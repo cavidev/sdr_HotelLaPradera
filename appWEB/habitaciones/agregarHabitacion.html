@@ -10,10 +10,10 @@
                 <div class="row">
                     <section style="margin-left: 8px;margin-right: 8px;">
                         <div style="float: left">
-                            <p><label>Habitaciones correspondiente al:</label><i>&nbsp{{fechaHoy}}</i><br>
-                                &nbsp &nbsp <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
-                                &nbsp &nbsp <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
-                                &nbsp &nbsp <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
+                            <p><label>Habitaciones correspondiente al:</label><i>&nbsp;{{fechaHoy}}</i><br>
+                                &nbsp;&nbsp; <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
+                                &nbsp;&nbsp; <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
+                                &nbsp;&nbsp; <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
                             </p>
                         </div>
                         <div style="float: right; font-family: cursive; color: #333;margin-right: 30px;"> 
@@ -106,24 +106,24 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>#: </label>001
+                                <label>id: </label>&nbsp; {{detalleReserva.id}}
                             </section>
                             <section>
-                                <label>Entrada: </label>08/11/2016
+                                <label>Entrada: </label>&nbsp; {{detalleReserva.fEntrada}}
                             </section>
                             <section>
-                                <label>Habitación: </label>H-02
+                                <label>Habitación: </label>&nbsp; {{detalleReserva.habitacion}}
                             </section>
                         </div>
                         <div style="float: left">
                             <section>
-                                <label>Hecha por: </label>Usuario
+                                <label>Hecha por: </label>&nbsp; {{detalleReserva.usuario}}
                             </section>
                             <section>
-                                <label>Salida: </label>10/11/2016
+                                <label>Salida: </label>&nbsp; {{detalleReserva.fSalida}}
                             </section>
                             <section>
-                                <label>Acompañantes: </label>2
+                                <label>Acompañantes: </label>&nbsp; {{detalleReserva.acompannantes}}
                             </section>
                         </div>
                     </div>
@@ -133,21 +133,21 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>Cedula: </label>504080112
+                                <label>Cedula: </label>&nbsp; {{detalleReserva.cedula}}
                             </section>
                             <section>
-                                <label>Correo: </label>carlosmario.villafuerted66@gmail.com
+                                <label>Correo: </label>&nbsp; <a href="mailto:{{detalleReserva.correo}}">{{detalleReserva.correo}}</a>
                             </section>
                             <section>
-                                <label>Direción: </label>Los Chiles, centro; Alajuela, Costa Rica
+                                <label>Direción: </label>&nbsp; {{detalleReserva.direccion}}
                             </section>
                         </div>
-                        <div style="float: left" class="col-lg-6">
+                        <div style="float: left">
                             <section>
-                                <label>Nombre: </label>Carlos Villafuerte
+                                <label>Nombre: </label>&nbsp; {{detalleReserva.nombre}}
                             </section>
                             <section>
-                                <label>Telefono: </label>87200620
+                                <label>Telefono: </label>&nbsp; {{detalleReserva.telefono}}
                             </section>
                         </div>
                     </div>

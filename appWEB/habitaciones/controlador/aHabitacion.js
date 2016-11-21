@@ -16,6 +16,10 @@ angular.module('HotelLaPradera')
         meses[fechaActual.getMonth()] + " del " + fechaActual.getFullYear();
     })();
     
+    $scope.detalleReserva = {id:"001",usuario: "Usuario", fEntrada: "08/11/2016", fSalida: "10/11/2016",
+    habitacion: "02",acompannantes: 2, cedula:"05-0408-0112",nombre: "Carlos Mario Villafuerte Diaz",correo:"carlosmario.villafuerted66@gmail.com"
+    , telefono: "87200620",direccion: "Los Chiles, centro; Alajuela, Costa Rica"};
+    
     $scope.habitaciones =[{id: '01',capacidad: 2,tipo:'Normal',precio: 2000, estado: "Disponible"},
         {id: '02',capacidad: 2,tipo:'Normal', precio: 2000, estado: 'Reservada'},
         {id: '03',capacidad: 2,tipo:'Normal', precio: 2000, estado: 'Ocupada'}];

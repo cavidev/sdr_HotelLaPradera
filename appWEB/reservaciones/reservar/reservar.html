@@ -218,6 +218,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <!--
                     <div style="margin-left: 50px">
                         <div style="margin-left: 20px;" class="col-md-10 well">
                             <div>
@@ -265,6 +266,85 @@
                                 </div>
                             </div>
                             <hr style="height: 1px; background-color: #333">
+                        </div>
+                    </div> -->
+                    
+                    <div style="margin-left: 30px">
+                        <section class="row">
+                            <h4>Reserva</h4>
+                        </section>
+                        <div class="row">
+                            <div>
+                                <div style="float: left" class="col-lg-6">
+                                    <section>
+                                        <label>Hecha por: </label>&nbsp; {{usuario}}
+                                    </section>
+                                    <section>
+                                        <label>Entrada: </label>&nbsp; {{entrada}}
+                                    </section>
+                                    <section>
+                                        <label>Habitación: </label>&nbsp; {{numeroHabitacion}}
+                                    </section>
+                                </div>
+                                <div style="float: left" class="col-lg-6">
+                                    <section>
+                                        <label></label>
+                                    </section>
+                                    <section>
+                                        <label>Salida: </label>&nbsp; {{salida}}
+                                    </section>
+                                    <section>
+                                        <label>Acompañantes: </label>&nbsp; {{acompanantes}}
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="row" >
+                            <h4>Cliente</h4>
+                        </section>
+                        <div class="row">
+                            <div style="float: left" class="col-lg-6">
+                                <section>
+                                    <label>Cedula: </label>&nbsp; {{cedulaCliente}}
+                                </section>
+                                <section>
+                                    <label>Correo: </label>&nbsp; {{correoCliente}}
+                                </section>
+                                <section>
+                                    <label>Direción: </label>&nbsp; {{direcionCliente}}
+                                </section>
+                            </div>
+                            <div style="float: left">
+                                <section>
+                                    <label>Nombre: </label>&nbsp; {{nombreCliente}}
+                                </section>
+                                <section>
+                                    <label>Telefono: </label>&nbsp; {{telefonoCliente}}
+                                </section>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="float: left;" class="col-lg-6" >
+                                <div>
+                                    <label>Tipo de Pago:</label>&nbsp; {{tipoPago}}
+                                </div>
+                                <div>
+                                    <div ng-show="infoTipoTarjeta">
+                                        <label>Numero Tarjeta:</label>&nbsp; {{numeroTargeta}}
+                                    </div>
+                                    <div ng-show="infoTipoAgencia">
+                                        <label>Cedula Juridica:</label>&nbsp; {{cedulaJuridica}}
+                                    </div>
+                                    <div ng-show="infoTipoEfectivo">
+                                        <label>Cantidad:</label>&nbsp; {{cantidadRespaldo}}
+                                    </div>
+                                    <div ng-show="infoTipoDepositoBancario">
+                                        <label>Nombre Banco:</label>&nbsp; {{nombreBanco}}
+                                        <hr class="lineaHorizontal">
+                                        <label>Cuenta:</label>&nbsp; {{numeroCuenta}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

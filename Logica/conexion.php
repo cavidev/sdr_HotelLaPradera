@@ -56,7 +56,7 @@ function getHabitacionesDisponible(){
     $res->tipo="Normal";
     
     $res2 = new stdClass();
-    $res2->tipo="Bungalo";
+    $res2->tipo="Bungalow";
     
     $lista = array();
     $lista[] = $res;

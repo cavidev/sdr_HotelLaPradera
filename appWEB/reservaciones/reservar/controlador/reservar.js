@@ -58,6 +58,7 @@ angular.module('HotelLaPradera')
         
         $scope.salida = diasSemana[fechaSalida.getDay()] + ", " + fechaSalida.getDate() + " de " + 
             meses[fechaSalida.getMonth()] + " del " + fechaSalida.getFullYear() +" a las "+hSalida;
+        $scope.usuario = $sessionStorage.currentUser.username;
             
         
     };
