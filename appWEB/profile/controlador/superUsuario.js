@@ -18,21 +18,7 @@ angular.module('HotelLaPradera')
             console.log(fechaActual);
 
         
-    })();
-    
-    var reloj = function reloj(){ 
-        var momentoActual = new Date(); 
-        var hora = momentoActual.getHours(); 
-        var minuto = momentoActual.getMinutes(); 
-        var segundo = momentoActual.getSeconds(); 
-
-        $scope.horaImprimible = hora + " : " + minuto + " : " + segundo; 
-        
-    };
-    setTimeout('reloj()',1000);
-    reloj();
-    
-    
+    })();  
     $scope.Logout = function Logout(){
         notificaciones.notifySuccess('Cerrando Sesión');
         AuthenticationService.Logout();

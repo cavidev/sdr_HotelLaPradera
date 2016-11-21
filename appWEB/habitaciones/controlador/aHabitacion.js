@@ -33,4 +33,27 @@ angular.module('HotelLaPradera')
         {id: '03',capacidad: 2,tipo:'Normal', precio: 2780, estado: 'Ocupada'}];
     };
     
+    $scope.modificarHabitacion = function modificarHabitacion(peticion,capacidad,tipo,precio){
+        angular.element('#linkDirecto').trigger('click');
+        if(peticion === "Modificar"){
+            $scope.dhModificar = {capacidad:capacidad,tipo:tipo,precio:precio};
+        }
+        else if(peticion === "Confirmacion"){
+            var dhModificar = {capacidad:capacidad,tipo:tipo,precio:precio};
+            aHabitacionFactory.modificarHabitacion(dhModificar,function (res){
+                if(res.sucess === true){
+                    notificaciones.notifySuccess("Se modifico la habitacion");
+                }else{
+                    notificaciones.notifyError("No se pudo realizar la petición");
+                }
+                
+            });
+        }
+        
+    }; 
 });
+
+/*
+ * <a href="" data-toggle="modal" data-target="#myModal" id="myModalShower"></a>
+ * 
+ */

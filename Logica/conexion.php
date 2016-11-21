@@ -50,7 +50,7 @@ function credenciales(){
         echo json_encode($res);
     }
 }
-
+///----------------------RESERVAR
 function getHabitacionesDisponible(){
     $res = new stdClass();
     $res->tipo="Normal";
@@ -64,16 +64,30 @@ function getHabitacionesDisponible(){
     echo json_encode($lista);
 }
 
-function getDatosCliente(){
+function obtenerDatosCliente(){
     $objDatos = json_decode(file_get_contents("php://input"));
     $res = new stdClass();
     if($objDatos->cedulaCliente == "504080112"){
-        $res->sucess = true;
+        $res->success = true;
+        $res->mensaje = "Se obtuvieron los datos del cliente";
         $res->Nombre="Carlos Mario Villafuerte Díaz";
         $res->Cedula="504080112";
         $res->Correo="carlosmario.villafuerted66@gmail.com";
         $res->Direccion="Los Chiles, Centro";
         $res->Telefono="87200620";
+        $res->Nacionalidad="Costarricense";
+    }else{
+        $res->success = false;
+        $res->mensaje = "No se encontro ningun cliente, revise la cedula o agrege uno nuevo";
     }
     echo json_encode($res);
 }
+
+function insertarNuevaReserva(){
+    $objDatos = json_decode(file_get_contents("php://input"));
+    $res = new stdClass();
+    $res->success = true;
+    $res->mensaje = "Se realizo la inserción correctamente";
+    echo json_encode($res);
+}
+///----------------------RESERVAR

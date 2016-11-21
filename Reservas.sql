@@ -17,7 +17,7 @@ CREATE TABLE Usuario(
       nombre         VARCHAR   NOT NULL,
       contraseña     VARCHAR   NOT NULL,
       tipo           VARCHAR   NOT NULL,
-      foto           INT   NOT NULL,
+      foto           BYTEA   NOT NULL,
       
       CONSTRAINT PK_cedula_usuario    PRIMARY KEY (cedula),
       CONSTRAINT CHK_tipo_usuario CHECK(tipo in('administrador','recepcionista'))

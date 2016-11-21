@@ -139,6 +139,7 @@
             </nav>
         </header>
         <!--Carga los templates -->
+        <script src="lib/jQuery/dist/jquery.min.js"></script>
     	<div>
             <div ng-view=""></div>
         </div>
@@ -147,6 +148,7 @@
         <script src="lib/jQuery/dist/jquery.min.js"></script>
         <!-- Carga libreria Bootstrap.-->
         <script src="lib/Bootstrap/js/bootstrap.min.js"></script>
+        
         
         <!-- Carga libreria AngularJS.-->
         <script type="text/javascript" src="lib/AngularJS/angular.min.js" ></script>
