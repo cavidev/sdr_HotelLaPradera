@@ -11,9 +11,9 @@
                     <section style="margin-left: 8px;margin-right: 8px;">
                         <div style="float: left">
                             <p><label>Habitaciones correspondiente al:</label><i>&nbsp;{{fechaHoy}}</i><br>
-                                &nbsp;&nbsp; <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
-                                &nbsp;&nbsp; <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
-                                &nbsp;&nbsp; <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
+                                    &nbsp;&nbsp; <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
+                                    &nbsp;&nbsp; <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
+                                    &nbsp;&nbsp; <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
                             </p>
                         </div>
                         <div style="float: right; font-family: cursive; color: #333;margin-right: 30px;"> 
@@ -28,7 +28,7 @@
                                                     <input type="date" class="form-control" ng-model="diaEscogido">
                                                 </div>
                                                 <div style="float: left">
-                                                    <button class="btn btn-default" ng-click="getHabitacionesDia(diaEscogido)">
+                                                    <button class="btn btn-default" ng-click="obtenerHabitacionesDia(diaEscogido)">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
@@ -73,7 +73,9 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                        <button class="btn btn-info" ng-click="modificarHabitacion('Modificar',habitacion)">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
                                         <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
@@ -170,14 +172,96 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Detalles de la reservación</h4>
+                    <h4 class="modal-title" id="myModalLabel">Nueva habitación</h4>
             </div>
             <div class="modal-body">
-
+                <div class="row" >
+                    <div style="font-family: cursive" class="col-lg-10">
+                        <article style="float: right">
+                            <p>Digite un id numerico para la habitacion nueva; ejemplo H-"01"</p>
+                        </article>
+                    </div> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-10" style="margin-left: 75px;">
+                        <form>
+                            <div class="form-group">
+                                <div style="float: left">
+                                    <label>Habitación</label>
+                                    <input class="form-control" ng-model="nuevaH.idH">
+                                </div>
+                                <div style="float: left; margin-left: 30px">
+                                    <label>Capacidad</label>
+                                    <input class="form-control" ng-model="nuevaH.capacidadH">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="float: left">
+                                    <label>Tipo</label>
+                                    <input class="form-control" ng-model="nuevaH.tipoH">
+                                </div>
+                                <div style="float: left; margin-left: 30px">
+                                    <label>Precio</label>
+                                    <input class="form-control" ng-model="nuevaH.precioH">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary"  data-dismiss="modal">Aceptar</button>
+                <button type="button" ng-click="agregarNuevaHabitacion(idH,capacidadH,tipoH,precioH,nuevaH)" 
+                        class="btn btn-success"  data-dismiss="modal">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<a href="" data-toggle="modal" data-target="#modificarHabitacion" id="linkDirecto"></a> 
+
+<!-- Modal -Modificar habitación -->
+<div class="modal fade" id="modificarHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Modificar habitación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <div class="col-lg-10" style="margin-left: 75px;">
+                        <form>
+                            <div class="form-group">
+                                <div style="float: left" class="col-lg-5">
+                                    <label>Habitación</label>
+                                    <p style="font-size: 16px;" >&nbsp;&nbsp;&nbsp; H-{{dhModificar.id}}</p>
+                                </div>
+                                <div style="float: left; margin-left: 30px">
+                                    <label>Capacidad</label>
+                                    <input class="form-control" ng-model="dhModificar.capacidad">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="float: left">
+                                    <label>Tipo</label>
+                                    <input class="form-control" ng-model="dhModificar.tipo">
+                                </div>
+                                <div style="float: left; margin-left: 30px">
+                                    <label>Precio</label>
+                                    <input class="form-control" ng-model="dhModificar.precio">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  ng-click="modificarHabitacion('Confirmacion',dhModificar)"
+                        data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>
