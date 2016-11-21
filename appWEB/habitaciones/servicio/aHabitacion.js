@@ -29,12 +29,29 @@ angular.module('HotelLaPradera')
         $http.post(urlF,data).success(function(response){
             callback(response);
         });
-    }
+    };
+    
+    var eliminarHabitacion = function eliminarHabitacion(data, callback){
+        var urlF = url+"eliminarHabitacion";
+        $http.post(urlF,data).success(function(response){
+            callback(response);
+        });
+    };
+    
+    var salidaHabitacion = function salidaHabitacion(data, callback){
+        var urlF = url+"salidaHabitacion";
+        $http.post(urlF,data).success(function(response){
+            console.log(response);
+            callback(response);
+        });
+    };
     
     return {
         obtenerHabitacionesDia: obtenerHabitacionesDia,
         agregarNuevaHabitacion: agregarNuevaHabitacion,
-        modificarHabitacion: modificarHabitacion
+        modificarHabitacion: modificarHabitacion,
+        eliminarHabitacion: eliminarHabitacion,
+        salidaHabitacion: salidaHabitacion
     };
 });
 

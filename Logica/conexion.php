@@ -115,4 +115,20 @@ function modificarHabitacion(){
     $res->mensaje = "Se modifico la habitacion";
     echo json_encode($res);
 }
+
+function eliminarHabitacion(){
+    $objDatos = json_decode(file_get_contents("php://input"));
+    $res = new stdClass();
+    $res->success = true;
+    $res->mensaje = "Se elimino la habitacion";
+    echo json_encode($res);
+}
+
+function salidaHabitacion(){
+    $objDatos = json_decode(file_get_contents("php://input"));
+    $res = new stdClass();
+    $res->success = true;
+    $res->mensaje = "Se realizo la salida";
+    echo json_encode($res);
+}
 ///----------------------HABITACIONES
