@@ -360,4 +360,61 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -Modificar Cliente -->
+<div class="modal fade" id="modificarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="font-family: 'Lucida Sans Unicode'" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Modificar Cliente</h4>
+            </div>
+            <div class="modal-body">
+                <section class="row">
+                    <div style="margin-left: 20px;">
+                        <section class="row" >
+                            <div class="col-md-3 form-group">
+                                <label>Cedula:</label>
+                                <input type="text" class="form-control" ng-model="cedulaCliente">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Nombre:</label>
+                                <input type="text" class="form-control" ng-model="nombreCliente">
+                            </div>
+                        </section>
+                        <section class="row" >
+                            <div class="col-md-3 form-group">
+                                <label>Teléfono:</label>
+                                <input type="text" class="form-control" ng-model="telefonoCliente">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Correo:</label>
+                                <input type="text" class="form-control" ng-model="correoCliente">
+                            </div>
+                        </section>
+                        <section class="row" >
+                            <div class="col-md-5 form-group">
+                                <label>Nacionalidad:</label>
+                                <input type="text" class="form-control" ng-model="nacionalidadCliente">
+                            </div>
+                        </section>
+                        <section class="row" >
+                            <div class="col-md-9 form-group">
+                                <label>Dirección:</label>
+                                <input type="text" class="form-control" ng-model="direcionCliente">
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  >Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" 
+                      ng-click="modificarCliente()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

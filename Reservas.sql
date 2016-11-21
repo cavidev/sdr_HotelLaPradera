@@ -17,7 +17,7 @@ CREATE TABLE Usuario(
       nombre         VARCHAR   NOT NULL,
       contraseña     VARCHAR   NOT NULL,
       tipo           VARCHAR   NOT NULL,
-      foto           INT   NOT NULL,
+      foto           BYTEA   NOT NULL,
       
       CONSTRAINT PK_cedula_usuario    PRIMARY KEY (cedula),
       CONSTRAINT CHK_tipo_usuario CHECK(tipo in('administrador','recepcionista'))
@@ -53,7 +53,7 @@ CREATE TABLE Tipo(
 	idTipo          INT       NOT NULL,
 	nombre          VARCHAR   NULL,
 	cedulaJuridica  VARCHAR   NULL,
-	numeroTargeta   VARCHAR   NULL,
+	numeroTarjeta   VARCHAR   NULL,
 	numeroCuenta    VARCHAR   NULL,
 	banco           VARCHAR   NULL,
 
@@ -157,13 +157,14 @@ CREATE TABLE TipoReserva(
     
 --______________________________________________________FUNCIONES_______________________________________________________________________
 
-CREATE OR REPLACE FUNCTION InsertarReserva(pidReserva INT,pcedulaCliente VARCHAR, pcedulaUser VARCHAR, pestado VARCHAR, 
+CREATE OR REPLACE FUNCTION InsertarReserva(pcedulaCliente VARCHAR, pcedulaUser VARCHAR, 
                                           pcantidad INT, pfechaInicio DATE, pfechaSalida DATE,phoraEntrada TIME, phoraSalida TIME,pidHabitacion INT
                                           ) RETURNS VOID
 AS 
 $FUNC$
 BEGIN 
    INSERT INTO Reserva(idReserva,cedulaCliente,cedulaUser,estado) VALUES (pidReserva,pcedulaCliente,pcedulaUser,pestado);
+   
    INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,pestado);
    
    
@@ -171,7 +172,7 @@ END;
 $FUNC$ LANGUAGE  plpgsql;
 
 
-UPDATE HabitacionReserva SET estado='red' where idHabitacion=pidHabitacion;
+UPDATE HabitacionReserva SET estado='Ocupado' where idHabitacion=pidHabitacion;
 
 select * from InsertarReserva('2','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:00','01:00','1');
 select * from InsertarReserva('37','2-0760-0377','2-0760-0377','pendiente','4','06-01-2015','20-01-2015','12:0','01:0','1')
