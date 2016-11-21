@@ -162,15 +162,17 @@ CREATE OR REPLACE FUNCTION InsertarReserva(pcedulaCliente VARCHAR, pcedulaUser V
                                           ) RETURNS VOID
 AS 
 $FUNC$
+DECLARE idReserva int;
 BEGIN 
-   INSERT INTO Reserva(idReserva,cedulaCliente,cedulaUser,estado) VALUES (pidReserva,pcedulaCliente,pcedulaUser,pestado);
-   
+   INSERT INTO Reserva(cedulaCliente,cedulaUser,estado) VALUES (pcedulaCliente,pcedulaUser,pestado);
+   idReserva := lastval();
    INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,pestado);
-   
-   
 END;
 $FUNC$ LANGUAGE  plpgsql;
 
+exec InsertarReserva()
+INSERT INTO Clientes VALUES ('Esteban Blanco','4-0232-0763','Rio Frio');
+INSERT INTO Usuarios VALUES ();
 
 UPDATE HabitacionReserva SET estado='Ocupado' where idHabitacion=pidHabitacion;
 
@@ -267,8 +269,8 @@ END;
 $FUNC$ LANGUAGE  plpgsql;
 
 
-select * from InsertarCliente('Carlos Villaferte','2-0114-5889','Los Chiles','Costarirrence','8758-9877','car@gmail.com')
-----------------------------------------------------------------------
+select * from InsertarCliente('Carlos Villaferte','2-0000-0000','Los Chiles','Costarricense','8758-9877','car@gmail.com')
+-----------------------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION ModificarCliente(pnombre VARCHAR,pcedula VARCHAR,pdireccion VARCHAR, pnacionalidad VARCHAR,ptelefono VARCHAR,ptelefonoNew VARCHAR, pemail VARCHAR, pemailNew VARCHAR)
     returns void
 as
@@ -286,7 +288,17 @@ select * from TelefonoCliente
 select * from EmailCliente
 select * from Cliente
 
-
+----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION eliminarCliente(pcedula VARCHAR)
+    returns void
+as
+$func$
+begin
+	delete from telefonoCliente where cedula = pcedula;
+	delete from emailCliente where cedula = pcedula;
+	delete from Cliente  where cedula = pcedula;
+end;
+$func$ language plpgsql;
 
 ----------------------------------------------------------------------
 CREATE  TYPE tCliente
@@ -385,6 +397,13 @@ END;
 $FUNC$ LANGUAGE plpgsql;
 
 select * from consultaHabitacion(NULL,NULL,NULL)
+
+select * from Cliente
+select * from telefonoCliente
+delete from telefonoCLiente where cedula = '4-0232-0763';
+delete from emailCLiente where cedula = '4-0232-0763';
+delete from Cliente  where cedula = '4-0232-0763';
+
 
 
 

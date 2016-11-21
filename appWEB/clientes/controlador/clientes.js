@@ -4,7 +4,8 @@ angular.module('HotelLaPradera')
     
         $scope.listaClientes =[{cedula:"20000000",nombre:"Esteban Blanco",telefono:"88888888",correo:"esteban@gmail.com",nacionalidad:"Costarricense",direccion:"La Victoria RF"},
         {cedula:"30000000",nombre:"Sejo Herrera",telefono:"88888888",correo:"sejo@gmail.com",nacionalidad:"Costarricense",direccion:"La Fortuna"},
-        {cedula:"40000000",nombre:"Erwin Salas",telefono:"88888888",correo:"rope@gmail.com",nacionalidad:"Costarricense",direccion:"Aguas Zarcas"}];
+        {cedula:"40000000",nombre:"Erwin Salas",telefono:"88888888",correo:"rope@gmail.com",nacionalidad:"Costarricense",direccion:"Aguas Zarcas"},
+        {cedula:"4-0232-0763",nombre:"Erwin Salas",telefono:"88888888",correo:"rope@gmail.com",nacionalidad:"Costarricense",direccion:"Aguas Zarcas"}];
         
         $scope.regresar = function regresar(){
         if($sessionStorage.currentUser.typeUser === 1){
@@ -18,11 +19,10 @@ angular.module('HotelLaPradera')
          clientesFactory.insertarNuevoCliente(cedula,nombre,telefono,correo,nacionalidad,direccion, function (result) {
             console.log(result);
             if(result.sucess === true){
-                //notificacion de exito
+                //notificaciones.notifySuccess("Se insertó el cliente con éxito.");
             }
             else{
-                //notificaciones.notificacion('Oh No!','No se encontraron coincidencias, intenta nuevamente','error');
-                //notificacion de fracaso
+                //notificaciones.notifyError("Ha ocurrido un error.");
             }
         });
     }
