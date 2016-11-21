@@ -15,7 +15,8 @@ function insertarNuevoCliente()
     $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
     $conn = pg_connect($strconn) or die("'estado':0");
                 
-    $query = "SELECT InsertarCliente('$objDatos->nombre','$objDatos->cedula','$objDatos->direccion','$objDatos->nacionalidad','$objDatos->telefono','$objDatos->correo')";
+    $query = "SELECT InsertarCliente('$objDatos->nombre','$objDatos->cedula','$objDatos->direccion',"
+            . "'$objDatos->nacionalidad','$objDatos->telefono','$objDatos->correo')";
   
     $result = pg_query($conn,$query) or die ("'estado': 1");
     

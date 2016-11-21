@@ -10,7 +10,7 @@ CREATE DOMAIN t_Cedula    CHAR(11)     NOT NULL      CHECK(VALUE SIMILAR TO '[0-
 CREATE DOMAIN t_Fecha     DATE         NOT NULL
 
 --___________________________________________________________TABLAS___________________________________________________________________________________________________
-
+--DROP TABLE Usuario
 CREATE TABLE Usuario(
 
       cedula         t_cedula,
@@ -20,7 +20,7 @@ CREATE TABLE Usuario(
       foto           BYTEA   NOT NULL,
       
       CONSTRAINT PK_cedula_usuario    PRIMARY KEY (cedula),
-      CONSTRAINT CHK_tipo_usuario CHECK(tipo in('administrador','recepcionista'))
+      CONSTRAINT CHK_tipo_usuario CHECK(tipo in('superusuario','recepcionista'))
 );
 
 
