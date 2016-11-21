@@ -165,6 +165,7 @@
         <script type="text/javascript" src="lib/ngStorage/ngStorage.min.js"></script>
         <script type="text/javascript" src="lib/pnotify/pnotify.custom.min.js"></script>
         <script type="text/javascript" src="lib/pnotify/angular-pnotify.js"></script>
+        <script type="text/javascript" src="lib/AngularJS/angular-base64.min.js"></script>
         
         
         <!--Carga las rutas (templates)-->
