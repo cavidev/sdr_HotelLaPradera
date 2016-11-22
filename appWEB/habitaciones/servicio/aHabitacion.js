@@ -19,7 +19,6 @@ angular.module('HotelLaPradera')
     
     var agregarNuevaHabitacion = function agregarNuevaHabitacion(data, callback){
         var urlF = url+"InsertarDB.php?Funcion=agregarNuevaHabitacion";
-        console.log("Hola");
         $http.post(urlF,data).success(function(response){
             callback(response);
         });
