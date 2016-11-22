@@ -8,7 +8,6 @@ angular.module('HotelLaPradera')
 .factory('loginFactory', function($http){
     //Arma la funcion y la inserta de una ves en el json.
     var getData = function getData(datosV,callback){
-        //console.log("Mae estoy en el factory");
         //La direccion del archivo PHP.
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=GetData";
         //Datos que vienen por parametros.

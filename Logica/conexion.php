@@ -92,13 +92,7 @@ function insertarNuevaReserva(){
 }
 ///----------------------RESERVAR
 ///----------------------HABITACIONES
-function obtenerHabitacionesDia(){
-    $objDatos = json_decode(file_get_contents("php://input"));
-    $res = new stdClass();
-    $res->success = true;
-    $res->mensaje = "Se obtuvieron todas las habitaciones";
-    echo json_encode($res);
-}
+
 
 function agregarNuevaHabitacion(){
     $objDatos = json_decode(file_get_contents("php://input"));
