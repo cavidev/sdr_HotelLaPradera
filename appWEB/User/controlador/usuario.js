@@ -16,7 +16,7 @@ angular.module('HotelLaPradera')
         $scope.fechaActual = diasSemana[fechaActual.getDay()] + ", " + fechaActual.getDate() + " de " + 
             meses[fechaActual.getMonth()] + " del " + fechaActual.getFullYear();
             console.log(fechaActual); 
-    })(0);
+    })();
      
     $scope.Logout = function Logout(){
         notificaciones.notifySuccess('Cerrando Sesión');
@@ -26,7 +26,6 @@ angular.module('HotelLaPradera')
     
     $scope.ObtenerUsuario = function ObtenerUsuario(){
         usuarioFactory.ObtenerUsuario(function(respuesta){
-            console.log(respuesta);
             $scope.fotoU = respuesta.foto;
             $scope.cedulaU = respuesta.cedula;
             $scope.nombreU = respuesta.nombre;
@@ -34,7 +33,7 @@ angular.module('HotelLaPradera')
             $scope.telefonoU = respuesta.telefono;
             $scope.emailU = respuesta.email;
             if(respuesta.sucess){
-                notificaciones.notificacion2("Exito!!","Contrasenna Cambiada","exito");
+                notificaciones.notificacion2("Exito!!","Se recuperaron los datos","success");
             }else{
                 notificaciones.notificacion2("Error!!","No se ha actualizado","error");
             }

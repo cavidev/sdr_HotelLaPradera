@@ -12,7 +12,7 @@ else
         
 function modificarCliente()
 {
-    include("./Config.php");//Lea los datos de la bd
+    include("./config.php");//Lea los datos de la bd
     $objDatos = json_decode(file_get_contents("php://input"));
     
     $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
@@ -30,3 +30,57 @@ function modificarCliente()
     echo $contesto;
     
 }
+
+function modificarHabitacion()
+{
+    include("./config.php");//Lea los datos de la bd
+    $objDatos = json_decode(file_get_contents("php://input"));
+    
+    $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
+    $conn = pg_connect($strconn) or die("'estado':0");
+    
+    $query = "UPDATE Habitacion SET tipo = '$objDatos->tipo',precio = $objDatos->precio,capacidad = $objDatos->capacidad where idhabitacion = $objDatos->id";
+    
+    $result = pg_query($conn,$query) or die ("'estado': 1");
+    
+    pg_close($conn);
+    
+    $res = new stdClass();
+    if(pg_affected_rows($result)>0){
+        $res->success = true;
+        $res->mensaje = "Se modifico la habitacion " + $objDatos->id;
+    }else{
+        $res->success = false;
+        $res->mensaje = "no se pudo realizar la modificacion";
+    }
+    echo json_encode($res); 
+    
+}
+
+function salidaHabitacion()
+{
+    include("./config.php");//Lea los datos de la bd
+    $objDatos = json_decode(file_get_contents("php://input"));
+    
+    $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
+    $conn = pg_connect($strconn) or die("'estado':0");
+    
+    $query = "UPDATE Habitacion SET tipo = '$objDatos->tipo',precio = $objDatos->precio,capacidad = $objDatos->capacidad where idhabitacion = $objDatos->id";
+    
+    $result = pg_query($conn,$query) or die ("'estado': 1");
+    
+    pg_close($conn);
+    
+    $res = new stdClass();
+    if(pg_affected_rows($result)>0){
+        $res->success = true;
+        $res->mensaje = "Se realizo el check out de la habitacion " + $objDatos->id;
+    }else{
+        $res->success = false;
+        $res->mensaje = "no se pudo realizar el check out";
+    }
+    echo json_encode($res); 
+    
+}
+
+

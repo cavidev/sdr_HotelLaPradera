@@ -433,12 +433,26 @@ INSERT INTO HabitacionReserva VALUES(2,1,4,'21-10-2016','28-10-2016','2:00','5:0
 INSERT INTO HabitacionReserva VALUES(1,2,4,'30-10-2016','11-11-2016','2:00','5:00','Ocupada');
 INSERT INTO HabitacionReserva VALUES(2,2,4,'30-10-2016','11-11-2016','2:00','5:00','Ocupada');
 
+SELECT habs.idHabitacion,habs.capacidad,habs.tipo,habs.precio,habs.estado,consulta2.idReserva,consulta2.fechaEntrada,consulta2.fechaSalida,consulta2.cantidad as acompannantes,consulta2.usuario,
+	consulta2.cedulaCliente,consulta2.email,consulta2.telefono,consulta2.nombre,consulta2.direccion FROM
+	(SELECT h.idHabitacion, h.capacidad,h.tipo, h.precio, hr.estado 
+	FROM Habitacion h INNER JOIN HabitacionReserva hr
+	ON h.idHabitacion = hr.idHabitacion
+	WHERE hr.fechaEntrada <= '27-10-2016' and hr.fechaSalida >= '27-10-2016'
+	UNION
+	SELECT h1.idHabitacion, h1.capacidad,h1.tipo, h1.precio, 'Disponible' as estado
+	FROM Habitacion h1 WHERE h1.idHabitacion NOT IN(
+	SELECT h2.idHabitacion FROM Habitacion h2 INNER JOIN HabitacionReserva hr2 ON h2.idHabitacion = hr2.idHabitacion)) as habs
+	LEFT OUTER JOIN 
+	(SELECT hr.idHabitacion,r.idreserva,hr.fechaEntrada,hr.fechaSalida,hr.cantidad,u.nombre as usuario,r.cedulaCliente,ec.email,tc.telefono,c.nombre,c.direccion
+		FROM Reserva r INNER JOIN HabitacionReserva hr ON r.idReserva = hr.idReserva
+		INNER JOIN Cliente c ON r.cedulaCliente = c.cedula
+		INNER JOIN telefonoCliente tc ON tc.cedula = c.cedula
+		INNER JOIN emailCliente ec ON ec.cedula = c.cedula
+		INNER JOIN Usuario u ON u.cedula = r.cedulaUser
+	WHERE hr.fechaEntrada <= '27-10-2016' and hr.fechaSalida >= '27-10-2016'
+	) as consulta2
+	ON habs.idHabitacion = consulta2.idHabitacion
+	
+UPDATE Habitacion SET tipo = 'tipo',precio = 300,capacidad = 3
 
-SELECT h.idHabitacion, h.capacidad,h.tipo, h.precio, hr.estado 
-FROM Habitacion h INNER JOIN HabitacionReserva hr
-ON h.idHabitacion = hr.idHabitacion
-WHERE hr.fechaEntrada <= '27-10-2016' and hr.fechaSalida >= '27-10-2016'
-UNION
-SELECT h.idHabitacion, h.capacidad,h.tipo, h.precio, 'Disponible' as estado
-FROM Habitacion h WHERE h.idHabitacion NOT IN(
-SELECT h2.idHabitacion FROM Habitacion h2 INNER JOIN HabitacionReserva hr2 ON h2.idHabitacion = hr2.idHabitacion)

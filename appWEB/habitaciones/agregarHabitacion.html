@@ -62,7 +62,7 @@
                             </thead>
                             <tbody style="font-family: 'Lucida Sans Unicode'">
                                 <tr ng-repeat="habitacion in habitaciones" >
-                                    <td>H-{{habitacion.id}}</td>
+                                    <td>H-{{habitacion.idhabitacion}}</td>
                                     <td>{{habitacion.capacidad}}</td>
                                     <td>{{habitacion.tipo}}</td>
                                     <td>{{habitacion.precio}}c/u</td>
@@ -71,11 +71,11 @@
                                             <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: green" aria-hidden="true"></i></a>
                                         </div>
                                         <div ng-show="habitacion.estado === 'Reservada'" >
-                                            <a data-toggle="modal" data-target="#detalleReserva" ng-click="detalleR(habitacion.reserva)">
+                                            <a data-toggle="modal" data-target="#detalleReserva" ng-click="detalleR(habitacion)">
                                                 <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i></a>
                                         </div>
                                         <div ng-show="habitacion.estado === 'Ocupada'" >
-                                            <a data-toggle="modal" data-target="#salidaHabitacion" ng-click="salidaHabitacion('salida',habitacion.reserva);">
+                                            <a data-toggle="modal" data-target="#salidaHabitacion" ng-click="salidaHabitacion('salida',habitacion);">
                                                 <i class="fa fa-bed fa-2x" style="color: red" aria-hidden="true"></i></a>
                                         </div>
                                     </td>
@@ -116,13 +116,13 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>id: </label>&nbsp; {{detalleReserva.id}}
+                                <label>id: </label>&nbsp; {{detalleReserva.idreserva}}
                             </section>
                             <section>
-                                <label>Entrada: </label>&nbsp; {{detalleReserva.fEntrada}}
+                                <label>Entrada: </label>&nbsp; {{detalleReserva.fechaentrada}}
                             </section>
                             <section>
-                                <label>Habitación: </label>&nbsp; {{detalleReserva.habitacion}}
+                                <label>Habitación: </label>&nbsp; H -{{detalleReserva.idhabitacion}}
                             </section>
                         </div>
                         <div style="float: left">
@@ -130,7 +130,7 @@
                                 <label>Hecha por: </label>&nbsp; {{detalleReserva.usuario}}
                             </section>
                             <section>
-                                <label>Salida: </label>&nbsp; {{detalleReserva.fSalida}}
+                                <label>Salida: </label>&nbsp; {{detalleReserva.fechasalida}}
                             </section>
                             <section>
                                 <label>Acompañantes: </label>&nbsp; {{detalleReserva.acompannantes}}
@@ -143,10 +143,10 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>Cedula: </label>&nbsp; {{detalleReserva.cedula}}
+                                <label>Cedula: </label>&nbsp; {{detalleReserva.cedulacliente}}
                             </section>
                             <section>
-                                <label>Correo: </label>&nbsp; <a href="mailto:{{detalleReserva.correo}}">{{detalleReserva.correo}}</a>
+                                <label>Correo: </label>&nbsp; <a href="mailto:{{detalleReserva.email}}">{{detalleReserva.email}}</a>
                             </section>
                             <section>
                                 <label>Direción: </label>&nbsp; {{detalleReserva.direccion}}
