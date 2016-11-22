@@ -5,7 +5,7 @@ if(function_exists($_REQUEST['Funcion'])){
 }
 else
 {
-    echo '..¡No la encuentro!';
+    echo '..¡No la encuentro pero estoy en InsertarDB!';
 }
 
 function InsertarClienteUsuario()
@@ -35,6 +35,26 @@ function insertarNuevoCliente()
         $res->mensaje = "No se pudo insertar el cliente";//"no se pudo realizar la insecion";
     }
     echo json_encode($res);  
+}
+
+function InsertarUsuario()
+{
+    include("./config.php");
+    $objDatos = json_decode(file_get_contents("php://input"));
+    //Coneccion con posgrest #######################################################
+    $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
+    $conn = pg_connect($strconn) or die("'estado':0");         
+    $query = "SELECT*FROM InsertarUsuario('$objDatos->cedula','$objDatos->nombre','$objDatos->email','$objDatos->telefono','$objDatos->contrasenna','$objDatos->tipoUsuario','$objDatos->imagen')";
+
+    $result = pg_query($conn,$query) or die ("'estado': 1");
+    
+    //$registros= pg_num_rows($result);
+    //pg_free_result($result);
+    $contesto = json_encode($result);
+    
+    pg_close($conn);
+    
+    echo $contesto;   
 }
 
     //insert into usuario (cedula,nombre,contraseña,tipo,foto) values ('2-0751-0487','Roberto Salazar','1212','administrador','4')
