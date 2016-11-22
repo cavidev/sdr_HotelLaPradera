@@ -23,15 +23,18 @@ function insertarNuevoCliente()
     $query = "SELECT InsertarCliente('$objDatos->nombre','$objDatos->cedula','$objDatos->direccion',"
             . "'$objDatos->nacionalidad','$objDatos->telefono','$objDatos->correo')";
 
-    $result = pg_query($conn,$query) or die ("'estado': 1");
-    
-    //$registros= pg_num_rows($result);
-    //pg_free_result($result);
-    $contesto = json_encode($result);
-    
+    $result = pg_query($conn,$query) or die ("'estado': 1");   
     pg_close($conn);
     
-    echo $contesto;   
+    $res = new stdClass();    
+    if(pg_affected_rows($result)>0){
+        $res->success = true;
+        $res->mensaje = "Se inserto el cliente al sistema";
+    }else{
+        $res->success = false;
+        $res->mensaje = "No se pudo insertar el cliente";//"no se pudo realizar la insecion";
+    }
+    echo json_encode($res);  
 }
 
     //insert into usuario (cedula,nombre,contraseña,tipo,foto) values ('2-0751-0487','Roberto Salazar','1212','administrador','4')

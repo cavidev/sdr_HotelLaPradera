@@ -44,8 +44,16 @@ function BuscarTodosClientes()
     $result = pg_query($conn,$query) or die ("'estado': 0");
     
     pg_close($conn); 
-    $respuesta=  pg_fetch_all($result);
-    echo json_encode($respuesta);
+        $res = new stdClass();
+    if(pg_num_rows($result)>0){
+        $res->success = true;
+        $res->mensaje = "Inicio de sesion correcto";
+        $res->data = pg_fetch_all($result);
+    }else{
+        $res->success = false;
+        $res->mensaje = "No se pudo recuperar la información";
+    }   
+    echo json_encode($res);
 }
 
 function ObtenerUsuario()
