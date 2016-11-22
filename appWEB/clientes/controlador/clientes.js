@@ -67,4 +67,21 @@ angular.module('HotelLaPradera')
             }
         });
     }
+    
+    $scope.obtenerClientes = function obtenerClientes(){
+         clientesFactory.obtenerClientes(function (result) {
+            console.log(result);
+            $scope.listaClientes = result;
+                console.log("Exito!");
+            if(result.sucess === true){
+                
+            }
+            else{
+                //notificaciones.notificacion('Oh No!','No se encontraron coincidencias, intenta nuevamente','error');
+                //notificacion de fracaso
+            }
+        });
+    }
+    
+    $scope.obtenerClientes();
 });

@@ -25,9 +25,17 @@ angular.module('HotelLaPradera')
             });
     }
     
+    function obtenerClientes(callback){
+        $http.post(url+"ObtenerDB.php?Funcion=BuscarTodosClientes").success(function(response){
+                console.log(response);
+                callback(response);
+            });
+    }
+    
     return {insertarNuevoCliente:insertarNuevoCliente,
             modificarCliente:modificarCliente,
-            eliminarCliente:eliminarCliente}
+            eliminarCliente:eliminarCliente,
+            obtenerClientes:obtenerClientes}
         
     
 });
