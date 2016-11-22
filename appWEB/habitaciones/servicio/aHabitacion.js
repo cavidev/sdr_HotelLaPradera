@@ -12,6 +12,7 @@ angular.module('HotelLaPradera')
     
     var obtenerHabitacionesDia = function obtenerHabitacionesDia(data, callback){
         var urlF = url+"obtenerHabitacionesDia";
+        console.log(data);
         $http.post(urlF,data).success(function(response){
             callback(response);
         });
@@ -19,7 +20,6 @@ angular.module('HotelLaPradera')
     
     var agregarNuevaHabitacion = function agregarNuevaHabitacion(data, callback){
         var urlF = url+"agregarNuevaHabitacion";
-        console.log("Hola");
         $http.post(urlF,data).success(function(response){
             callback(response);
         });
