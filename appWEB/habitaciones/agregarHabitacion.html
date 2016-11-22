@@ -367,13 +367,13 @@
                         <div class="row">
                             <div style="float: left" class="col-lg-6">
                                 <section>
-                                    <label>id: </label>&nbsp; {{check_out.id}}
+                                    <label>id: </label>&nbsp; {{check_out.idreserva}}
                                 </section>
                                 <section>
-                                    <label>Entrada: </label>&nbsp; {{check_out.fEntrada}}
+                                    <label>Entrada: </label>&nbsp; {{check_out.fechaentrada}}
                                 </section>
                                 <section>
-                                    <label>Habitación: </label>&nbsp; {{check_out.habitacion}}
+                                    <label>Habitación: </label>&nbsp; {{check_out.idhabitacion}}
                                 </section>
                             </div>
                             <div style="float: left">
@@ -381,7 +381,7 @@
                                     <label>Hecha por: </label>&nbsp; {{check_out.usuario}}
                                 </section>
                                 <section>
-                                    <label>Salida: </label>&nbsp; {{check_out.fSalida}}
+                                    <label>Salida: </label>&nbsp; {{check_out.fechasalida}}
                                 </section>
                                 <section>
                                     <label>Acompañantes: </label>&nbsp; {{check_out.acompannantes}}
@@ -394,10 +394,10 @@
                         <div class="row">
                             <div style="float: left" class="col-lg-6">
                                 <section>
-                                    <label>Cedula: </label>&nbsp; {{check_out.cedula}}
+                                    <label>Cedula: </label>&nbsp; {{check_out.cedulacliente}}
                                 </section>
                                 <section>
-                                    <label>Correo: </label>&nbsp; <a href="mailto:{{check_out.correo}}">{{check_out.correo}}</a>
+                                    <label>Correo: </label>&nbsp; <a href="mailto:{{check_out.email}}">{{check_out.email}}</a>
                                 </section>
                                 <section>
                                     <label>Direción: </label>&nbsp; {{check_out.direccion}}

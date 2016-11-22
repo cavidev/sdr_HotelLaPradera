@@ -123,19 +123,21 @@ angular.module('HotelLaPradera')
     
     $scope.salidaH = false;
     $scope.salidaHabitacion = function salidaHabitacion(peticion,detalle){
+        console.log(detalle);
         if(peticion === "salida"){
             $scope.check_out = detalle;
         }
         else if(peticion === "Confirmacion"){
             if($scope.salidaH === true){
-                var datos = {cedula: detalle.cedula};
+                console.log("salida");
+                console.log(detalle);
+                var datos = {idHabitacion: detalle.idhabitacion,idReserva:detalle.idreserva};
                 aHabitacionFactory.salidaHabitacion(datos,function (res){
                     if(res.success){
-                        temp = 'Disponible';
                         notificaciones.notifySuccess(res.mensaje);
                         obtenerHabitacionesHoy();
                     }else{
-                        notificaciones.notifyError("No se pudo realizar la petición");
+                        notificaciones.notifyError(res.mensaje);
                     }
 
                 });

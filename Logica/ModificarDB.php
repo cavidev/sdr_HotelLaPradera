@@ -65,7 +65,7 @@ function salidaHabitacion()
     $strconn = "host= $host port=$port dbname=$dbname user=$user password=$password";
     $conn = pg_connect($strconn) or die("'estado':0");
     
-    $query = "UPDATE Habitacion SET tipo = '$objDatos->tipo',precio = $objDatos->precio,capacidad = $objDatos->capacidad where idhabitacion = $objDatos->id";
+    $query = "SELECT * FROM CHECKOUT($objDatos->idReserva,$objDatos->idHabitacion)";
     
     $result = pg_query($conn,$query) or die ("'estado': 1");
     
