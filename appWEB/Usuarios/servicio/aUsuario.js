@@ -7,23 +7,22 @@
 angular.module('HotelLaPradera')
 .factory('aUsuarioFactory', function($http){
      
-    function ActualizaFoto(data,callback){
+    var ActualizaFoto=function ActualizaFoto(data,callback){
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaFoto";
         $http.post(url,data).success(function(response){
             console.log(response);
             callback(response);
         });
     };
-    function insertarUsuario(data,callback){
+    
+    var insertarUsuario= function insertarUsuario(data,callback){
         console.log(data);
         var url = "http://localhost/Hotel_La_Pradera/Logica/InsertarDB.php?Funcion=InsertarUsuario";
         $http.post(url,data).success(function(response){
-            console.log(response);
+ 
             callback(response);
-        });
-        
-        
-    }
+        });  
+    };
     
 
 return {

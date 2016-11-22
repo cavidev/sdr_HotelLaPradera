@@ -14,29 +14,30 @@
                 <br>
                 <br>
                 <br>   
-                <h3>Seleccione la nueva imagen</h3>     
-            </div>
-
-              <form>
+              
+                 <form>
                   Cambiar Foto <input name="imagen" type="file" file-model="imagen"/>
                   <input class="btn btn-primary" type="submit" value="Cambiar" />
                   <button ng-click="ActualizaFoto()" >verFoto</button>
              </form>
+            </div>
+
+
 
             <div class=" col-md-9 col-lg-9 "> 
               <table class="table table-user-information">
                 <tbody>
                   <tr>
-                    <td>CEDULA</td>
-                    <td><input type="text" ng-model="auCedula" name="iCed"></td>
+                    <td>CEDULA  </td>
+                    <td>
+                        <input type="text" ng-model="auCedula" name="iCed">
+                        <h6>Formato #-####-####</h6>
+                    </td>
+     
                   </tr>
                   <tr>
                     <td>NOMBRE:</td>
                     <td><input type="text" ng-model="auName" name="iNombre"></td>
-                  </tr>
-                  <tr>
-                    <td>PUESTO:</td>
-                    <td><input type="text" ng-model="auPuesto" name="iPuesto"></td>
                   </tr>
                   <tr>
                   <tr>
@@ -44,7 +45,8 @@
                     <td><input type="text" ng-model="auEmail" name="iEmail"></td>
                   </tr>
                     <td>NUMERO TELEFONICO:</td>
-                    <td><input type="number" ng-model="auTel" name="iTel"  min="0">
+                    <td><input type="text" ng-model="auTel" name="iTel"  >
+                    <h6>Formato ####-####</h6>
                     </td>
                   </tr>
                 </tbody>
@@ -92,9 +94,10 @@
                   <tr>
                     
                     <td> 
-                        <select ng-model="auTipoDato">
-                            <option value="adm">Administrador</option>
-                            <option value="recep">Recepcionista</option>
+                        <select   ng-model="auTipoDato">
+                       
+                            <option value="recepcionista">Recepcionista</option>
+                             <option value="administrador">Administrador</option>
                         </select>
            
                     </td>
@@ -102,16 +105,18 @@
 
                 </tbody>
               </table>
+               <div class="panel-heading">  
+                    <div >
+                        <button class="btn btn-primary" text-align="center"  ng-click="insertarUsuario(auCedula,auName,auEmail,auTel,auContra,nuevaContrasenna,auTipoDato,imagen2)">Registrar usuario</button>                
+                    </div> 
+              
+                </div>
+
              
               </div>
           </div>
         </div>
-        <div class="panel-heading">  
-            <div >
-                <button class="btn btn-primary" text-align="center"  ng-click="insertarUsuario(auCedula,auName,auEmail,auTel,auContra,auTipoDato,imagen2)">Registrar usuario</button>                
-            </div>
-                
-        </div>
+
                
 
           </div>
