@@ -17,7 +17,7 @@ CREATE TABLE Usuario(
       nombre         VARCHAR   NOT NULL,
       contraseña     VARCHAR   NOT NULL,
       tipo           VARCHAR   NOT NULL,
-      foto           BYTEA   NOT NULL,
+      foto           VARCHAR   NOT NULL,
       
       CONSTRAINT PK_cedula_usuario    PRIMARY KEY (cedula),
       CONSTRAINT CHK_tipo_usuario CHECK(tipo in('Superusuario','Recepcionista'))
@@ -51,21 +51,31 @@ CREATE TABLE Reserva(
 	
 );
 
-
+--DROP TABLE Tipo
 CREATE TABLE Tipo(
-
-	idTipo          INT       NOT NULL,
 	nombre          VARCHAR   NULL,
 	cedulaJuridica  VARCHAR   NULL,
 	numeroTarjeta   VARCHAR   NULL,
 	numeroCuenta    VARCHAR   NULL,
 	banco           VARCHAR   NULL,
+	monto		VARCHAR   NULL,
 
-        CONSTRAINT PK_idTipo   PRIMARY KEY (idTipo)	
+        CONSTRAINT PK_idTipo   PRIMARY KEY (nombre)	
 );
 
+INSERT INTO tipo (idTipo,nombre) VALUES ();
 
+--drop table tiporeserva
+CREATE TABLE TipoReserva(
 
+	idReserva      INT  NOT NULL,
+	idTipo         INT  NOT NULL,
+
+	CONSTRAINT PK_idReserva_idTip PRIMARY KEY (idReserva,idTipo),
+	CONSTRAINT FK_idReserva FOREIGN KEY(idReserva) REFERENCES Reserva(idReserva),
+	CONSTRAINT FK_idTipo   FOREIGN KEY(idTipo) REFERENCES Tipo(idTipo)
+
+);
 
 CREATE TABLE TelefonoCliente(
 
@@ -144,16 +154,7 @@ CREATE TABLE HabitacionReserva(
 
 insert into HabitacionReserva values(4,1,2,'20/10/2016','25/10/2016','15:00','3:00','ocupada')
 
-CREATE TABLE TipoReserva(
 
-	idReserva      INT  NOT NULL,
-	idTipo         INT  NOT NULL,
-
-	CONSTRAINT PK_idReserva_idTip PRIMARY KEY (idReserva,idTipo),
-	CONSTRAINT FK_idReserva FOREIGN KEY(idReserva) REFERENCES Reserva(idReserva),
-	CONSTRAINT FK_idTipo   FOREIGN KEY(idTipo) REFERENCES Tipo(idTipo)
-
-);
 
 
 
@@ -166,15 +167,17 @@ CREATE OR REPLACE FUNCTION InsertarReserva(pcedulaCliente VARCHAR, pcedulaUser V
                                           ) RETURNS VOID
 AS 
 $FUNC$
-DECLARE idReserva int;
+DECLARE pidReserva int;
 BEGIN 
-   INSERT INTO Reserva(cedulaCliente,cedulaUser,estado) VALUES (pcedulaCliente,pcedulaUser,pestado);
-   idReserva := lastval();
-   INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,pestado);
+   INSERT INTO Reserva(cedulaCliente,cedulaUser,estado) VALUES (pcedulaCliente,pcedulaUser,'Pendiente');
+   pidReserva := lastval();
+   INSERT INTO HabitacionReserva(idHabitacion,idReserva,cantidad,fechaEntrada,fechaSalida,horaEntrada,horaSalida,estado) VALUES(pidHabitacion,pidReserva,pcantidad,pfechaInicio,pfechaSalida,phoraEntrada,phoraSalida,'Reservada');
 END;
 $FUNC$ LANGUAGE  plpgsql;
 
-exec InsertarReserva()
+select * from Reserva
+select * from HabitacionReserva
+SELECT InsertarReserva('4-0232-0763','5-0408-0112',5,'12-10-2016','14-10-2016','12:00','12:00',3)
 INSERT INTO Clientes VALUES ('Esteban Blanco','4-0232-0763','Rio Frio');
 INSERT INTO Usuarios VALUES ();
 
@@ -455,5 +458,9 @@ SELECT habs.idHabitacion,habs.capacidad,habs.tipo,habs.precio,habs.estado,consul
 	) as consulta2
 	ON habs.idHabitacion = consulta2.idHabitacion
 	
-UPDATE Habitacion SET tipo = 'tipo',precio = 300,capacidad = 3
+UPDATE Habitacion SET tipo = 'Bungalow',precio = 300,capacidad = 3 where idhabitacion = 1
 
+DELETE FROM Habitacion WHERE idhabitacion = 1
+INSERT INTO Habitacion VALUES (4,'Bungalow',100000,6)
+
+SELECT cedula FROM Usuario WHERE nombre = 'Carlos' and contraseña = '1234'
