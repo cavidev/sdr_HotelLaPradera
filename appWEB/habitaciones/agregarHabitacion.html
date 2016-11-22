@@ -10,11 +10,18 @@
                 <div class="row">
                     <section style="margin-left: 8px;margin-right: 8px;">
                         <div style="float: left">
-                            <p><label>Habitaciones correspondiente al:</label><i>&nbsp;{{fechaHoy}}</i><br>
-                                    &nbsp;&nbsp; <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
+                            <div>
+                                <label>Habitaciones correspondiente al:</label><i>&nbsp;{{fechaHoy}}</i>
+                            </div>
+                            <div style="float: left">
+                                <p>&nbsp;&nbsp; <b>Disponible:</b> <i class="fa fa-bed" style="color: green" aria-hidden="true"></i><br>
                                     &nbsp;&nbsp; <b>Ocupada:</b> <i class="fa fa-bed" style="color: red" aria-hidden="true"></i><br>
                                     &nbsp;&nbsp; <b>Reservada:</b> <i class="fa fa-bed" style="color: yellow" aria-hidden="true"></i><br>
-                            </p>
+                                </p>
+                            </div>
+                            <div style="float: left; margin-left: 50px;margin-top: 20px;">
+                                <section><a data-toggle="modal" data-target="#nuevaHabitacion" style="color: #00733e;">Agregar nueva habitación</a></section>
+                            </div>
                         </div>
                         <div style="float: right; font-family: cursive; color: #333;margin-right: 30px;"> 
                             <section>
@@ -42,7 +49,6 @@
                 </div>
                 <div class="row">
                     <section style="padding: 20px;">
-                        <section><a data-toggle="modal" data-target="#nuevaHabitacion" style="color: #00733e;">Agregar nueva habitación</a></section>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -56,7 +62,7 @@
                             </thead>
                             <tbody style="font-family: 'Lucida Sans Unicode'">
                                 <tr ng-repeat="habitacion in habitaciones" >
-                                    <td>H-{{habitacion.id}}</td>
+                                    <td>H-{{habitacion.idhabitacion}}</td>
                                     <td>{{habitacion.capacidad}}</td>
                                     <td>{{habitacion.tipo}}</td>
                                     <td>{{habitacion.precio}}c/u</td>
@@ -65,18 +71,20 @@
                                             <a href="#reservar"><i class="fa fa-bed fa-2x" style="color: green" aria-hidden="true"></i></a>
                                         </div>
                                         <div ng-show="habitacion.estado === 'Reservada'" >
-                                            <a data-toggle="modal" data-target="#detalleReserva">
+                                            <a data-toggle="modal" data-target="#detalleReserva" ng-click="detalleR(habitacion)">
                                                 <i class="fa fa-bed fa-2x" style="color: yellow" aria-hidden="true"></i></a>
                                         </div>
                                         <div ng-show="habitacion.estado === 'Ocupada'" >
-                                            <a><i class="fa fa-bed fa-2x" style="color: red" aria-hidden="true"></i></a>
+                                            <a data-toggle="modal" data-target="#salidaHabitacion" ng-click="salidaHabitacion('salida',habitacion);">
+                                                <i class="fa fa-bed fa-2x" style="color: red" aria-hidden="true"></i></a>
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <button class="btn btn-info" ng-click="modificarHabitacion('Modificar',habitacion)">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <button class="btn btn-danger" ng-click="eliminarHabitacion('Eliminar', habitacion)">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -108,13 +116,13 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>id: </label>&nbsp; {{detalleReserva.id}}
+                                <label>id: </label>&nbsp; {{detalleReserva.idreserva}}
                             </section>
                             <section>
-                                <label>Entrada: </label>&nbsp; {{detalleReserva.fEntrada}}
+                                <label>Entrada: </label>&nbsp; {{detalleReserva.fechaentrada}}
                             </section>
                             <section>
-                                <label>Habitación: </label>&nbsp; {{detalleReserva.habitacion}}
+                                <label>Habitación: </label>&nbsp; H -{{detalleReserva.idhabitacion}}
                             </section>
                         </div>
                         <div style="float: left">
@@ -122,7 +130,7 @@
                                 <label>Hecha por: </label>&nbsp; {{detalleReserva.usuario}}
                             </section>
                             <section>
-                                <label>Salida: </label>&nbsp; {{detalleReserva.fSalida}}
+                                <label>Salida: </label>&nbsp; {{detalleReserva.fechasalida}}
                             </section>
                             <section>
                                 <label>Acompañantes: </label>&nbsp; {{detalleReserva.acompannantes}}
@@ -135,10 +143,10 @@
                     <div class="row">
                         <div style="float: left" class="col-lg-6">
                             <section>
-                                <label>Cedula: </label>&nbsp; {{detalleReserva.cedula}}
+                                <label>Cedula: </label>&nbsp; {{detalleReserva.cedulacliente}}
                             </section>
                             <section>
-                                <label>Correo: </label>&nbsp; <a href="mailto:{{detalleReserva.correo}}">{{detalleReserva.correo}}</a>
+                                <label>Correo: </label>&nbsp; <a href="mailto:{{detalleReserva.email}}">{{detalleReserva.email}}</a>
                             </section>
                             <section>
                                 <label>Direción: </label>&nbsp; {{detalleReserva.direccion}}
@@ -211,7 +219,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" ng-click="agregarNuevaHabitacion(idH,capacidadH,tipoH,precioH,nuevaH)" 
+                <button type="button" ng-click="agregarNuevaHabitacion(nuevaH)" 
                         class="btn btn-success"  data-dismiss="modal">Agregar</button>
             </div>
         </div>
@@ -219,7 +227,6 @@
 </div>
  
 <a href="" data-toggle="modal" data-target="#modificarHabitacion" id="linkDirecto"></a> 
-
 <!-- Modal -Modificar habitación -->
 <div class="modal fade" id="modificarHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -266,5 +273,154 @@
         </div>
     </div>
 </div>
- 
+
+<a href="" data-toggle="modal" data-target="#eliminarHabitacion" id="linkDirectoEH"></a> 
+<!-- Modal -Eliminar habitación -->
+<div class="modal fade" id="eliminarHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar habitación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <div style="margin-left:70px; font-family: cursive" class="col-lg-10">
+                        <article style="float: right">
+                            <p>Esta seguro que desea eliminar esta habitación?
+                                cuando se efectue la eliminación se quitara permanentemente
+                                del sistema...
+                            </p>
+                        </article>
+                    </div> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-10" style="margin-left: 75px;">
+                        <form>
+                            <div class="form-group">
+                                <div style="float: left" class="col-lg-6">
+                                    <label>Habitación que se eliminará</label>
+                                    <p style="font-size: 16px;" >&nbsp;&nbsp;&nbsp; H-{{idhEliminar.id}}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger"  ng-click="eliminarHabitacion('Confirmacion',idhEliminar.id)"
+                        data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -Realizar salida de la habitación -->
+<div class="modal fade" id="salidaHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Check out</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" >
+                    <div style="margin-left:70px; font-family: cursive" class="col-lg-10">
+                        <article style="float: right">
+                            <p>
+                            </p>
+                        </article>
+                    </div> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-10" style="margin-left: 75px;">
+                        <div style="float: left">
+                            <form>
+                            <div class="form-group">
+                                <div style="float: left" class="col-lg-12">
+                                    <label>Estado de la habitación</label>
+                                    <p style="font-size: 16px;" >&nbsp;&nbsp;&nbsp; Ocupada</p>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div style="float: left; margin-left: 40px;margin-top: 20px;">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" ng-model="salidaH">
+                                Check out
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div style="margin-left: 30px">
+                        <section class="row">
+                            <h4>Reserva</h4>
+                        </section>
+                        <div class="row">
+                            <div style="float: left" class="col-lg-6">
+                                <section>
+                                    <label>id: </label>&nbsp; {{check_out.id}}
+                                </section>
+                                <section>
+                                    <label>Entrada: </label>&nbsp; {{check_out.fEntrada}}
+                                </section>
+                                <section>
+                                    <label>Habitación: </label>&nbsp; {{check_out.habitacion}}
+                                </section>
+                            </div>
+                            <div style="float: left">
+                                <section>
+                                    <label>Hecha por: </label>&nbsp; {{check_out.usuario}}
+                                </section>
+                                <section>
+                                    <label>Salida: </label>&nbsp; {{check_out.fSalida}}
+                                </section>
+                                <section>
+                                    <label>Acompañantes: </label>&nbsp; {{check_out.acompannantes}}
+                                </section>
+                            </div>
+                        </div>
+                        <section class="row" >
+                            <h4>Cliente</h4>
+                        </section>
+                        <div class="row">
+                            <div style="float: left" class="col-lg-6">
+                                <section>
+                                    <label>Cedula: </label>&nbsp; {{check_out.cedula}}
+                                </section>
+                                <section>
+                                    <label>Correo: </label>&nbsp; <a href="mailto:{{check_out.correo}}">{{check_out.correo}}</a>
+                                </section>
+                                <section>
+                                    <label>Direción: </label>&nbsp; {{check_out.direccion}}
+                                </section>
+                            </div>
+                            <div style="float: left">
+                                <section>
+                                    <label>Nombre: </label>&nbsp; {{check_out.nombre}}
+                                </section>
+                                <section>
+                                    <label>Telefono: </label>&nbsp; {{check_out.telefono}}
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success"  ng-click="salidaHabitacion('Confirmacion',check_out)"
+                        data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

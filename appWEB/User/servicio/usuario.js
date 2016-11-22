@@ -5,9 +5,16 @@
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
 angular.module('HotelLaPradera')
-.factory('usuarioFactory', function($http){
+.factory('usuarioFactory', function($http,$sessionStorage){
  
-
+    function ObtenerUsuario(callback){
+        var url = "http://localhost/Hotel_La_Pradera/Logica/ObtenerDB.php?Funcion=ObtenerUsuario";
+        $http.post(url,{usuario:$sessionStorage.currentUser.username}).success(function(response){
+            console.log(response);
+            callback(response);
+        });
+    };
+    
     function ActualizaContrasenna(data,callback){
         var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=ActualizaContrasenna";
         $http.post(url,data).success(function(response){
@@ -50,6 +57,7 @@ return {
         getData: getData,
         credencialesUsuario: credencialesUsuario,
         ActualizaFoto: ActualizaFoto,
-        ActualizaContrasenna: ActualizaContrasenna
+        ActualizaContrasenna: ActualizaContrasenna,
+        ObtenerUsuario:ObtenerUsuario
     };
 });

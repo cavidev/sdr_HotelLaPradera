@@ -16,9 +16,9 @@ angular.module('HotelLaPradera')
         $scope.loading = true;
         AuthenticationService.Login(usuario, contrasenna, function (result) {
             console.log(result);
-            if(result.sucess === true){
-                switch(result.typeUser) {
-                    case 1:
+            if(result.success === true){
+                switch(result.data.tipo) {
+                    case "Superusuario":
                         notificaciones.notificacion2('Bienvenido!','Sesion iniciada normalmente','sucess');
                         $location.path("/superUsuario");
                         break;

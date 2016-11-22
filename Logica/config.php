@@ -1,7 +1,7 @@
 <?php
 
 $user = "postgres";
-$password = "71a0ses3919";
-$dbname = "Reservas";
+$password = "2016";
+$dbname = "dbhotellapradera";//DBHotelLaPradera
 $port = "5432";
 $host = "localhost";
