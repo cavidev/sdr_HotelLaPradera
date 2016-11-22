@@ -4,7 +4,7 @@
     Año: 2016
     Descripción: route, para la navegación de las paginas en AngularJS.
 */
-    /* global angular */
+    /* global angular, directive */
 
 var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
@@ -32,11 +32,6 @@ angular.module('HotelLaPradera')
             $scope.tipoU = respuesta.tipo;
             $scope.telefonoU = respuesta.telefono;
             $scope.emailU = respuesta.email;
-            if(respuesta.sucess){
-                notificaciones.notificacion2("Exito!!","Se recuperaron los datos","success");
-            }else{
-                notificaciones.notificacion2("Error!!","No se ha actualizado","error");
-            }
         }); 
     };
     
@@ -71,7 +66,6 @@ angular.module('HotelLaPradera')
     
     $scope.ObtenerUsuario();
     $scope.visibleNav = false;
-
 
 }).directive('fileModel', ['$parse', function ($parse) {
     return {

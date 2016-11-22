@@ -11,8 +11,9 @@
         return service;
  
         function Login(username, password, callback) {
-            var url = "http://localhost/Hotel_La_Pradera/Logica/conexion.php?Funcion=credenciales";
-            $http.post(url,{ username: username, password: password })
+            var url = "http://localhost/Hotel_La_Pradera/Logica/ObtenerDB.php?Funcion=credenciales";
+            var datos = { username: username, password: password };
+            $http.post(url,datos)
                 .success(function (response) {
                     console.log(response);
                     // Inicio de sesión exitoso si hay un token en la respuesta
@@ -20,7 +21,7 @@
                         // Guardar nombre de usuario y token en almacenamiento local
                         // para guardar usuario conectado entre actualizaciones de la página
                         //$localStorage.currentUser = { username: username, token: response.token, typeUser: response.typeUser};//Cambia el almacenamiento.
-                        $sessionStorage.currentUser = { username: username, token: response.token, typeUser: response.typeUser};
+                        $sessionStorage.currentUser = { username: username, token: response.token, typeUser: response.tipo};
  
                         // Añadir ficha de jwt a encabezado de autenticación para todas las solicitudes a través del servicio $http
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;

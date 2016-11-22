@@ -173,7 +173,6 @@
         <script type="text/javascript" src="lib/jQuery/dist/jquery.min.js"></script>
         
         <!--Carga de service-->
-        <script type="text/javascript" src="appWEB/login/service/login.js"></script>
         <script type="text/javascript" src="appWEB/profile/service/superUsuario.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservar/servicio/reservas.js"></script>
         <script type="text/javascript" src="appWEB/reservaciones/reservas/servicio/reservas.js"></script>
